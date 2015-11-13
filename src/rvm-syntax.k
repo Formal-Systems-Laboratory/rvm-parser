@@ -101,4 +101,6 @@ syntax HandlerDecList          ::= List{HandlerDec, ""}
 syntax EventDecList          ::= List{EventDec, ""}
 syntax PropertyDecList          ::= List{PropertyDec, ""}
 syntax None ::= ""
+
+syntax Id ::= "size" [token, avoid]
 endmodule
