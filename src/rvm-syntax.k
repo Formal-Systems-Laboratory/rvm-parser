@@ -1,7 +1,7 @@
 require "domains.k"
 require "logic/ere-syntax.k"
 require "logic/ltl-syntax.k"
-//require "logic/fsm-syntax.k"
+require "logic/fsm-syntax.k"
 
 
 module PACKAGE-SYNTAX
@@ -75,7 +75,7 @@ module RVM-SYNTAX
 	imports JAVA-BUBBLE-SYNTAX
 	imports ERE-SYNTAX
 	imports LTL-SYNTAX
-	//imports FSM-SYNTAX
+	imports FSM-SYNTAX
 	imports PACKAGE-SYNTAX
 
 
