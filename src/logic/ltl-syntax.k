@@ -1,7 +1,9 @@
 require "domains.k"
+require "boolop-syntax.k"
 
 module LTL-SYNTAX
     imports DOMAINS-SYNTAX
+    imports BOOLOP-SYNTAX
 
 syntax LogicName ::= "ltl"
 
@@ -10,7 +12,7 @@ syntax LogicFormula ::= LTLFormula
 syntax LTLFormula ::=
            "true"
          | "false"
-         | Id
+         | EventName
          | "(" LTLFormula ")"           [bracket]
          > "[]" LTLFormula
          > "[*]" LTLFormula
@@ -23,11 +25,11 @@ syntax LTLFormula ::=
          > LTLFormula "~U" LTLFormula   [left]
          > LTLFormula "S" LTLFormula    [left]
          > LTLFormula "~S" LTLFormula   [left]
-         > LTLFormula "and" LTLFormula  [left]
-         > LTLFormula "or" LTLFormula   [left]
-         > LTLFormula "xor" LTLFormula  [left]
-         > LTLFormula "=>" LTLFormula   [left]
-         > LTLFormula "<=>" LTLFormula  [left]
+         > LTLFormula And LTLFormula  [left, klabel('LTLAnd)]
+         > LTLFormula Or LTLFormula   [left, klabel('LTLOr)]
+         > LTLFormula Xor LTLFormula  [left,klabel('LTLXor)]
+         > LTLFormula Implies LTLFormula   [left, klabel('LTLImp)]
+         > LTLFormula Equivalent LTLFormula  [left, klabel('LTLEq)]
 
 syntax Id ::= "o" [avoid, token]
             | "U" [avoid, token]
