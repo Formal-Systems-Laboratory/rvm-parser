@@ -20,7 +20,6 @@ syntax EREFormula ::=
          > EREFormula "|" EREFormula    [left]
 
 
-
 syntax LogicState ::= "match" | "fail"
 
 endmodule

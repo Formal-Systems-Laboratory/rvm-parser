@@ -29,6 +29,7 @@ endmodule
 
 module JAVA-BUBBLE-SYNTAX
 	imports DOMAINS-SYNTAX
+	imports PACKAGE-SYNTAX
 	syntax NoBracket ::= r"[^{}]+" [token]
     syntax BalancedBracket ::=
                                "{" BalancedBracket "}"
@@ -38,7 +39,7 @@ module JAVA-BUBBLE-SYNTAX
 
     syntax BlockBubble ::=    "{" BalancedBracket "}" [prefer, token]
                             | "{" "}" [prefer, token]
-	syntax Param ::= Id Id
+	syntax Param ::= TypeName Id
 	syntax Params                    ::= List{Param, ","}                [klabel('FormalParamList)]
 
     syntax DecStart ::= Id | Id DecStart
