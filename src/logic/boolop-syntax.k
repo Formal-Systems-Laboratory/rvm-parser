@@ -7,6 +7,6 @@ syntax And ::= "/\\" | "and" | "&&"
 syntax Or ::= "\\/" | "or" | "||"
 syntax Xor ::= "++" | "xor" | "^"
 syntax Implies ::= "=>" | "implies"
-syntax Equivalent ::= "<=>"
+syntax Equivalent ::= "<=>" | "<->"
 
 endmodule
