@@ -1,0 +1,14 @@
+fsm: unregistered [
+        register -> registered
+        ]
+        registered [
+        unregister -> unregistered
+        start -> started
+        ]
+        started [
+        swingcall -> unsafe
+        ]
+        unsafe [
+        swingcall -> unsafe
+        ]
+
