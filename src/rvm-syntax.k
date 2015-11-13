@@ -102,5 +102,5 @@ syntax EventDecList          ::= List{EventDec, ""}
 syntax PropertyDecList          ::= List{PropertyDec, ""}
 syntax None ::= ""
 
-syntax Id ::= "size" [token, avoid]
+syntax Id ::= "size" | "in" [token, avoid]
 endmodule
