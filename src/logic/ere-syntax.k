@@ -10,7 +10,7 @@ syntax LogicFormula ::= EREFormula
 syntax EREFormula ::=
            "empty"
          | "epsilon"
-         | Id
+         | EventName
          | "~" EREFormula
          > EREFormula "*"
          | EREFormula "+"
@@ -21,6 +21,8 @@ syntax EREFormula ::=
 
 
 syntax LogicState ::= "match" | "fail"
+
+syntax EventName ::= Id
 
 endmodule
 

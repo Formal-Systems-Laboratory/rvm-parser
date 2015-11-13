@@ -35,5 +35,7 @@ syntax Id ::= "o" [avoid, token]
 
 syntax LogicState ::= "violation"
 
+syntax EventName ::= Id
+
 endmodule
 
