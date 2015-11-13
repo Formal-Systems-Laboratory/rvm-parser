@@ -37,7 +37,7 @@ syntax EnumDec ::= EnumDecHead EnumBody                                 [klabel(
 
 
 //@ \subsection{FieldDeclarations.sdf}
-syntax FieldDec ::= AnnoFieldModList Type VarDecList ";"                [klabel('FieldDec)]
+syntax FieldDec ::= FieldMod Type VarDecList ";"                [klabel('FieldDec)]
 
 syntax VarDec ::= VarDecId                                              [klabel('VarDec)]
                 | VarDecId "=" VarInit                                  [klabel('VarDec)]

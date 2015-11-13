@@ -41,7 +41,22 @@ module JAVA-BUBBLE-SYNTAX
 	syntax Param ::= Id Id
 	syntax Params                    ::= List{Param, ","}                [klabel('FormalParamList)]
 
-	syntax DecsBubble ::= r".*?" [token, avoid]
+    syntax DecStart ::= Id | Id DecStart
+
+	syntax ClassDecBubble ::= DecStart BlockBubble
+
+	syntax ParamsBubble ::= r"\\([^\\)]*\\)" [token, avoid]
+
+	syntax MethodDecBubble ::= DecStart ParamsBubble BlockBubble
+
+	syntax FieldDecBubble ::= Id VarInitBubble ";"
+
+	syntax VarInitBubble ::=  r"[^;]+" [token, avoid]
+
+	syntax DecBubble ::=  ClassDecBubble [token]
+	                    | MethodDecBubble [token]
+	                    | FieldDecBubble [token]
+
 
     context 'FormalParamList(HOLE,,_) [result(Param)]
     context 'FormalParamList(_,,HOLE) [result(Params)]
@@ -63,7 +78,7 @@ module RVM-SYNTAX
     syntax SpecDec ::= SpecDecHead SpecBody
     syntax SpecDecHead ::= Id "(" Params ")"
     //syntax SpecBody ::= "{" SpecBodyDecList  "}"
-    syntax SpecBody ::= "{"  EventDecList  PropertyDecList "}"
+    syntax SpecBody ::= "{"  DecBubbleList EventDecList  PropertyDecList "}"
 
     //syntax SpecBodyDec ::= EventDec | PropertyDec //causes parsing problems in ere-syntax!
 
@@ -79,7 +94,7 @@ module RVM-SYNTAX
 	syntax HandlerDecHead ::= "@" LogicState
 	syntax HandlerBody ::= BlockBubble
 
-
+syntax DecBubbleList          ::= List{DecBubble, ""} [token]
 //syntax SpecBodyDecList          ::= List{SpecBodyDec, ""}
 syntax HandlerDecList          ::= List{HandlerDec, ""}
 syntax EventDecList          ::= List{EventDec, ""}

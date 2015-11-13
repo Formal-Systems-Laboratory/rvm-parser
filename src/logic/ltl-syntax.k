@@ -15,6 +15,7 @@ syntax LTLFormula ::=
          > "[]" LTLFormula
          > "[*]" LTLFormula
          > "<>" LTLFormula
+         > "<*>" LTLFormula
          > "o" LTLFormula
          > "(*)" LTLFormula
          > "!" LTLFormula
@@ -28,6 +29,9 @@ syntax LTLFormula ::=
          > LTLFormula "=>" LTLFormula   [left]
          > LTLFormula "<=>" LTLFormula  [left]
 
+syntax Id ::= "o" [avoid, token]
+            | "U" [avoid, token]
+            | "S" [avoid, token]
 
 syntax LogicState ::= "violation"
 
