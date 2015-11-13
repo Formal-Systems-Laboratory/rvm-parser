@@ -39,7 +39,14 @@ module JAVA-BUBBLE-SYNTAX
 
     syntax BlockBubble ::=    "{" BalancedBracket "}" [prefer, token]
                             | "{" "}" [prefer, token]
-	syntax Param ::= TypeName Id
+
+    syntax VarDecId ::= Id Dims
+    syntax Dim ::= "[" "]"
+    syntax Dims ::= List{Dim, ""}
+    syntax ArrayType ::= Type "[" "]"
+    syntax Type ::= TypeName | ArrayType
+
+	syntax Param ::= Type VarDecId
 	syntax Params                    ::= List{Param, ","}                [klabel('FormalParamList)]
 
     syntax DecStart ::= Id | Id DecStart
