@@ -1,0 +1,1 @@
+int around(int i): call(int C.foo(Object, int)) && args(i)

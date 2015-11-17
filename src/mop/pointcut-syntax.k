@@ -1,5 +1,4 @@
 // based on https://eclipse.org/aspectj/doc/released/progguide/semantics-pointcuts.html
-// and https://eclipse.org/aspectj/doc/released/progguide/semantics-advice.html
 // with slight modifications
 require "../common/type-syntax.k"
 
@@ -52,7 +51,7 @@ module ASPECTJ-POINTCUT-SYNTAX
     syntax ModifiersPattern ::= ModifierList | "!" ModifierList
 
     syntax IdPattern ::=  r"(?<!([A-Za-z0-9\\_]|(\\.\\.)|\\*))([A-Za-z\\_]|(\\.\\.)|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*"     [token, autoReject] //id with * and .. wildcards
-    syntax TypeId ::= Type | Id
+    syntax TypeId ::= Type //or id, type includes id
 
     syntax ModifierList ::= List{Modifier, ""}
     syntax TypePatternDoubleDotList ::= List{TypePatternDoubleDot, ","}
@@ -70,3 +69,20 @@ module ASPECTJ-POINTCUT-SYNTAX
     syntax TypePatternDoubleDot ::= TypePattern | ".."
 
 endmodule
+
+
+module POINTCUT-SYNTAX
+    imports ASPECTJ-POINTCUT-SYNTAX
+
+    syntax ExtendedPointCut ::=
+                               "thread" "(" Id ")"
+                           //| "condition" "(" BoolExpBubble ")"      //later
+
+    syntax OptionalExtendedPointCut ::= None | "&&" ExtendedPointCutList
+
+    syntax ExtendedPointCutList ::= List{ExtendedPointCut, "&&"}
+
+    syntax PointCut ::= AspectJPointCut OptionalExtendedPointCut | ExtendedPointCut OptionalExtendedPointCut
+
+endmodule
+
