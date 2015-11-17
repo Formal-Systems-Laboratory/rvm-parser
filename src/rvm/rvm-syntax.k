@@ -1,6 +1,6 @@
 require "domains.k"
-require "type-syntax.k"
-require "logic/logic-syntax.k"
+require "../common/type-syntax.k"
+require "../logic/logic-syntax.k"
 
 
 module PACKAGE-SYNTAX
