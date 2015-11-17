@@ -1,4 +1,6 @@
-//based on https://eclipse.org/aspectj/doc/released/progguide/semantics-pointcuts.html and https://eclipse.org/aspectj/doc/released/progguide/semantics-advice.html with slight modifications
+// based on https://eclipse.org/aspectj/doc/released/progguide/semantics-pointcuts.html
+// and https://eclipse.org/aspectj/doc/released/progguide/semantics-advice.html
+// with slight modifications
 require "../common/type-syntax.k"
 
 
@@ -25,7 +27,7 @@ module ASPECTJ-SYNTAX
                         | "target" "(" TypeId ")"
                         | "args" "(" TypeIdList ")"
                         //| "PointcutId" "("TypePattern or Id, ...")"
-                        //| "if" "(" BoolExpBubble ")"
+                        //| "if" "(" BoolExpBubble ")"      //later
                         | "!" AspectJPointCut
                         | AspectJPointCut "&&" AspectJPointCut  [left, klabel('AJPointCutAnd)]
                         | AspectJPointCut "||" AspectJPointCut  [left, klabel('AJPointCutOr)]
