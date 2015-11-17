@@ -1,0 +1,1 @@
+call(void println(String)) && ! within(A)
