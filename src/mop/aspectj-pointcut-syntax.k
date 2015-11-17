@@ -4,7 +4,7 @@
 require "../common/type-syntax.k"
 
 
-module ASPECTJ-SYNTAX
+module ASPECTJ-POINTCUT-SYNTAX
     imports TYPE-SYNTAX
 
     syntax AspectJPointCut ::=   "call" "(" MethodPattern ")"

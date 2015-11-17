@@ -28,6 +28,6 @@ module JAVA-BUBBLE-SYNTAX
 	                    | MethodDecBubble [token]
 	                    | FieldDecBubble [token]
 
-
+	syntax DecBubbleList          ::= List{DecBubble, ""} [token]
 
 endmodule
