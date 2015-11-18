@@ -10,6 +10,7 @@ module COMMON-SYNTAX
     imports PROPERTY-SYNTAX
 
     syntax None ::= ""
-    syntax Id ::= "size" | "in" | "set" | "map" | "get" [token, avoid]
+    //syntax Id ::= "size" [token, avoid] | "in" [token, avoid] | "set" [token, avoid] | "map" [token, avoid] | "get" [token, avoid]
+    syntax Id ::= r"(?<![A-Za-z0-9\\_])((size)|(in)|(set)|(map)|(get))"    [token, avoid]
 
 endmodule

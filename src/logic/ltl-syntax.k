@@ -31,9 +31,7 @@ syntax LTLFormula ::=
          > LTLFormula Implies LTLFormula   [left, klabel('LTLImp)]
          > LTLFormula Equivalent LTLFormula  [left, klabel('LTLEq)]
 
-syntax Id ::= "o" [avoid, token]
-            | "U" [avoid, token]
-            | "S" [avoid, token]
+syntax Id ::= "(?<![A-Za-z0-9\\_])(o|U|S)" [avoid, token]
 
 syntax LogicState ::= "violation"
 
