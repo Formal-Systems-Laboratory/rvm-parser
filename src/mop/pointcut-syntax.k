@@ -26,7 +26,7 @@ module ASPECTJ-POINTCUT-SYNTAX
                         | "cflowbelow" "(" AspectJPointCut ")"
                         | "this" "(" TypeId ")"
                         | "target" "(" TypeId ")"
-                        | "args" "(" TypeIdList ")"
+                        | "args" "(" TypeIdDoubleDotStarList ")" //the site first says it is type or id, but then says it can also be * or ..
                         //| "PointcutId" "("TypePattern or Id, ...")"
                         | "if" "(" BoolExpBubble ")"
                         | "!" AspectJPointCut
@@ -54,11 +54,13 @@ module ASPECTJ-POINTCUT-SYNTAX
 
     syntax IdPattern ::=  r"(?<!([A-Za-z0-9\\_]|(\\.\\.)|\\*))([A-Za-z\\_]|(\\.\\.)|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*"     [token] //id with * and .. wildcards
     syntax TypeId ::= Type //| id (type includes id)
+    syntax TypeIdDoubleDotStar ::= TypeId | ".." | "*"
 
     syntax ModifierList ::= List{Modifier, ""}
     syntax TypePatternDoubleDotList ::= List{TypePatternDoubleDot, ","}
     syntax TypePatternList ::= List{TypePattern, ","}
     syntax TypeIdList ::= List{TypeId, ","}
+    syntax TypeIdDoubleDotStarList ::= List{TypeIdDoubleDotStar, ","}
 
 
     syntax OptionalPlus ::= None | "+"
@@ -78,7 +80,7 @@ module POINTCUT-SYNTAX
 
     syntax ExtendedPointCut ::=
                                "thread" "(" Id ")"
-                             | "condition" "(" BoolExpBubble ")"      
+                             | "condition" "(" BoolExpBubble ")"
 
     syntax OptionalExtendedPointCut ::= None | "&&" ExtendedPointCutList
 
