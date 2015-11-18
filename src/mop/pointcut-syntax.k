@@ -1,10 +1,12 @@
 // based on https://eclipse.org/aspectj/doc/released/progguide/semantics-pointcuts.html
 // with slight modifications
 require "../common/type-syntax.k"
+require "../common/java-bubble-syntax.k"
 
 
 module ASPECTJ-POINTCUT-SYNTAX
     imports TYPE-SYNTAX
+    imports JAVA-BUBBLE-SYNTAX
 
     syntax AspectJPointCut ::=   "call" "(" MethodPattern ")"
                         | "execution" "(" MethodPattern ")"
@@ -26,7 +28,7 @@ module ASPECTJ-POINTCUT-SYNTAX
                         | "target" "(" TypeId ")"
                         | "args" "(" TypeIdList ")"
                         //| "PointcutId" "("TypePattern or Id, ...")"
-                        //| "if" "(" BoolExpBubble ")"      //later
+                        | "if" "(" BoolExpBubble ")"
                         | "!" AspectJPointCut
                         | AspectJPointCut "&&" AspectJPointCut  [left, klabel('AJPointCutAnd)]
                         | AspectJPointCut "||" AspectJPointCut  [left, klabel('AJPointCutOr)]
@@ -76,7 +78,7 @@ module POINTCUT-SYNTAX
 
     syntax ExtendedPointCut ::=
                                "thread" "(" Id ")"
-                           //| "condition" "(" BoolExpBubble ")"      //later
+                             | "condition" "(" BoolExpBubble ")"      
 
     syntax OptionalExtendedPointCut ::= None | "&&" ExtendedPointCutList
 

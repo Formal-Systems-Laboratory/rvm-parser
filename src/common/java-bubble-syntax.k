@@ -28,6 +28,15 @@ module JAVA-BUBBLE-SYNTAX
 	                    | MethodDecBubble [token]
 	                    | FieldDecBubble [token]
 
+	syntax NoParentheses ::= r"[^()]+" [token]
+	syntax BalancedParentheses ::=
+                                   "(" BalancedParentheses ")"
+                                 | BalancedParentheses BalancedParentheses [left, klabel('BParenthesesCombination)]
+                                 | NoParentheses
+                                 | "(" ")"
+    syntax BoolExpBubble ::= BalancedParentheses [prefer, token]
+
+
 	syntax DecBubbleList          ::= List{DecBubble, ""} [token]
 
 endmodule
