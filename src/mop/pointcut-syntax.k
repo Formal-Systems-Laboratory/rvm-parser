@@ -50,7 +50,7 @@ module ASPECTJ-POINTCUT-SYNTAX
 
     syntax ModifiersPattern ::= ModifierList | "!" ModifierList
 
-    syntax IdPattern ::=  r"([A-Za-z\\_]|(\\.\\.)|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*"     [token, autoReject] //id with * and .. wildcards
+    syntax IdPattern ::=  r"(?<!([A-Za-z0-9\\_]|(\\.\\.)|\\*))([A-Za-z\\_]|(\\.\\.)|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*"     [token] //id with * and .. wildcards
     syntax TypeId ::= Type //or id, type includes id
 
     syntax ModifierList ::= List{Modifier, ""}
