@@ -48,13 +48,15 @@ module ASPECTJ-POINTCUT-SYNTAX
                | TypePattern "&&" TypePattern   [left, klabel('TypePatAnd)]
                | TypePattern "||" TypePattern   [left, klabel('TypePatOr)]
                | "(" TypePattern ")"        [bracket]
-    syntax priority 'TypePatAnd > 'TypePatOr
+               | TypePattern "." TypePattern [left, klabel('TypePatDot)]
+    syntax priority 'TypePatAnd > 'TypePatOr > 'TypePatDot
 
     syntax ModifiersPattern ::= ModifierList | "!" ModifierList
 
-    syntax IdPattern ::=  //id (with .) with * and .. wildcards (it can start with * but not with .. or ., same about end)
-                r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*|\\.)*([A-Za-z\\_]|\\*)"     [token]
-               |r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)" [token]
+    syntax IdPattern ::=  //id  with * and .. wildcards (it can start with * but not with .. , same about end)
+               // r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*|\\.)*([A-Za-z\\_]|\\*)"     [token]
+                 r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*([A-Za-z\\_]|\\*)"     [token,reject2("new")]
+               | r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)" [token]
 
     syntax TypeId ::= Type //| id (type includes id)
     syntax TypeIdDoubleDotStar ::= TypeId | ".." | "*"
@@ -73,7 +75,7 @@ module ASPECTJ-POINTCUT-SYNTAX
 
 
 
-    syntax TypePatternDoubleDot ::= TypePattern // | ".." (typepattern includes id and id includes .. - it is also possible to add this and require IdPattern not to start with ..)
+    syntax TypePatternDoubleDot ::= TypePattern  | ".."
 
 endmodule
 
