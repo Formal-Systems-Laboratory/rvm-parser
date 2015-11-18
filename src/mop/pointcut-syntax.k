@@ -56,7 +56,7 @@ module ASPECTJ-POINTCUT-SYNTAX
     syntax TypeId ::= Type //| id (type includes id)
     syntax TypeIdDoubleDotStar ::= TypeId | ".." | "*"
 
-    syntax ModifierList ::= List{Modifier, ""}
+    syntax ModifierList ::= List{JavaModifier, ""}
     syntax TypePatternDoubleDotList ::= List{TypePatternDoubleDot, ","}
     syntax TypePatternList ::= List{TypePattern, ","}
     syntax TypeIdList ::= List{TypeId, ","}
@@ -69,7 +69,7 @@ module ASPECTJ-POINTCUT-SYNTAX
 
 
 
-    syntax Modifier ::= "abstract" | "final" | "interface" | "native" | "private" | "protected" | "public" | "static" | "strict" | "synchronized" | "transient" | "volatile"
+
     syntax TypePatternDoubleDot ::= TypePattern // | ".." (typepattern includes id and id includes .. - it is also possible to add this and require IdPattern not to start with ..)
 
 endmodule

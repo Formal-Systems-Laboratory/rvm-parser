@@ -11,4 +11,5 @@ module COMMON-SYNTAX
 
     syntax None ::= ""
     syntax Id ::= "size" | "in" | "set" | "map" [token, avoid]
+
 endmodule

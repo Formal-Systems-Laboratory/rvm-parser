@@ -12,7 +12,9 @@ module JAVA-BUBBLE-SYNTAX
     syntax BlockBubble ::=    "{" BalancedBracket "}" [prefer, token]
                             | "{" "}" [prefer, token]
 
-    syntax DecStart ::= Id | Id DecStart
+    syntax DecStart ::= IdModifier | IdModifier DecStart
+
+    syntax IdModifier ::= Id | JavaModifier
 
 	syntax ClassDecBubble ::= DecStart BlockBubble
 
@@ -36,7 +38,9 @@ module JAVA-BUBBLE-SYNTAX
                                  | "(" ")"
     syntax BoolExpBubble ::= BalancedParentheses [prefer, token]
 
-
 	syntax DecBubbleList          ::= List{DecBubble, ""} [token]
+
+	syntax JavaModifier ::= "abstract" | "final" | "interface" | "native" | "private" | "protected" | "public" | "static" | "strict" | "synchronized" | "transient" | "volatile"
+
 
 endmodule
