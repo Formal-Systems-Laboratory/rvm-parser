@@ -81,6 +81,7 @@ module POINTCUT-SYNTAX
     syntax ExtendedPointCut ::=
                                "thread" "(" Id ")"
                              | "condition" "(" BoolExpBubble ")"
+                             | "startThread" "(" ")" //it was not in http://fsl.cs.illinois.edu/index.php/JavaMOP4_Syntax but it was in some specifications in property-db
 
     syntax OptionalExtendedPointCut ::= None | "&&" ExtendedPointCutList
 
