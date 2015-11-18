@@ -1,0 +1,28 @@
+package mop;
+
+import java.io.*;
+
+PipedOutputStream_UnconnectedWrite(PipedOutputStream o) {
+	creation event create after() returning(PipedOutputStream o) :
+		call(PipedOutputStream+.new()) {}
+
+	event create2 before(PipedOutputStream o) :
+		call(PipedInputStream+.new(PipedOutputStream+)) && args(o) {}
+
+	event connect before(PipedOutputStream o) :
+		call(* PipedInputStream+.connect(PipedOutputStream+)) && args(o) {}
+
+
+	fsm :
+		no [
+			create2 -> yes
+			connect -> yes
+		]
+		yes [
+			write -> yes
+		]
+
+	@fail {
+
+	}
+}
