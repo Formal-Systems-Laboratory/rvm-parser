@@ -26,14 +26,14 @@ module ASPECTJ-POINTCUT-SYNTAX
                         | "cflowbelow" "(" AspectJPointCut ")"
                         | "this" "(" TypeId ")"
                         | "target" "(" TypeId ")"
-                        | "args" "(" TypeIdDoubleDotStarList ")" //the site first says it is type or id, but then says it can also be * or ..
+                        | "args" "(" TypeIdDoubleDotStarList ")" //the website first says it is type or id, but then says it can also be * or ..
                         //| "PointcutId" "("TypePattern or Id, ...")"
                         | "if" "(" BoolExpBubble ")"
-                        | "!" AspectJPointCut
+                        | "!" AspectJPointCut                   [klabel('AJPointCutNot)]
                         | AspectJPointCut "&&" AspectJPointCut  [left, klabel('AJPointCutAnd)]
                         | AspectJPointCut "||" AspectJPointCut  [left, klabel('AJPointCutOr)]
                         | "(" AspectJPointCut ")"       [bracket]
-    syntax priority 'AJPointCutAnd > 'AJPointCutOr
+    syntax priority 'AJPointCutNot > 'AJPointCutAnd > 'AJPointCutOr
 
     syntax MethodPattern ::= ModifiersPattern TypePattern OptionalTypePatternDot IdPattern "(" TypePatternDoubleDotList ")" OptionalThrows
 
