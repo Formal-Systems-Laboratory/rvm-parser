@@ -26,7 +26,7 @@ module JAVA-BUBBLE-SYNTAX
 
 	syntax FieldDecBubble ::= Id OptionalTemplateBubble VarInitBubble ";"
 
-	syntax OptionalTemplateBubble ::= "<" TemplateList ">" | None
+	syntax OptionalTemplateBubble ::= "<" TemplateList ">" | None //becuase of https://github.com/kframework/k/issues/1863
 	syntax Template ::= Id | "?" "extends" Id
 	syntax TemplateList ::= List{Template,","} [klabel('TemplateList)]
 
@@ -42,6 +42,7 @@ module JAVA-BUBBLE-SYNTAX
 	//syntax NoParentheses ::= r"[^()]+" [token]
 	//temp workaround for https://github.com/kframework/k/issues/1863
 	syntax NoParentheses ::= r"[^()<][^()]*" [token, klabel('NoParentheses)]
+	                         //| "<" [token, klabel('NoParenthesesSingleLT)]
 
 	syntax BalancedParentheses ::=
                                    "(" BalancedParentheses ")"
