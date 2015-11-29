@@ -24,7 +24,12 @@ module JAVA-BUBBLE-SYNTAX
 
 	syntax MethodDecBubble ::= DecStart ParamsBubble BlockBubble
 
-	syntax FieldDecBubble ::= Id VarInitBubble ";"
+	syntax FieldDecBubble ::= Id OptionalTemplateBubble VarInitBubble ";"
+
+	syntax OptionalTemplateBubble ::= "<" TemplateList ">" | None
+	syntax Template ::= Id | "?" "extends" Id
+	syntax TemplateList ::= List{Template,","} [klabel('TemplateList)]
+
 
 	//syntax VarInitBubble ::=  r"[^;]+" [token, avoid]
     //temp workaround for https://github.com/kframework/k/issues/1863
