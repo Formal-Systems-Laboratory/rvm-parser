@@ -9,7 +9,8 @@ module MOP-SYNTAX
 
 
 	//top level sort (aka CompilationUnit)
-	syntax MOP ::= OptionalPackageDec ImportDecList SpecDec
+	syntax MOP ::= OptionalPackageDec ImportDecList SpecDec [prefer, klabel('MOP)]
+
 
 
     syntax SpecDec ::= SpecDecHead SpecBody
@@ -24,6 +25,6 @@ module MOP-SYNTAX
     syntax EventModifier ::= "creation" | None
 
 
-syntax EventDecList          ::= List{EventDec, ""}
+syntax EventDecList          ::= List{EventDec, ""} [klabel('EventDecList)]
 
 endmodule

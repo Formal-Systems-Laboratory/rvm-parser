@@ -7,7 +7,7 @@ module TYPE-SYNTAX
                            | PackageOrTypeName "." Id   [strict(1), klabel('PackageOrTypeName)]
     syntax TypeName ::= Id                                  [klabel('TypeName)]
                   | PackageOrTypeName "." Id            [strict(1), klabel('TypeName)]
-    syntax IdList                    ::= List{Id,"."}
+    syntax IdList                    ::= List{Id,"."}   [klabel('IdList)]
 
 
     syntax Dim ::= "[" "]"
@@ -20,7 +20,6 @@ module TYPE-SYNTAX
     syntax Param ::= Type VarDecId
     syntax Params                    ::= List{Param, ","}                [klabel('FormalParamList)]
 
-    syntax None ::= ""
 
     //context 'FormalParamList(HOLE,,_) [result(Param)]
     //context 'FormalParamList(_,,HOLE) [result(Params)]

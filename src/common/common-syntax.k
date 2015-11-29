@@ -9,8 +9,8 @@ module COMMON-SYNTAX
     imports JAVA-BUBBLE-SYNTAX
     imports PROPERTY-SYNTAX
 
-    syntax None ::= ""
+    syntax None ::= "" [klabel('None)]
     //syntax Id ::= "size" [token, avoid] | "in" [token, avoid] | "set" [token, avoid] | "map" [token, avoid] | "get" [token, avoid]
-    syntax Id ::= r"(?<![A-Za-z0-9\\_])((size)|(in)|(set)|(map)|(get))"    [token, avoid]
+    syntax Id ::= r"(?<![A-Za-z0-9\\_])((size)|(in)|(set)|(map)|(get))"    [token, avoid, klabel('IdReserved)]
 
 endmodule

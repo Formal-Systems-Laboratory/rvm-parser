@@ -10,8 +10,8 @@ syntax ImportDec ::= "import" TypeName                  ";"  [klabel('TypeImport
 
 syntax PackageDec ::=  "package" PackageName ";"     [klabel('PackageDec)]
 syntax OptionalPackageDec ::= PackageDec | None
-syntax None ::= ""
+syntax None
 
-syntax ImportDecList             ::= List{ImportDec,""}
+syntax ImportDecList             ::= List{ImportDec,""} [klabel('ImportDecList)]
 
 endmodule

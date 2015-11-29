@@ -20,11 +20,11 @@ syntax SRSRightHandSide ::= SRSString | "#" SRSState | "#epsilon"
 
 syntax OptionalBegin ::= "^" | None
 syntax OptionalEnd ::= "$" | None
-syntax None ::= ""
+syntax None
 
 syntax SRSString ::= Id | Id SRSString
 
-syntax RuleList ::= List{Rule, "."}
+syntax RuleList ::= List{Rule, "."}  [klabel('RuleList)]
 
 syntax EventName ::= Id
 

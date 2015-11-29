@@ -8,6 +8,5 @@ endmodule
 module MOP-COMPILER
     imports MOP-COMPILER-SYNTAX
     imports DOMAINS
-
-    configuration <T> <k> $PGM:MOP </k> </T>
+    configuration <T> <k> $PGM:MOP  </k> </T>
 endmodule

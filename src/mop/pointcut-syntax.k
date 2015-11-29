@@ -55,17 +55,19 @@ module ASPECTJ-POINTCUT-SYNTAX
 
     syntax IdPattern ::=  //id  with * and .. wildcards (it can start with * but not with .. , same about end)
                // r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*|\\.)*([A-Za-z\\_]|\\*)"     [token]
-                 r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*([A-Za-z\\_]|\\*)"     [token,reject2("new")]
-               | r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)" [token]
+                 r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*([A-Za-z\\_]|\\*)"     [token,reject2("new"), klabel('IdPattern)]
+               | r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)" [token,klabel('IdPatternSingleChar)]
 
     syntax TypeId ::= Type //| id (type includes id)
-    syntax TypeIdDoubleDotStar ::= TypeId | ".." | "*"
+    syntax TypeIdDoubleDotStar ::=    TypeId [klabel('TIdDDotStarTId)]
+                                    | ".."   [klabel('TIdDDotStarTDD)]
+                                    | "*"    [klabel('TIdDDotStarStar)]
 
-    syntax ModifierList ::= List{JavaModifier, ""}
-    syntax TypePatternDoubleDotList ::= List{TypePatternDoubleDot, ","}
-    syntax TypePatternList ::= List{TypePattern, ","}
-    syntax TypeIdList ::= List{TypeId, ","}
-    syntax TypeIdDoubleDotStarList ::= List{TypeIdDoubleDotStar, ","}
+    syntax ModifierList ::= List{JavaModifier, ""}                          [klabel('ModifierList)]
+    syntax TypePatternDoubleDotList ::= List{TypePatternDoubleDot, ","}     [klabel('TypePatternDoubleDotList)]
+    syntax TypePatternList ::= List{TypePattern, ","}                       [klabel('TypePatternList)]
+    syntax TypeIdList ::= List{TypeId, ","}                                 [klabel('TypeIdList)]
+    syntax TypeIdDoubleDotStarList ::= List{TypeIdDoubleDotStar, ","}       [klabel('TypeIdDoubleDotStarList)]
 
 
     syntax OptionalPlus ::= None | "+"
@@ -91,7 +93,7 @@ module POINTCUT-SYNTAX
 
     syntax OptionalExtendedPointCut ::= None | "&&" ExtendedPointCutList
 
-    syntax ExtendedPointCutList ::= List{ExtendedPointCut, "&&"}
+    syntax ExtendedPointCutList ::= List{ExtendedPointCut, "&&"}        [klabel('ExtendedPointCutList)]
 
     syntax PointCut ::= AspectJPointCut OptionalExtendedPointCut | ExtendedPointCut OptionalExtendedPointCut
 

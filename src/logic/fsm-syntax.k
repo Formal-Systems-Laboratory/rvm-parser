@@ -21,10 +21,10 @@ syntax StateName ::= Id
 syntax GroupName ::= Id
 syntax EventName ::= Id
 
-syntax ItemList ::= List{Item, ""}
-syntax AliasList ::= List{Alias, ""}
-syntax TransitionList ::= List{Transition, ""}
-syntax StateNameList ::= List{StateName, ","}
+syntax ItemList ::= List{Item, ""}                  [klabel('RightHandSideList)]
+syntax AliasList ::= List{Alias, ""}                [klabel('AliasList)]
+syntax TransitionList ::= List{Transition, ""}      [klabel('TransitionList)]
+syntax StateNameList ::= List{StateName, ","}       [klabel('StateNameList)]
 
 
 

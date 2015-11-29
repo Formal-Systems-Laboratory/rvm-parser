@@ -18,8 +18,8 @@ module ADVICE-SYNTAX
    syntax OptionalFormal ::= None | "(" Formal ")"
 
 
-   syntax Formals ::= List{Formal, ","}
-   syntax TypeList ::= List{Type, ","}
+   syntax Formals ::= List{Formal, ","} [klabel('Formals)]
+   syntax TypeList ::= List{Type, ","}  [klabel('TypeList)]
 
 
 endmodule

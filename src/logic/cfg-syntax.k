@@ -18,9 +18,9 @@ syntax NonTerminalEventName ::= NonTerminalName | EventName
 syntax NonTerminalName ::= Id
 syntax EventName ::= Id
 
-syntax NonTerminalEventNameList ::= List{NonTerminalEventName, ""}
-syntax RightHandSideList ::= List{RightHandSide, "|"}
-syntax ProductionList ::= List{Production, ","}
+syntax NonTerminalEventNameList ::= List{NonTerminalEventName, ""}  [klabel('NonTerminalEventNameList)]
+syntax RightHandSideList ::= List{RightHandSide, "|"}   [klabel('RightHandSideList)]
+syntax ProductionList ::= List{Production, ","}         [klabel('ProductionList)]
 
 
 
