@@ -4,7 +4,7 @@ module JAVA-BUBBLE-SYNTAX
 	imports PACKAGE-SYNTAX
 	//syntax NoBracket ::= r"[^{}]+" [token]
 	//temp workaround for https://github.com/kframework/k/issues/1863
-	syntax NoBracket ::= r"[^<{}][^{}]*" [token, klabel('NoBracket)]
+	syntax NoBracket //::= r"[^<{}][^{}]*" [token, klabel('NoBracket)]
     syntax BalancedBracket ::=
                                "{" BalancedBracket "}"          [klabel('BBracketBlock)]
                              | BalancedBracket BalancedBracket  [left, klabel('BBracketCombination)]
@@ -20,7 +20,7 @@ module JAVA-BUBBLE-SYNTAX
 
 	syntax ClassDecBubble ::= DecStart BlockBubble
 
-	syntax ParamsBubble ::= r"\\([^\\)]*\\)" [token, avoid, klabel('ParamsBubble)]
+	syntax ParamsBubble //::= r"\\([^\\)]*\\)" [token, avoid, klabel('ParamsBubble)]
 
 	syntax MethodDecBubble ::= DecStart ParamsBubble BlockBubble
 
@@ -33,7 +33,7 @@ module JAVA-BUBBLE-SYNTAX
 
 	//syntax VarInitBubble ::=  r"[^;]+" [token, avoid]
     //temp workaround for https://github.com/kframework/k/issues/1863
-    syntax VarInitBubble ::=  r"[^<;][^;]*" [token, avoid, klabel('VarInitBubble)]
+    syntax VarInitBubble //::=  r"[^<;][^;]*" [token, avoid, klabel('VarInitBubble)]
 
 	syntax DecBubble ::=  ClassDecBubble [token, klabel('DecBubbleClass)]
 	                    | MethodDecBubble [token, klabel('DecBubbleMethod)]
@@ -41,7 +41,7 @@ module JAVA-BUBBLE-SYNTAX
 
 	//syntax NoParentheses ::= r"[^()]+" [token]
 	//temp workaround for https://github.com/kframework/k/issues/1863
-	syntax NoParentheses ::= r"[^()<][^()]*" [token, klabel('NoParentheses)]
+	syntax NoParentheses //::= r"[^()<][^()]*" [token, klabel('NoParentheses)]
 	                         //| "<" [token, klabel('NoParenthesesSingleLT)]
 
 	syntax BalancedParentheses ::=
