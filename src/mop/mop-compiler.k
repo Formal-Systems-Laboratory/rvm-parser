@@ -10,9 +10,9 @@ module MOP-COMPILER-SYNTAX
 endmodule
 
 module MOP-COMPILER
-    imports MOP-SYNTAX
+    imports MOP-CCOMMON
     imports DOMAINS
     configuration <T> <k> $PGM:MOP  </k> </T>
 
-    rule <k> (Pac:OptionalPackageDec Imp:ImportDecList Spec:SpecDec) => (.)</k>
+    rule <k> `Pac:OptionalPackageDec Imp:ImportDecList Spec:SpecDec` => Spec </k> [structural]
 endmodule

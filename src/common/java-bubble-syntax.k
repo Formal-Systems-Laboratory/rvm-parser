@@ -1,7 +1,15 @@
 require "package-syntax.k"
 
+module JAVA-BUBBLE-CCOMMON
+	syntax BlockBubble
+    syntax DecBubble
+    syntax ParamsBubble
+    syntax DecBubbleList
+endmodule
+
 module JAVA-BUBBLE-SYNTAX
 	imports PACKAGE-SYNTAX
+	imports JAVA-BUBBLE-CCOMMON
 	//syntax NoBracket ::= r"[^{}]+" [token]
 	//temp workaround for https://github.com/kframework/k/issues/1863
 	syntax NoBracket //::= r"[^<{}][^{}]*" [token, klabel('NoBracket)]

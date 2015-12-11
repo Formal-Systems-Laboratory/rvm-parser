@@ -3,9 +3,9 @@ require "../common/common-syntax.k"
 require "advice-syntax.k"
 
 
-module MOP-SYNTAX
-	imports COMMON-SYNTAX
-	imports ADVICE-SYNTAX
+module MOP-CCOMMON
+	imports COMMON-CCOMMON
+	imports ADVICE-CCOMMON
 
 
 	//top level sort (aka CompilationUnit)
@@ -27,4 +27,11 @@ module MOP-SYNTAX
 
 syntax EventDecList          ::= List{EventDec, ""} [klabel('EventDecList)]
 
+endmodule
+
+
+module MOP-SYNTAX
+    imports MOP-CCOMMON
+    imports COMMON-SYNTAX
+    imports ADVICE-SYNTAX
 endmodule

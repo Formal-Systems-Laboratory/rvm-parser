@@ -75,16 +75,17 @@ module ASPECTJ-POINTCUT-SYNTAX
     syntax OptionalThrows ::= None | "throws" ThrowsPattern
 
 
-
+    syntax None
+    syntax BoolExpBubble
+    syntax JavaModifier
 
     syntax TypePatternDoubleDot ::= TypePattern  | ".."
 
 endmodule
 
 
-module POINTCUT-SYNTAX
-    imports ASPECTJ-POINTCUT-SYNTAX
-
+module POINTCUT-CCOMMON
+    imports DOMAINS-COMMON
     syntax ExtendedPointCut ::=
                                "thread" "(" Id ")"
                              | "condition" "(" BoolExpBubble ")"
@@ -96,6 +97,16 @@ module POINTCUT-SYNTAX
     syntax ExtendedPointCutList ::= List{ExtendedPointCut, "&&"}        [klabel('ExtendedPointCutList)]
 
     syntax PointCut ::= AspectJPointCut OptionalExtendedPointCut | ExtendedPointCut OptionalExtendedPointCut
+
+    syntax AspectJPointCut
+    syntax BoolExpBubble
+    syntax None
+endmodule
+
+module POINTCUT-SYNTAX
+    imports ASPECTJ-POINTCUT-SYNTAX
+    imports POINTCUT-CCOMMON
+
 
 endmodule
 

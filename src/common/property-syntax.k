@@ -1,7 +1,16 @@
 require "../logic/logic-syntax.k"
 require "java-bubble-syntax.k"
 
+
+module PROPERTY-CCOMMON
+	    //imports LOGIC-SYNTAX
+        imports JAVA-BUBBLE-CCOMMON
+        syntax PropertyDecList
+endmodule
+
+
 module PROPERTY-SYNTAX
+	imports PROPERTY-CCOMMON
     imports LOGIC-SYNTAX
     imports JAVA-BUBBLE-SYNTAX
 	syntax PropertyDec ::= Property HandlerDecList

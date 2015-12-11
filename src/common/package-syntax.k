@@ -1,7 +1,15 @@
 require "type-syntax.k"
 
+module PACKAGE-CCOMMON
+    imports TYPE-CCOMMON
+    syntax OptionalPackageDec
+    syntax ImportDecList
+endmodule
+
 module PACKAGE-SYNTAX
+    imports PACKAGE-CCOMMON
 	imports TYPE-SYNTAX
+
 
 syntax ImportDec ::= "import" TypeName                  ";"  [klabel('TypeImportDec)]
                    | "import" PackageName       "." "*" ";"  [klabel('TypeImportOnDemandDec)]

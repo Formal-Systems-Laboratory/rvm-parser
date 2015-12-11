@@ -1,6 +1,11 @@
 require "domains.k"
 
+module TYPE-CCOMMON
+    syntax Params
+endmodule
+
 module TYPE-SYNTAX
+    imports TYPE-CCOMMON
     imports DOMAINS-SYNTAX
     syntax PackageName ::= IdList                           [klabel('PackageName)]
     syntax PackageOrTypeName ::= Id                         [klabel('PackageOrTypeName)]
