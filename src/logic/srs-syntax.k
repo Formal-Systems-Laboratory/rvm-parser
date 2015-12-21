@@ -1,7 +1,7 @@
 require "domains.k"
 
 module SRS-SYNTAX
-    imports DOMAINS-SYNTAX
+    imports DOMAINS-COMMON
 
 syntax LogicName ::= "srs"
 

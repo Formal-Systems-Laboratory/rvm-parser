@@ -1,7 +1,7 @@
 require "domains.k"
 
 module BOOLOP-SYNTAX
-    imports DOMAINS-SYNTAX
+    imports DOMAINS-COMMON
 syntax Not ::= "!" | "not"
 syntax And ::= "/\\" | "and" | "&&"
 syntax Or ::= "\\/" | "or" | "||"

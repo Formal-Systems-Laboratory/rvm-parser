@@ -1,7 +1,7 @@
 require "domains.k"
 
 module TYPE-SYNTAX
-    imports DOMAINS-SYNTAX
+    imports DOMAINS-COMMON
     syntax PackageName ::= IdList                           [klabel('PackageName)]
     syntax PackageOrTypeName ::= Id                         [klabel('PackageOrTypeName)]
                            | PackageOrTypeName "." Id   [strict(1), klabel('PackageOrTypeName)]

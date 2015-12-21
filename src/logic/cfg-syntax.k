@@ -1,7 +1,7 @@
 require "domains.k"
 
 module CFG-SYNTAX
-    imports DOMAINS-SYNTAX
+    imports DOMAINS-COMMON
 
 syntax LogicName ::= "cfg"
 

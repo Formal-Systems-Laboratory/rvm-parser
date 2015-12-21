@@ -1,7 +1,7 @@
 require "domains.k"
 
 module FSM-SYNTAX
-    imports DOMAINS-SYNTAX
+    imports DOMAINS-COMMON
 
 syntax LogicName ::= "fsm"
 
