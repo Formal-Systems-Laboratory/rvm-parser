@@ -5,7 +5,7 @@ module TYPE-SYNTAX
     syntax PackageName ::= IdList                           [klabel('PackageName)]
     syntax PackageOrTypeName ::= Id                         [klabel('PackageOrTypeName)]
                            | PackageOrTypeName "." Id   [strict(1), klabel('PackageOrTypeName)]
-    syntax TypeName ::= Id                                  [klabel('TypeName)]
+    syntax TypeName ::= Id                                  [klabel('TypeName), avoid] //TODO: added avoid to resolve amb with K internal syntax in rules
                   | PackageOrTypeName "." Id            [strict(1), klabel('TypeName)]
     syntax IdList                    ::= List{Id,"."}   [klabel('IdList)]
 
