@@ -5,6 +5,7 @@ module PRINT-AST
     imports RVM-SYNTAX
     imports DOMAINS-SYNTAX
 
+    //print package ast
     syntax String ::=  toString(OptionalPackageDec) [function]
     rule toString(package X:PackageName ;) => "package " +String toString(X) +String ";"
     rule toString(None:OptionalPackageDec) => "\n"  [owise]
@@ -13,5 +14,8 @@ module PRINT-AST
     rule toString(X:Id) => Id2String(X)
     rule toString(P:PackageName . X:Id) => toString(P) +String "." +String Id2String(X)
 
+    //print declaration ast
+    syntax String ::= toString(DecBubbleList)  [function]
+    rule toString(DB:DecBubbleList) => "foo dec bubble list" //TODO
 
 endmodule

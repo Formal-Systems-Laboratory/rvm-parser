@@ -50,7 +50,7 @@ module RVM-COMPILER
 
                       <specName> "" </specName>
                       <specParams> .Params </specParams>
-                      <decBubble> .List </decBubble>
+                      <decBubble> "" </decBubble>
 
                        </T>
 
@@ -58,7 +58,12 @@ rule <k> X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z </k>
     <package> _ => toString(X) </package>
     <importList> _ => Y </importList>
 
+rule <k>X:Id (Ps:Params) SB:SpecBody => SB </k>
+<specName> "" => Id2String(X) </specName>
+<specParams> .Params => Ps </specParams>
 
-
+//rule <k> {Decls:DecBubbleList Events:EventDecList  Props:PropertyDecList} =>
+//    Events Props </k>
+//    <decBubble> _ => toString(Decls) </decBubble>
 
 endmodule
