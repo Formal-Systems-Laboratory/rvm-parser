@@ -39,14 +39,18 @@ module RVM-COMPILER
     imports RVM-SYNTAX
     imports PRINT-AST
 
+    syntax KResult ::= error
+
     configuration <T> <k> $PGM:RVM  </k>
                         <package color="black"> "" </package>
 
                       <importList color="yellow"> .ImportDecList </importList>
 
                       <events color="pink"> .Map </events>
+                      <eventNum> 0 </eventNum>
 
                       <states color="blue"> .Map </states>
+                      <stateNum> 0 </stateNum>
 
                       <specName> "" </specName>
                       <specParams> .Params </specParams>
@@ -54,16 +58,42 @@ module RVM-COMPILER
 
                        </T>
 
+/**
+* Store the package info and import list.
+*/
 rule <k> X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z </k>
     <package> _ => toString(X) </package>
     <importList> _ => Y </importList>
 
+/**
+* Store the spec name and params.
+*/
 rule <k>X:Id (Ps:Params) SB:SpecBody => SB </k>
 <specName> "" => Id2String(X) </specName>
 <specParams> .Params => Ps </specParams>
 
+/**
+* Store the declarations info.
+*/
 rule <k> {(Decls:DecBubbleList => .K) Events:EventDecList  Props:PropertyDecList} </k>
     <decBubble> "" => toString(Decls) </decBubble>
 
+/**
+* Extract and store the first event in the event list if we haven't encountered it before.
+*/
+rule <k> {(EM:EventModifier event X:Id (Ps:Params) Body:BlockBubble => .K)
+ Events:EventDecList Props:PropertyDecList} </k>
+<events> (.Map => X |-> I) Cur:Map  </events>
+<eventNum> I => I +Int 1 </eventNum>
+when notBool X in keys(Cur)
+
+/**
+* Report error if an event is defined multiple times.
+*/
+rule <k> {EM:EventModifier event X:Id (Ps:Params) ...} => error </k>
+<events> Cur:Map  </events>
+when X in keys(Cur)
+
+//No events left?
 
 endmodule
