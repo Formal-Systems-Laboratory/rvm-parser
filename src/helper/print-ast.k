@@ -5,9 +5,9 @@ module PRINT-AST
     imports RVM-SYNTAX
     imports DOMAINS-SYNTAX
 
-    syntax String ::= toString(OptionalPackageDec) [function]
+    syntax String ::=  toString(OptionalPackageDec) [function]
     rule toString(package X:PackageName ;) => "package " +String toString(X) +String ";"
-    rule toString(None:OptionalPackageDec) => "\n"
+    rule toString(None:OptionalPackageDec) => "\n"  [owise]
 
     syntax String ::= toString(PackageName) [function]
     rule toString(X:Id) => Id2String(X)

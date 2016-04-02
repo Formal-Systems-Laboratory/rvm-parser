@@ -50,8 +50,8 @@ module RVM-COMPILER
 
                       <specName> "" </specName>
                       <specParams> .Params </specParams>
-                      <decBubble> .DecBubbleList </decBubble>
-                      <>
+                      <decBubble> .List </decBubble>
+
                        </T>
 
 rule <k> X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z </k>
