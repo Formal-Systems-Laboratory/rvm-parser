@@ -1,9 +1,11 @@
 require "rvm-syntax.k"
 require "domains.k"
 
+
 module RVM-COMPILER-SYNTAX
     imports RVM-SYNTAX
     imports DOMAINS-SYNTAX
+     
 
     syntax NoBracket ::= r"[^<{}][^{}]*" [token, klabel('NoBracket)]
     syntax ParamsBubble ::= r"\\([^\\)]*\\)" [token, avoid, klabel('ParamsBubble)]
@@ -36,12 +38,21 @@ module RVM-COMPILER
     imports RVM-SYNTAX
 
     configuration <T> <k> $PGM:RVM  </k>
-                      <package> .K </package>
-                      <importList> .List </package>
-                      <events> .Map </events>
-                      <states> .Map </states>
+                        <package color="black"> "" </package>
+
+                      <importList color="yellow"> .ImportDecList </importList>
+
+                      <events color="pink"> {} </events>
+
+                      <states color="blue"> {} </states>
                        </T>
-//    rule <k> `X:OptionalPackageDec => .K` ...</k>
+
 rule <k> `X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z` </k>
-    <package> _ => X </package> <importList> _ => Y </importList>
+    <package> _ => toString(X) </package>
+    <importList> _ => Y </importList>
+
+
+    syntax String ::= toString(OptionalPackageDec) [function]
+    rule toString(P:OptionalPackageDec) => "package foo;"
+
 endmodule
