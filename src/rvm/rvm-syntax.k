@@ -7,7 +7,7 @@ module RVM-SYNTAX
 
 
 	//top level sort (aka CompilationUnit)
-	syntax RVM ::= OptionalPackageDec ImportDecList SpecDec
+	syntax RVM ::= OptionalPackageDec ImportDecList SpecDec  [prefer, klabel('RVM)]
 
 
     syntax SpecDec ::= SpecDecHead SpecBody
@@ -24,6 +24,6 @@ module RVM-SYNTAX
 
 
 //syntax SpecBodyDecList          ::= List{SpecBodyDec, ""}
-syntax EventDecList          ::= List{EventDec, ""}
+syntax EventDecList          ::= List{EventDec, ""}      [klabel('EventsDecList)]
 
 endmodule
