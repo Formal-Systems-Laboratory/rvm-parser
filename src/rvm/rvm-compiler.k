@@ -56,6 +56,7 @@ module RVM-COMPILER
                       <specParams> .Params </specParams>
                       <decBubble> "" </decBubble>
 
+                      <err> .List </err>
                        </T>
 
 
@@ -90,12 +91,17 @@ when notBool (X in keys(Cur))
 
 /**
 * Report error if an event is defined multiple times.
+* In case of error, the execution will be terminated and the error info
+* will be stored in <err> cell.
 */
-//rule <k> ({(.K) EM:EventModifier event X:Id (Ps:Params) B:Body
-//ED:EventDecList PD:PropertyDecList}) => .K </k>
-//<events> Cur:Map  </events>
-//when X in keys(Cur)
+rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
+ Events:EventDecList) Props:PropertyDecList} => .K </k>
+<events> Cur:Map </events>
+<err> (.List => ListItem("Duplicate event " +String Id2String(X))) ErrList:List </err>
+when (X in keys(Cur))
 
-//No events left?
+//No events left
+rule
+<k> {.K (.EventDecList) Props:PropertyDecList} => Props </k>
 
 endmodule
