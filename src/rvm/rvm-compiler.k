@@ -1,5 +1,6 @@
 require "rvm-syntax.k"
 require "domains.k"
+require "../helper/print-ast.k"
 
 
 module RVM-COMPILER-SYNTAX
@@ -36,6 +37,7 @@ endmodule
 
 module RVM-COMPILER
     imports RVM-SYNTAX
+    imports PRINT-AST
 
     configuration <T> <k> $PGM:RVM  </k>
                         <package color="black"> "" </package>
@@ -52,7 +54,6 @@ rule <k> X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z </k>
     <importList> _ => Y </importList>
 
 
-    syntax String ::= toString(OptionalPackageDec) [function]
-    rule toString(P:OptionalPackageDec) => "package foo;"
+
 
 endmodule
