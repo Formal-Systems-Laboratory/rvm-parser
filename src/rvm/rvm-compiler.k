@@ -62,8 +62,8 @@ rule <k>X:Id (Ps:Params) SB:SpecBody => SB </k>
 <specName> "" => Id2String(X) </specName>
 <specParams> .Params => Ps </specParams>
 
-//rule <k> {Decls:DecBubbleList Events:EventDecList  Props:PropertyDecList} =>
-//    Events Props </k>
-//    <decBubble> _ => toString(Decls) </decBubble>
+rule <k> {(Decls:DecBubbleList => .K) Events:EventDecList  Props:PropertyDecList} </k>
+    <decBubble> "" => toString(Decls) </decBubble>
+
 
 endmodule
