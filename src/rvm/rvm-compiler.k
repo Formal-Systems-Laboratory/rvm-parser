@@ -35,7 +35,13 @@ endmodule
 module RVM-COMPILER
     imports RVM-SYNTAX
 
-    configuration <T> <k> $PGM:RVM  </k> </T>
+    configuration <T> <k> $PGM:RVM  </k>
+                      <package> .K </package>
+                      <importList> .List </package>
+                      <events> .Map </events>
+                      <states> .Map </states>
+                       </T>
 //    rule <k> `X:OptionalPackageDec => .K` ...</k>
-rule <k> `X:OptionalPackageDec Y:ImportDecList Z:SpecDec => X` </k>
+rule <k> `X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z` </k>
+    <package> _ => X </package> <importList> _ => Y </importList>
 endmodule
