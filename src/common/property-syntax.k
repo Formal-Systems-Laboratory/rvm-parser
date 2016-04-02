@@ -1,4 +1,4 @@
-require "../logic/logic-syntax.k"
+require "../logic/syntax/logic-syntax.k"
 require "java-bubble-syntax.k"
 
 module PROPERTY-SYNTAX
