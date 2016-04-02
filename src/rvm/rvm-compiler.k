@@ -47,6 +47,11 @@ module RVM-COMPILER
                       <events color="pink"> .Map </events>
 
                       <states color="blue"> .Map </states>
+
+                      <specName> "" </specName>
+                      <specParams> .Params </specParams>
+                      <decBubble> .DecBubbleList </decBubble>
+                      <>
                        </T>
 
 rule <k> X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z </k>
