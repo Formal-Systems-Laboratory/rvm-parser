@@ -15,7 +15,7 @@ syntax SRSState ::= "succeed" | "fail"
 
 syntax Rule ::= SRSLeftHandSide "->" SRSRightHandSide
 
-syntax SRSLeftHandSide ::= OptionalBegin SRSString OptionalEnd
+syntax SRSLeftHandSide ::= OptionalBegin SRSString OptionalEnd  [avoid]
 syntax SRSRightHandSide ::= SRSString | "#" SRSState | "#epsilon"
 
 syntax OptionalBegin ::= "^" | None
