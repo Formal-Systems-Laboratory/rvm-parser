@@ -1,7 +1,7 @@
 require "domains.k"
 
 module ERE-SYNTAX
-    imports DOMAINS-COMMON
+    imports DOMAINS-SYNTAX
 
 syntax LogicName ::= "ere"
 

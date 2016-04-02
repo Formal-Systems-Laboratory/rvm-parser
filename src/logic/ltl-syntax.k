@@ -2,7 +2,7 @@ require "domains.k"
 require "boolop-syntax.k"
 
 module LTL-SYNTAX
-    imports DOMAINS-COMMON
+    imports DOMAINS-SYNTAX
     imports BOOLOP-SYNTAX
 
 syntax LogicName ::= "ltl"

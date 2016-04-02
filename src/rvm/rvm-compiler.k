@@ -42,12 +42,12 @@ module RVM-COMPILER
 
                       <importList color="yellow"> .ImportDecList </importList>
 
-                      <events color="pink"> {} </events>
+                      <events color="pink"> .Map </events>
 
-                      <states color="blue"> {} </states>
+                      <states color="blue"> .Map </states>
                        </T>
 
-rule <k> `X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z` </k>
+rule <k> X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z </k>
     <package> _ => toString(X) </package>
     <importList> _ => Y </importList>
 
