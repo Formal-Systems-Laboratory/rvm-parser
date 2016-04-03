@@ -20,7 +20,7 @@ module PRINT-AST
 
     rule toString(DB:DecBubble) => #tokenToString(DB)
 
-//    rule toString(.DecBubbleList) => ""
+    rule toString(.DecBubbleList) => ""
 //    rule toString(DB:DecBubble DBL:DecBubbleList) => #tokenToString(DB) +String toString(DBL)
 
     //print logic name

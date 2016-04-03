@@ -2,10 +2,6 @@ package rvm;
 
 import java.io.*;
 Test (int o){
-	x = "foo"; //TODO: add type, and access modifier
-	class bar {
-		private int foo() { return 1; }
-		}
 
 	event create(){
 		int i;
@@ -19,7 +15,5 @@ Test (int o){
 	@match {
 		int j;
 	}
-
-
 
 }
