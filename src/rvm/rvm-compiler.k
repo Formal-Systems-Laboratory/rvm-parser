@@ -49,12 +49,14 @@ module RVM-COMPILER
                       <events color="pink"> .Map </events>
                       <eventNum> 0 </eventNum>
 
-                      <states color="blue"> .Map </states>
-                      <stateNum> 0 </stateNum>
-
                       <specName> "" </specName>
                       <specParams> .Params </specParams>
                       <decBubble> "" </decBubble>
+
+                      <propNum> 0 </propNum>
+                      <logicTypeList> .List </logicTypeList>
+                      <formulaStrList> .List </formulaStrList>
+                      <handlersList> .List </handlersList>
 
                       <err> .List </err>
                        </T>
@@ -104,4 +106,12 @@ when (X in keys(Cur))
 rule
 <k> {.K (.EventDecList) Props:PropertyDecList} => Props </k>
 
+//add the first property and corresponding handlers
+rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
+    <propNum> I:Int => I +Int 1 </propNum>
+    <logicTypeList> L:List (.List => ListItem(getLogicName(Prop))) </logicTypeList>
+    <formulaStrList> FL:List (.List => ListItem(getFormula(Prop))) </formulaStrList>
+    <handlersList> HL:List (.List => ListItem(getHandlers(Prop)))  </handlersList>
+//No properties left
+//rule <k>.PropertyDecList</k>
 endmodule

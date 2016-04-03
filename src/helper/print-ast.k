@@ -18,4 +18,14 @@ module PRINT-AST
     syntax String ::= toString(DecBubbleList)  [function]
     rule toString(DB:DecBubbleList) => "foo dec bubble list" //TODO
 
+    //print logic name
+    syntax String ::= getLogicName(PropertyDec) [function]
+
+    //print formula
+    syntax String ::= getFormula(PropertyDec) [function]
+
+    //print handlers of the given property
+    syntax String ::= getHandlers(PropertyDec) [function]
+
+
 endmodule
