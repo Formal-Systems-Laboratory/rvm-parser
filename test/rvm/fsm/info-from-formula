@@ -1,0 +1,22 @@
+events: hasnext next
+
+categories: unmatch match
+
+logic: fsm
+
+formula:
+start[
+  next -> unsafe
+  hasnext -> safe
+]
+safe[
+  next -> start
+  hasnext -> safe
+]
+unsafe[
+  next -> unsafe
+  hasnext -> safe
+]
+alias unmatch = safe
+alias match = unsafe
+
