@@ -2,6 +2,11 @@ package rvm;
 
 import java.io.*;
 Test (int o){
+	static String x = "foo";
+	class bar {
+		private int foo() { return 1; }
+		}
+
 	event create(){
 		int i;
 	}
