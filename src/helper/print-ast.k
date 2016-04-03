@@ -16,8 +16,12 @@ module PRINT-AST
 
     //print declaration ast
     syntax String ::= toString(DecBubbleList)  [function]
-    rule toString(.DecBubbleList) => ""
-    rule toString(DB:DecBubble DBL:DecBubbleList) => #tokenToString(DB) +String toString(DBL)
+    syntax String ::= toString(DecBubble)  [function]
+
+    rule toString(DB:DecBubble) => #tokenToString(DB)
+
+//    rule toString(.DecBubbleList) => ""
+//    rule toString(DB:DecBubble DBL:DecBubbleList) => #tokenToString(DB) +String toString(DBL)
 
     //print logic name
     syntax String ::= getLogicName(PropertyDec) [function]

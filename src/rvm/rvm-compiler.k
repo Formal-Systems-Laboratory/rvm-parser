@@ -28,7 +28,7 @@ module RVM-COMPILER-SYNTAX
 
 
 
-        syntax IdPattern ::=  //id  with * and .. wildcards (it can start with * but not with .. , same about end)
+    syntax IdPattern ::=  //id  with * and .. wildcards (it can start with * but not with .. , same about end)
                    // r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*|\\.)*([A-Za-z\\_]|\\*)"     [token]
                      r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*([A-Za-z\\_]|\\*)"     [token,reject2("new"), klabel('IdPattern)]
                    | r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)" [token,klabel('IdPatternSingleChar)]
