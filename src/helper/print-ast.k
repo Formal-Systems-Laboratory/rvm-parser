@@ -14,15 +14,6 @@ module PRINT-AST
     rule toString(X:Id) => Id2String(X)
     rule toString(P:PackageName . X:Id) => toString(P) +String "." +String Id2String(X)
 
-    //print declaration ast
-    syntax String ::= toString(DecBubbleList)  [function]
-    syntax String ::= toString(DecBubble)  [function]
-
-    rule toString(DB:DecBubble) => #tokenToString(DB)
-
-    rule toString(.DecBubbleList) => ""
-//    rule toString(DB:DecBubble DBL:DecBubbleList) => #tokenToString(DB) +String toString(DBL)
-
     //print logic name
     syntax String ::= getLogicName(PropertyDec) [function]
 

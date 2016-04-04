@@ -51,7 +51,7 @@ module RVM-COMPILER
 
                       <specName> "" </specName>
                       <specParams> .Params </specParams>
-                      <decBubble> "" </decBubble>
+                      <decBubble> .List </decBubble>
 
                       <propNum> 0 </propNum>
                       <logicTypeList> .List </logicTypeList>
@@ -79,8 +79,12 @@ rule <k>X:Id (Ps:Params) SB:SpecBody => SB </k>
 /**
 * Store the declarations info.
 */
-rule <k> {(Decls:DecBubbleList => .K) Events:EventDecList  Props:PropertyDecList} </k>
-    <decBubble> "" => toString(Decls) </decBubble>
+rule <k> {(Decl:DecBubble Decls:DecBubbleList => Decls) Events:EventDecList  Props:PropertyDecList} </k>
+    <decBubble> (.List => ListItem(#tokenToString(Decl))) DL:List </decBubble>
+
+
+
+
 
 /**
 * Extract and store the first event in the event list if we haven't encountered it before.
