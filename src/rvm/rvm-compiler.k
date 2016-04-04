@@ -15,7 +15,7 @@ module RVM-COMPILER-SYNTAX
 
     syntax BoolExpBubble ::= BalancedParentheses [token, klabel('BoolExpBubble)] //TODO:removed prefer (for MOP production), check amb
 
-    syntax DecBubbleList          ::= List{DecBubble, ""} [klabel(DecBubbleListCons)]
+    syntax DecBubbleList          ::= List{DecBubble, ""} [token, klabel(DecBubbleListCons)]
 
     syntax DecBubble ::=  ClassDecBubble [token, klabel('DecBubbleClass)]
                             | MethodDecBubble [token, klabel('DecBubbleMethod)]
@@ -44,14 +44,14 @@ module RVM-COMPILER
     configuration <T> <k> $PGM:RVM  </k>
                         <package color="black"> "" </package>
 
-                      <importList color="yellow"> .ImportDecList </importList>
+                      <importList color="yellow"> .K </importList>
 
                       <events color="pink"> .Map </events>
                       <eventNum> 0 </eventNum>
 
                       <specName> "" </specName>
                       <specParams> .Params </specParams>
-                      <decBubble> .List </decBubble>
+                      <decBubble> .K </decBubble>
 
                       <propNum> 0 </propNum>
                       <logicTypeList> .List </logicTypeList>
@@ -66,8 +66,8 @@ module RVM-COMPILER
 * Store the package info and import list.
 */
 rule <k> X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z </k>
-    <package> _ => toString(X) </package>
-    <importList> _ => Y </importList>
+    <package> "" => toString(X) </package>
+    <importList> .K => Y </importList>
 
 /**
 * Store the spec name and params.
@@ -79,13 +79,9 @@ rule <k>X:Id (Ps:Params) SB:SpecBody => SB </k>
 /**
 * Store the declarations info.
 */
-rule <k> {(DecBubbleListCons(Decl:DecBubble, Decls:DecBubbleList) => Decls) Events:EventDecList
+rule <k> {(Decls:DecBubbleList => .K) Events:EventDecList
 Props:PropertyDecList} </k>
-//    <decBubble> (.List => ListItem(#tokenToString(Decl))) DL:List </decBubble>
-
-rule <k> {(DecBubbleListCons(Decl:DecBubble, DecBubbleListCons(Dec2:DecBubble, Decls:DecBubbleList) ) => Decls)
-Events:EventDecList
-Props:PropertyDecList} </k>
+    <decBubble> .K => Decls </decBubble>
 
 //rule <k> {(Decl:DecBubble Decls:DecBubbleList => Decls) Events:EventDecList
 //Props:PropertyDecList} </k>
