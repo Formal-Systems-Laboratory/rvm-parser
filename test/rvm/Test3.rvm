@@ -2,9 +2,7 @@ package rvm;
 
 import java.io.*;
 Test (int o){
-	x = "foo"; 
-
-	event create(){
+	x=2;y=1;event create(){
 		int i;
 	}
 	event close(){

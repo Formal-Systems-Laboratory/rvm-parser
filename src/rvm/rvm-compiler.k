@@ -15,7 +15,7 @@ module RVM-COMPILER-SYNTAX
 
     syntax BoolExpBubble ::= BalancedParentheses [token, klabel('BoolExpBubble)] //TODO:removed prefer (for MOP production), check amb
 
-    syntax DecBubbleList          ::= List{DecBubble, ""} [token, klabel('DecBubbleList)]
+    syntax DecBubbleList          ::= List{DecBubble, ""} [klabel(DecBubbleListCons)]
 
     syntax DecBubble ::=  ClassDecBubble [token, klabel('DecBubbleClass)]
                             | MethodDecBubble [token, klabel('DecBubbleMethod)]
@@ -79,10 +79,16 @@ rule <k>X:Id (Ps:Params) SB:SpecBody => SB </k>
 /**
 * Store the declarations info.
 */
-rule <k> {(Decl:DecBubble Decls:DecBubbleList => Decls) Events:EventDecList  Props:PropertyDecList} </k>
-    <decBubble> (.List => ListItem(#tokenToString(Decl))) DL:List </decBubble>
+rule <k> {(DecBubbleListCons(Decl:DecBubble, Decls:DecBubbleList) => Decls) Events:EventDecList
+Props:PropertyDecList} </k>
+//    <decBubble> (.List => ListItem(#tokenToString(Decl))) DL:List </decBubble>
 
+rule <k> {(DecBubbleListCons(Decl:DecBubble, DecBubbleListCons(Dec2:DecBubble, Decls:DecBubbleList) ) => Decls)
+Events:EventDecList
+Props:PropertyDecList} </k>
 
+//rule <k> {(Decl:DecBubble Decls:DecBubbleList => Decls) Events:EventDecList
+//Props:PropertyDecList} </k>
 
 
 
