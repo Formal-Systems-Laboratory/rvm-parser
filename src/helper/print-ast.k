@@ -14,14 +14,16 @@ module PRINT-AST
     rule toString(X:Id) => Id2String(X)
     rule toString(P:PackageName . X:Id) => toString(P) +String "." +String Id2String(X)
 
-    //print logic name
-    syntax String ::= getLogicName(PropertyDec) [function]
+    //get logic name
+    syntax LogicName ::= getLogicName(PropertyDec) [function]
+    rule getLogicName(LN:LogicName : F:LogicFormula HDL:HandlerDecList) => LN
 
-    //print formula
-    syntax String ::= getFormula(PropertyDec) [function]
+    //get formula
+    syntax LogicFormula ::= getFormula(PropertyDec) [function]
+    rule getFormula(LN:LogicName : F:LogicFormula HDL:HandlerDecList) => F
 
-    //print handlers of the given property
-    syntax String ::= getHandlers(PropertyDec) [function]
-
+    //get handlers of the given property
+    syntax HandlerDecList ::= getHandlers(PropertyDec) [function]
+    rule getHandlers(LN:LogicName : F:LogicFormula HDL:HandlerDecList) => HDL
 
 endmodule
