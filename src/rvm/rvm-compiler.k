@@ -54,9 +54,11 @@ module RVM-COMPILER
                       <decBubble> .K </decBubble>
 
                       <propNum> 0 </propNum>
-                      <logicTypeList> .List </logicTypeList>
-                      <formulaStrList> .List </formulaStrList>
-                      <handlersList> .List </handlersList>
+                      <logicType> .K </logicType>
+                      <formula> .K </formula>
+                      <handlers> .HandlerDecList </handlers>
+
+                      <runPlugin> false </runPlugin>
 
                       <err> .List </err>
                        </T>
@@ -115,9 +117,11 @@ rule
 //add the first property and corresponding handlers
 rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <propNum> I:Int => I +Int 1 </propNum>
-    <logicTypeList> L:List (.List => ListItem(getLogicName(Prop))) </logicTypeList>
-    <formulaStrList> FL:List (.List => ListItem(getFormula(Prop))) </formulaStrList>
-    <handlersList> HL:List (.List => ListItem(getHandlers(Prop)))  </handlersList>
+    <logicType> getLogicName(Prop) </logicType>
+    <formula> getFormula(Prop) </formula>
+    <handlers> getHandlers(Prop)  </handlers>
+    <runPlugin> false => true </runPlugin>
+
 //No properties left
 //rule <k>.PropertyDecList</k>
 endmodule
