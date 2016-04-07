@@ -14,7 +14,7 @@ Test (int o){
     		int i;
     }
 
-	ere: x & x
+	fsm: 
 
 	@match {
 		int j;

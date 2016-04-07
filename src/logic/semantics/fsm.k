@@ -1,8 +1,16 @@
 require "../syntax/fsm-syntax.k"
 
-module FSM
-imports FSM-SYNTAX
+require "../../rvm/rvm-compiler-core.k"
 
+module FSM
+    imports FSM-SYNTAX
+    imports RVM-COMPILER-CORE
+
+    imports ERE-SYNTAX
+
+rule    <logicType> "fsm"  </logicType>
+    <formula> F:FSMFormula => .K </formula>
+    <runPlugin> true </runPlugin>
 
 
 endmodule

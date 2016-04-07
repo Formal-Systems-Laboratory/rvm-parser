@@ -1,68 +1,18 @@
 require "rvm-syntax.k"
 require "domains.k"
+require "rvm-compiler-core.k"
 require "../helper/print-ast.k"
 
-
-module RVM-COMPILER-SYNTAX
-    imports RVM-SYNTAX
-    imports DOMAINS-SYNTAX
-     
-
-    syntax NoBracket ::= r"[^<{}][^{}]*" [token, klabel('NoBracket)]
-    syntax ParamsBubble ::= r"\\([^\\)]*\\)" [token, avoid, klabel('ParamsBubble)]
-    syntax VarInitBubble ::=  r"[^<;][^;]*" [token, avoid, klabel('VarInitBubble)]
-    syntax NoParentheses ::= r"[^()<][^()]*" [token, klabel('NoParentheses)]
-
-    syntax BoolExpBubble ::= BalancedParentheses [token, klabel('BoolExpBubble)] //TODO:removed prefer (for MOP production), check amb
-
-    syntax DecBubbleList          ::= List{DecBubble, ""} [token, klabel(DecBubbleListCons)]
-
-    syntax DecBubble ::=  ClassDecBubble [token, klabel('DecBubbleClass)]
-                            | MethodDecBubble [token, klabel('DecBubbleMethod)]
-                            | FieldDecBubble [token, klabel('DecBubbleField)]
-
-    syntax BlockBubble ::= "{" BalancedBracket "}" [prefer, token, klabel('BlockBubble)]
-                             | "{" "}" [prefer, token, klabel('BlockBubbleEmpty)]
-
-
-
-
-
-    syntax IdPattern ::=  //id  with * and .. wildcards (it can start with * but not with .. , same about end)
-                   // r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*|\\.)*([A-Za-z\\_]|\\*)"     [token]
-                     r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*([A-Za-z\\_]|\\*)"     [token,reject2("new"), klabel('IdPattern)]
-                   | r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)" [token,klabel('IdPatternSingleChar)]
-
-endmodule
+require "../logic/semantics/fsm.k"
 
 module RVM-COMPILER
     imports RVM-SYNTAX
+    imports RVM-COMPILER-CORE
     imports PRINT-AST
 
+    imports FSM
+
     syntax KResult ::= "error"
-
-    configuration <T> <k> $PGM:RVM  </k>
-                        <package color="black"> "" </package>
-
-                      <importList color="yellow"> .K </importList>
-
-                      <events color="pink"> .Map </events>
-                      <eventNum> 0 </eventNum>
-
-                      <specName> "" </specName>
-                      <specParams> .Params </specParams>
-                      <decBubble> .K </decBubble>
-
-                      <propNum> 0 </propNum>
-                      <logicType> .K </logicType>
-                      <formula> .K </formula>
-                      <handlers> .HandlerDecList </handlers>
-
-                      <runPlugin> false </runPlugin>
-
-                      <err> .List </err>
-                       </T>
-
 
 /**
 * Store the package info and import list.
@@ -124,4 +74,5 @@ rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
 
 //No properties left
 //rule <k>.PropertyDecList</k>
+
 endmodule
