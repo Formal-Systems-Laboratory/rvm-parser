@@ -2,6 +2,7 @@ require "domains.k"
 require "boolop-syntax.k"
 
 module LTL-SYNTAX
+    imports BOOL-SYNTAX
     imports DOMAINS-SYNTAX
     imports BOOLOP-SYNTAX
 
@@ -9,9 +10,7 @@ syntax LogicName ::= "ltl"
 
 syntax LogicFormula ::= LTLFormula
 
-syntax LTLFormula ::=
-           "true"
-         | "false"
+syntax LTLFormula ::= Bool
          | EventName
          | "(" LTLFormula ")"           [bracket]
          > "[]" LTLFormula

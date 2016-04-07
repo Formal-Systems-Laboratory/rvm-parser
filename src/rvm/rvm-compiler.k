@@ -117,9 +117,9 @@ rule
 //add the first property and corresponding handlers
 rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <propNum> I:Int => I +Int 1 </propNum>
-    <logicType> getLogicName(Prop) </logicType>
-    <formula> getFormula(Prop) </formula>
-    <handlers> getHandlers(Prop)  </handlers>
+    <logicType> .K => getLogicName(Prop) </logicType>
+    <formula> .K => getFormula(Prop) </formula>
+    <handlers> .HandlerDecList => getHandlers(Prop)  </handlers>
     <runPlugin> false => true </runPlugin>
 
 //No properties left
