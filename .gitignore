@@ -3,3 +3,4 @@
 test/rvm/property-db
 test/mop/property-db
 *-kompiled/
+*.bak
