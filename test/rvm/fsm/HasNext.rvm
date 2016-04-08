@@ -26,8 +26,8 @@ HasNext(Iterator i) {
         hasnext -> safe
      ]
 
-     alias match = unsafe
-     alias unmatch = safe
+  //   alias match = unsafe
+    // alias unmatch = safe
 	
    @match {
       System.out.println("next called without hasNext!");

@@ -1,3 +1,5 @@
+require "rvm-syntax.k"
+
 module RVM-COMPILER-SYNTAX
     imports RVM-SYNTAX
     imports DOMAINS-SYNTAX

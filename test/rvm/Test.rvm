@@ -20,7 +20,7 @@ Test (int o){
         hasnext -> safe
      ]
 
-    alias match = unsafe, start
+ //   alias match = unsafe, start
 
 	@match {
 		int j;
