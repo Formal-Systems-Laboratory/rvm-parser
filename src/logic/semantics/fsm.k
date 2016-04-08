@@ -15,6 +15,17 @@ rule    <logicType> fsm  </logicType>
     <transitionFunction> .K => getTransitionList(IT) </transitionFunction>
     <stateNum> I:Int => I +Int 1 </stateNum>
 
+//    when notBool (getStateName(IT) in keys(CurMap))
+//
+// //We may or may not forbid the behavior of defining transitions for the same state
+// //in multiple places
+//
+//rule <logicType> fsm  </logicType>
+//         <formula> IT:Item IL:ItemList AL:AliasList </formula>
+//         <runPlugin> true </runPlugin>
+//<err> (.List => ListItem("State " +String getStateName(IT) +String
+//        " defined in multiple places")) ErrList:List </err>
+//when (getStateName(IT) in keys(CurMap))
 
 rule    <transitionFunction> (E:EventName -> SN:StateName) TL:TransitionList => TL </transitionFunction>
           //...
