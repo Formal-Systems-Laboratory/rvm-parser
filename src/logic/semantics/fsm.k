@@ -8,8 +8,8 @@ module FSM
 
     imports ERE-SYNTAX
 
-rule    <logicType> "fsm"  </logicType>
-    <formula> F:FSMFormula => .K </formula>
+rule    <logicType> fsm  </logicType>
+    <formula> _:FSMFormula => .K </formula>
     <runPlugin> true </runPlugin>
 
 

@@ -3,14 +3,24 @@ package rvm;
 import java.io.*;
 Test (int o){
 	
-	event create(){
-		int i;
-	}
-	event close(){
-    		int i;
-    }
+   event hasnext(Iterator i) {} // after
+   event next(Iterator i) {} // before 
 
-	ere: x & x
+   fsm :
+     start [
+        next -> unsafe
+        hasnext -> safe
+     ]
+     safe [
+        next -> start
+        hasnext -> safe 
+     ]
+     unsafe [
+        next -> unsafe
+        hasnext -> safe
+     ]
+
+    alias match = unsafe, start
 
 	@match {
 		int j;
