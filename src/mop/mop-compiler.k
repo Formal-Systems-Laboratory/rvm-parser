@@ -36,5 +36,4 @@ module MOP-COMPILER
     imports MOP-SYNTAX
 
     configuration <T> <k> $PGM:MOP  </k> </T>
-    rule <k> `X:OptionalPackageDec => .K` ...</k>
 endmodule
