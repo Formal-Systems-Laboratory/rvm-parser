@@ -26,4 +26,16 @@ module PRINT-AST
     syntax HandlerDecList ::= getHandlers(PropertyDec) [function]
     rule getHandlers(LN:LogicName : F:LogicFormula HDL:HandlerDecList) => HDL
 
+    //get state name from an item
+    syntax String ::= getStateName(Item) [function]
+    syntax String ::= printStateName(StateName) [function]
+
+    syntax TransitionList ::= getTransitionList(Item) [function]
+
+    rule getStateName(SN:StateName[TL:TransitionList]) => printStateName(SN)
+    rule printStateName(SN:Id) => Id2String(SN)
+
+
+    rule getTransitionList(SN:StateName[TL:TransitionList]) => TL
+
 endmodule

@@ -40,7 +40,7 @@ module RVM-COMPILER-CORE
 
                       <importList color="yellow"> .K </importList>
 
-                      <events color="pink"> .Map </events>
+                      <events color="pink"> .Map </events> //map an event to its number
                       <eventNum> 0 </eventNum>
 
                       <specName> "" </specName>
@@ -48,11 +48,20 @@ module RVM-COMPILER-CORE
                       <decBubble> .K </decBubble>
 
                       <propNum> 0 </propNum>
+
+/////////////////////////////Logic Plugin cells starts////////////////////////////////////////////
+
                       <logicType> .K </logicType>
                       <formula> .K </formula>
-                      <handlers> .HandlerDecList </handlers>
 
                       <runPlugin> false </runPlugin>
+
+                      <states> .Map </states> //map a state to its number
+                      <stateNum> 0 </stateNum>
+
+                      <transitionFunction> .Map </transitionFunction>
+/////////////////////////////////Logic Plugin cells ends///////////////////////////////////////////
+                      <handlers> .HandlerDecList </handlers>
 
                       <err> .List </err>
                        </T>

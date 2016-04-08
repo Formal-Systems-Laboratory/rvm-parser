@@ -9,8 +9,9 @@ module FSM
     imports ERE-SYNTAX
 
 rule    <logicType> fsm  </logicType>
-    <formula> _:FSMFormula => .K </formula>
+    <formula> IT:Item IL:ItemList AL:AliasList => (IL AL) </formula>
     <runPlugin> true </runPlugin>
-
+    <states> (.Map => (getStateName(IT) |-> I)) CurMap </states>
+    <stateNum> I:Int => I +Int 1 </stateNum>
 
 endmodule
