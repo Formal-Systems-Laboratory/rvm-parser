@@ -11,7 +11,8 @@ module FSM
 rule    <logicType> fsm  </logicType>
     <formula> IT:Item IL:ItemList AL:AliasList => (IL AL) </formula>
     <runPlugin> true </runPlugin>
-    <states> CurMap[getStateName(IT) <- I] </states>
+    <states> CurMap:Map => CurMap[getStateName(IT) <- I] </states>
+
     <stateNum> I:Int => I +Int 1 </stateNum>
 
 endmodule
