@@ -26,6 +26,10 @@ module PRINT-AST
     syntax HandlerDecList ::= getHandlers(PropertyDec) [function]
     rule getHandlers(LN:LogicName : F:LogicFormula HDL:HandlerDecList) => HDL
 
+    //get event name in string
+    syntax String ::= getEventName(EventName) [function]
+    rule getEventName(E:Id) => Id2String(E)
+
     //get state name from an item
     syntax String ::= getStateName(Item) [function]
     syntax String ::= printStateName(StateName) [function]

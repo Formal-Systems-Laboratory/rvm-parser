@@ -54,21 +54,34 @@ rule    <logicType> fsm  </logicType>
     <scanNum> 1 </scanNum>
 
 /**consume the transition functions defined for the current state.*/
-rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
-    <stateNum> I:Int </stateNum>
-    <states> StateMap:Map </states>
-        <stateTransformer> BigMap:Map => BigMap[E:EventName <-
-        (I |-> lookup(StateMap, getStateName(SN)):Int):Map]
+//rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTransition>
+//        <stateTransformer> BigMap:Map => BigMap[getEventName(E) <- (.Map)]
+//        </stateTransformer>
+//    <scanNum> 1 </scanNum>
+//    when notBool (getEventName(E) in keys(BigMap))
+
+
+rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTransition>
+        <stateTransformer> BigMap:Map => BigMap[E <- (.Map)]
         </stateTransformer>
     <scanNum> 1 </scanNum>
     when notBool (E in keys(BigMap))
 
+
+
 rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
     <stateNum> I:Int </stateNum>
     <states> StateMap:Map </states>
-        <stateTransformer> BigMap:Map => BigMap[E <-
-        (lookup(BigMap, E)[I <- lookup(StateMap, getStateName(SN)):Int])]
+
+//    <k2> .K => ((lookup(BigMap, E):Map [I <- lookup(StateMap, getStateName(SN)):Int]):Map) </k2>
+//<k2> .K => BigMap[E] </k2>
+    //should be the problem of using lookup function, the klabel Map:lookup does not compile
+    //the lookup function seems not the one for lookup val in a map!
+
+        <stateTransformer> BigMap:Map //=> BigMap[E <- ]
         </stateTransformer>
+
+
     <scanNum> 1 </scanNum>
     when E in keys(BigMap)
 

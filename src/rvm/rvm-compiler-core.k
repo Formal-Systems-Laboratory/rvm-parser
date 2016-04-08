@@ -72,6 +72,8 @@ module RVM-COMPILER-CORE
                         <scanNum> 0 </scanNum>
 
                       <aliasSet> .K </aliasSet>
+
+                      <k2> .K </k2> //additional computation cell
 ///////////////////////Specific for FSM//////////////////////////////////////////////////////
 
 /////////////////////////////////Logic Plugin cells ends///////////////////////////////////////////
