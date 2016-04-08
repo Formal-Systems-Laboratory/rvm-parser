@@ -69,6 +69,7 @@ rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <propNum> I:Int => I +Int 1 </propNum>
     <logicType> .K => getLogicName(Prop) </logicType>
     <formula> .K => getFormula(Prop) </formula>
+    <formulaCopy> .K => getFormula(Prop) </formulaCopy>
     <handlers> .HandlerDecList => getHandlers(Prop)  </handlers>
     <runPlugin> false => true </runPlugin>
 

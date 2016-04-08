@@ -59,8 +59,22 @@ module RVM-COMPILER-CORE
                       <states> .Map </states> //map a state to its number
                       <stateNum> 0 </stateNum>
 
-                      <transitionFunction> .K </transitionFunction>
-                      //the transition functions with the current state as input.
+                      //the raw transition defined in the rvm spec, indexed by states
+                      <rawTransition> .K </rawTransition>
+
+                      //the state transformation function, indexed by events
+                      <stateTransformer> .Map </stateTransformer>
+
+                      //we may need to traverse formula to get state numbers
+                      //in the first scan, use this tmp cell for saving state transitions
+                      //which will be restored in the second scan.
+                      <formulaCopy> .K </formulaCopy>
+                        <scanNum> 0 </scanNum>
+
+                      <aliasSet> .K </aliasSet>
+///////////////////////Specific for FSM//////////////////////////////////////////////////////
+
+
 /////////////////////////////////Logic Plugin cells ends///////////////////////////////////////////
                       <handlers> .HandlerDecList </handlers>
 
