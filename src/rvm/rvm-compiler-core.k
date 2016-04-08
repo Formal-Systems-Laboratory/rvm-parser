@@ -63,7 +63,7 @@ module RVM-COMPILER-CORE
                       <rawTransition> .K </rawTransition>
 
                       //the state transformation function, indexed by events
-                      <stateTransformer> .Map </stateTransformer>
+                      <stateTransformer color="blue"> .Map </stateTransformer>
 
                       //we may need to traverse formula to get state numbers
                       //in the first scan, use this tmp cell for saving state transitions
@@ -73,7 +73,6 @@ module RVM-COMPILER-CORE
 
                       <aliasSet> .K </aliasSet>
 ///////////////////////Specific for FSM//////////////////////////////////////////////////////
-
 
 /////////////////////////////////Logic Plugin cells ends///////////////////////////////////////////
                       <handlers> .HandlerDecList </handlers>
