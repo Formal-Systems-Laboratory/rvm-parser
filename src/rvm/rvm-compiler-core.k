@@ -59,7 +59,8 @@ module RVM-COMPILER-CORE
                       <states> .Map </states> //map a state to its number
                       <stateNum> 0 </stateNum>
 
-                      <transitionFunction> .Map </transitionFunction>
+                      <transitionFunction> .K </transitionFunction>
+                      //the transition functions with the current state as input.
 /////////////////////////////////Logic Plugin cells ends///////////////////////////////////////////
                       <handlers> .HandlerDecList </handlers>
 
