@@ -1,0 +1,73 @@
+$0  // #include <stdio.h>
+  // #include <stdlib.h>
+
+$1  // "static int __RVC_state = 0;\n" 
+
+$2 // "int __RVC_"
+
+$spec // spec name
+
+$u // underscore: "_"
+
+$4 // " = 0;\n"  //init to 0    
+
+$state  // will rewrite to: for each $i in #numOfStates { $state_i_init }
+
+$state_i //rewrite to the name of state i
+
+$state_i_init //rewrite to: $2 $spec $u $state_i $4
+
+
+//////////////////////////////
+
+_safe = 0;
+int __RVC_SeatBelt_unsafe = 0;
+
+void
+__RVC_SeatBelt_reset(void)
+{
+  __RVC_state = 0;
+ }
+
+static int __RVC_SEATBELT_SEATBELTREMOVED[] = {-1,0, };
+static int __RVC_SEATBELT_SEATBELTATTACHED[] = {1, -1,};
+
+void
+__RVC_SeatBelt_seatBeltRemoved()
+{
+{fprintf(stderr, "Seat belt removed.\n");}
+__RVC_state = __RVC_SEATBELT_SEATBELTREMOVED[__RVC_state];
+  __RVC_SeatBelt_safe = __RVC_state == 1;
+  __RVC_SeatBelt_unsafe = __RVC_state == 0;
+if(__RVC_SeatBelt_safe)
+{
+{
+      fprintf(stderr, "set max speed to user input.\n");
+  }}
+if(__RVC_SeatBelt_unsafe)
+{
+{
+      fprintf(stderr, "set max speed to 10 mph.\n");
+  }}
+}
+
+void
+__RVC_SeatBelt_seatBeltAttached()
+{
+{fprintf(stderr, "Seat belt attached.\n");}
+__RVC_state = __RVC_SEATBELT_SEATBELTATTACHED[__RVC_state];
+  __RVC_SeatBelt_safe = __RVC_state == 1;
+  __RVC_SeatBelt_unsafe = __RVC_state == 0;
+if(__RVC_SeatBelt_safe)
+{
+{
+      fprintf(stderr, "set max speed to user input.\n");
+  }}
+if(__RVC_SeatBelt_unsafe)
+{
+{
+      fprintf(stderr, "set max speed to 10 mph.\n");
+  }}
+}
+
+
