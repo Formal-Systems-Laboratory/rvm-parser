@@ -11,7 +11,12 @@ rule toIntArray(.Map) => ListItem(0) //if no normal state, then there is only on
 
 rule toIntArray(M:Map) => toIntArray(M, size(M), size(M))
 
-rule toIntArray(((Siz -Int I) |-> V:Int) M:Map, I:Int, Siz:Int) =>
-        ListItem(V) toIntArray(M, I -Int 1, Siz)
+//rule toIntArray(((Siz -Int I) |-> V:Int) M:Map, I:Int, Siz:Int) =>
+//        ListItem(V) toIntArray(M, I -Int 1, Siz)
+
+rule toIntArray(M:Map, 0, Siz:Int) => Siz
+
+rule toIntArray(M:Map, I:Int, Siz:Int) =>
+        M[Siz -Int I] toIntArray(M, I -Int 1, Siz)
 
 endmodule
