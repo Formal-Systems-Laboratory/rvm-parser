@@ -2,9 +2,12 @@ require "../syntax/fsm-syntax.k"
 
 require "../../rvm/rvm-compiler-core.k"
 
+require "../../helper/util.k"
+
 module FSM
     imports FSM-SYNTAX
     imports RVM-COMPILER-CORE
+    imports UTIL
 
 /*First scan: Gathering the state ranks*/
 rule    <logicType> fsm  </logicType>
@@ -88,5 +91,11 @@ rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </
 
 rule <rawTransition> .TransitionList => .K </rawTransition>
     <scanNum> 1 </scanNum>
+
+rule     <eventFunc>
+         ...
+         <func> SM:Map </func>
+         <intArr> .List => toIntArray(SM) </intArr>
+         </eventFunc>
 
 endmodule

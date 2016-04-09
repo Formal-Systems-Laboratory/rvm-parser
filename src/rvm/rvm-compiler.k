@@ -52,7 +52,6 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
 
   (.Bag => <eventFunc>
     <event> X </event>
-    <rank> I </rank>
     ...
     </eventFunc>)
 </stateTransformer>

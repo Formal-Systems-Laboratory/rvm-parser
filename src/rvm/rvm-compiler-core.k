@@ -66,8 +66,8 @@ module RVM-COMPILER-CORE
                       <stateTransformer color="blue">
                             <eventFunc multiplicity="*" >
                                 <event> .K </event>
-                                <rank> -1 </rank>
                                 <func> .Map </func>
+                                <intArr> .List </intArr>
                             </eventFunc>
                        </stateTransformer>
 
