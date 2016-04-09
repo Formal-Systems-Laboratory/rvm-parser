@@ -45,9 +45,20 @@ Props:PropertyDecList} </k>
 */
 rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
  Events:EventDecList => Events) Props:PropertyDecList} </k>
-<events> (.Map => (X |-> I)) Cur:Map  </events>
+<events> (.Set => SetItem(X)) Cur:Set  </events>
+
+<stateTransformer>
+  ...
+
+  (.Bag => <eventFunc>
+    <event> X </event>
+    <rank> I </rank>
+    ...
+    </eventFunc>)
+</stateTransformer>
+
 <eventNum> I:Int => I +Int 1 </eventNum>
-when notBool (X in keys(Cur))
+when notBool (X in Cur)
 
 /**
 * Report error if an event is defined multiple times.
@@ -56,9 +67,9 @@ when notBool (X in keys(Cur))
 */
 rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
  Events:EventDecList) Props:PropertyDecList} => .K </k>
-<events> Cur:Map </events>
+<events> Cur:Set </events>
 <err> (.List => ListItem("Duplicate event " +String Id2String(X))) ErrList:List </err>
-when (X in keys(Cur))
+when (X in Cur)
 
 //No events left
 rule

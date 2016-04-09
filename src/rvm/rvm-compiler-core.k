@@ -40,7 +40,7 @@ module RVM-COMPILER-CORE
 
                       <importList color="yellow"> .K </importList>
 
-                      <events color="pink"> .Map </events> //map an event to its number
+                      <events color="pink"> .Set </events> //map an event to its number
                       <eventNum> 0 </eventNum>
 
                       <specName> "" </specName>
@@ -63,7 +63,13 @@ module RVM-COMPILER-CORE
                       <rawTransition> .K </rawTransition>
 
                       //the state transformation function, indexed by events
-                      <stateTransformer color="blue"> .Map </stateTransformer>
+                      <stateTransformer color="blue">
+                            <eventFunc multiplicity="*" >
+                                <event> .K </event>
+                                <rank> -1 </rank>
+                                <func> .K </func>
+                            </eventFunc>
+                       </stateTransformer>
 
                       //we may need to traverse formula to get state numbers
                       //in the first scan, use this tmp cell for saving state transitions
