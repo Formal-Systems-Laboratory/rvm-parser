@@ -1,0 +1,11 @@
+1. develop a template of c program.
+2. rewrite the template to real c code string.
+
+3. handle the case where multiple formulas are inside one spec.
+
+For each property, there will be a matrix of integers encoding the transition functions.
+
+Each row of the matrix encodes an event transition function, and the row number is the index of the corresponding event.
+
+So for each property, we can simple keep a matrix and two string arrays (one for events and one for states).
+
