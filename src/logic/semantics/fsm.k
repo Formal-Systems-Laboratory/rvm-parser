@@ -6,8 +6,6 @@ module FSM
     imports FSM-SYNTAX
     imports RVM-COMPILER-CORE
 
-    imports ERE-SYNTAX
-
 /*First scan: Gathering the state ranks*/
 rule    <logicType> fsm  </logicType>
     <formula> IT:Item IL:ItemList AL:AliasList => (IL AL) </formula>
