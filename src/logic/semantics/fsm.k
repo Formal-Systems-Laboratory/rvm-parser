@@ -54,6 +54,7 @@ rule    <logicType> fsm  </logicType>
     <scanNum> 1 </scanNum>
 
 /**consume the transition functions defined for the current state.*/
+/*Handle unknown event*/
 rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTransition>
         <events> Es:Set </events>
     <scanNum> 1 </scanNum>
@@ -61,38 +62,29 @@ rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTra
     <runPlugin> true => false </runPlugin>
     when notBool E in Es
 
+/*Handle unknown state*/
+rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTransition>
+        <states> SM:Map </states>
+    <scanNum> 1 </scanNum>
+    <err> (.List => ListItem("Undefined state " +String printStateName(SN))) ErrList:List </err>
+    <runPlugin> true => false </runPlugin>
+    when notBool (printStateName(SN) in keys(SM))
 
-//rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTransition>
-//        <stateTransformer>
-//            ...
-//
-//            <eventFunc>
-//             <event> E </event>
-//             ...
-//             </eventFunc>
-//
-//             ...
-//        </stateTransformer>
-//    <scanNum> 1 </scanNum>
-//    when notBool (E in keys(BigMap))
+rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
+        <stateNum> S1:Int </stateNum>
+        <states> SM:Map (printStateName(SN):String |-> S2:Int):Map </states>
+        <stateTransformer>
+            ...
 
+            <eventFunc>
+             <event> E </event>
+             <func> (.Map => S1 |-> S2) M:Map  </func>
+            ...
+             </eventFunc>
 
-
-//rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
-//    <stateNum> I:Int </stateNum>
-//    <states> StateMap:Map </states>
-//
-////    <k2> .K => ((lookup(BigMap, E):Map [I <- lookup(StateMap, getStateName(SN)):Int]):Map) </k2>
-//<k2> .K => BigMap[E] </k2>
-//    //should be the problem of using lookup function, the klabel Map:lookup does not compile
-//    //the lookup function seems not the one for lookup val in a map!
-//
-//        <stateTransformer>  BigMap:Map
-//        </stateTransformer>
-//
-//
-//    <scanNum> 1 </scanNum>
-//    when E in keys(BigMap)
+             ...
+        </stateTransformer>
+    <scanNum> 1 </scanNum>
 
 
 
