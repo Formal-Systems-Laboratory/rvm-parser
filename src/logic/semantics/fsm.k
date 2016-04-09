@@ -58,6 +58,7 @@ rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTra
         <events> Es:Set </events>
     <scanNum> 1 </scanNum>
     <err> (.List => ListItem("Undefined event " +String getEventName(E))) ErrList:List </err>
+    <runPlugin> true => false </runPlugin>
     when notBool E in Es
 
 
