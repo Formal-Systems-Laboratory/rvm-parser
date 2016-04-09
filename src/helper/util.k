@@ -9,14 +9,14 @@ syntax List ::= toIntArray(Map, Int, Int) [function]
 
 rule toIntArray(.Map) => ListItem(0) //if no normal state, then there is only one error state.
 
-rule toIntArray(M:Map) => toIntArray(M, size(M), size(M))
+rule toIntArray(M:Map) => toIntArray(M, 0, size(M))
 
-//rule toIntArray(((Siz -Int I) |-> V:Int) M:Map, I:Int, Siz:Int) =>
-//        ListItem(V) toIntArray(M, I -Int 1, Siz)
-
-rule toIntArray(M:Map, 0, Siz:Int) => Siz
+rule toIntArray(M:Map, Cur:Int, Siz:Int) => ListItem(Siz) when Cur ==Int Siz
 
 rule toIntArray(M:Map, I:Int, Siz:Int) =>
-        M[Siz -Int I] toIntArray(M, I -Int 1, Siz)
+        ListItem(M[I]) toIntArray(M, I +Int 1, Siz)
+        when I <Int Siz
 
 endmodule
+
+
