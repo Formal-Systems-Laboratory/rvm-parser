@@ -92,12 +92,12 @@ rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </
 rule <rawTransition> .TransitionList => .K </rawTransition>
     <scanNum> 1 </scanNum>
 
-rule
+rule    <states> AllStatesMap:Map </states>
          <formula> .ItemList .AliasList </formula>
          <eventFunc>
          ...
          <func> SM:Map </func>
-         <intArr> .List => toIntArray(SM) </intArr>
+         <intArr> .List => toIntArray(SM, size(AllStatesMap)) </intArr>
          </eventFunc>
          <scanNum> 1 </scanNum>
 
