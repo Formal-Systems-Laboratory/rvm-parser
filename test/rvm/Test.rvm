@@ -3,8 +3,8 @@ package rvm;
 import java.io.*;
 Test (int o){
 	
-   event hasnext(Iterator i) {} // after
-   event next(Iterator i) {} // before 
+   event hasnext(Iterator i) {} // {1, 1, 1, 3}
+   event next(Iterator i) {} // {2, 0, 2, 3}
 
    fsm :
      start [

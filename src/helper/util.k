@@ -14,7 +14,7 @@ rule toIntArray(M:Map, Cur:Int, Siz:Int) => ListItem(Siz) when Cur ==Int Siz
 
 rule toIntArray(M:Map, I:Int, Siz:Int) =>
         ListItem(M[I]) toIntArray(M, I +Int 1, Siz)
-        when I <Int Siz andBool I in keys(M)
+        when I <Int Siz andBool (I in keys(M))
 
 //if the input state is not mapped to any state by the map, then map it to the error state,
 //which has the index equal to the total number of states.

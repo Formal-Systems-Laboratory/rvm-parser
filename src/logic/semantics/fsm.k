@@ -92,8 +92,11 @@ rule    <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </
 rule <rawTransition> .TransitionList => .K </rawTransition>
     <scanNum> 1 </scanNum>
 
+/*when all the computation related to the formula completes,
+translate the transition function from map to int array*/
 rule    <states> AllStatesMap:Map </states>
          <formula> .ItemList .AliasList </formula>
+         <rawTransition> .K </rawTransition>
          <eventFunc>
          ...
          <func> SM:Map </func>
