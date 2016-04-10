@@ -1,0 +1,6 @@
+module C-MONITOR-TEMPLATE
+imports C-MONITOR-TEMPLATE-SYNTAX
+
+
+
+endmodule

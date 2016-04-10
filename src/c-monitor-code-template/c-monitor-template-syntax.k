@@ -17,7 +17,8 @@ syntax StateTransitions ::= "$stateFuncs" Int
 syntax EventActions ::= "$eventFuncs" Int
 
 rule $CMonitor NumOfEvents:Int NumOfStates:Int =>
- $incl $globalInit $localInit NumOfStates $reset
- $stateFuncs NumOfStates $eventFuncs NumOfEvents
+ $incl $globalInit ($localInit NumOfStates):LocalStatesInit $reset
+ ($stateFuncs NumOfStates):StateTransitions ($eventFuncs NumOfEvents):EventActions
+
 
 endmodule
