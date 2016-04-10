@@ -8,17 +8,25 @@ syntax CTemplate ::= "$CMonitor" Int Int  //the two ints are num of events and s
 syntax Include ::= "$incl"
 syntax StateVarsInit ::= GlobalStateInit LocalStatesInit
 syntax GlobalStateInit ::= "$globalInit"
-syntax LocalStatesInit ::= "$localInit" Int
 
-syntax ResetFunc ::= "$reset"
+syntax LocalStatesInit ::= "$localInit" "(" Int ")"
+syntax LocalStatesInit ::= List{StateVar, ","}
+syntax StateVar ::= "$sVar" "(" Int ")"
 
-syntax StateTransitions ::= "$stateFuncs" Int
 
-syntax EventActions ::= "$eventFuncs" Int
+syntax ResetFunc ::= "#reset"
+
+syntax StateTransitions ::= "$stateFuncs" "(" Int ")"
+syntax StateTransitions ::= List{StateFunc, ","}
+syntax StateFunc ::= "$sFunc" "(" Int ")"
+
+syntax EventActions ::= "$eventFuncs" "(" Int ")"
+syntax EventActions ::= List{EventFunc, ","}
+syntax EventFunc ::= "eFunc" "(" Int ")"
 
 rule $CMonitor NumOfEvents:Int NumOfStates:Int =>
- $incl $globalInit ($localInit NumOfStates):LocalStatesInit $reset
- ($stateFuncs NumOfStates):StateTransitions ($eventFuncs NumOfEvents):EventActions
+ $incl $globalInit ($localInit(NumOfStates)) #reset
+ ($stateFuncs(NumOfStates)) $eventFuncs(NumOfEvents)
 
 
 endmodule

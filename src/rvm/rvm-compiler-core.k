@@ -80,12 +80,18 @@ module RVM-COMPILER-CORE
                       <aliasSet> .K </aliasSet>
 
                       <k2> .K </k2> //additional computation cell
+
 ///////////////////////Specific for FSM//////////////////////////////////////////////////////
 
 /////////////////////////////////Logic Plugin cells ends///////////////////////////////////////////
                       <handlers> .HandlerDecList </handlers>
 
                       <err> .List </err>
+
+///////////////////////////////Code Generation//////////////////////////////////////////////////
+                     <lang> "c" </lang> //the default target language for the generated monitor code
+                     <code> .List </code>
+
                        </T>
 
 endmodule
