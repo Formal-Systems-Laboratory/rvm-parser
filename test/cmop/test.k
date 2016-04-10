@@ -8,6 +8,6 @@ configuration
   </T>
 
 rule <start> false => true </start>
-<k> _:K => $CMonitor </k>
+<k> _:K => $CMonitor 2 3 </k>
 
 endmodule
