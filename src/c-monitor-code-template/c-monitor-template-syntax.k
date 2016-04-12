@@ -5,17 +5,17 @@ syntax CTemplate ::= Include MainBody
 
 syntax MainBody ::= GlobalVarDecls MainBody1
 
-syntax MainBody1 ::= LocalStatesInit ResetFunc StateTransitions EventActions
+syntax MainBody1 ::= LocalStatesInit MainBody2
+syntax MainBody2 ::= ResetFunc StateTransitions EventActions
 
 syntax CTemplate ::= "$CMonitor" Int Int  //the two ints are num of events and states resp.
 
 syntax Include ::= "$incl"
 syntax GlobalVarDecls ::= "$globalInit"
 
-syntax LocalStatesInit ::= "$localInit" "(" Int ")"
-syntax LocalStatesInit ::= List{StateVar, ","}
 syntax StateVar ::= "$sVar" "(" Int ")"
-
+syntax LocalStatesInit ::= "$localInit" "(" Int ")"
+syntax LocalStatesInit ::= StateVar "," LocalStatesInit
 
 syntax ResetFunc ::= "$reset"
 
