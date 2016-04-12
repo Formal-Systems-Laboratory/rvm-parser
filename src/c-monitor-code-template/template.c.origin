@@ -1,7 +1,6 @@
 #include <stdio.h>
-
-
 #include <stdlib.h>
+
 static int __RVC_state = 0; 
 
 
