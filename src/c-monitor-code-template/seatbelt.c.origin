@@ -2,7 +2,8 @@
 #include <stdlib.h>
 
 static int __RVC_state = 0; 
-
+static int __RVC_SEATBELT_SEATBELTREMOVED[] = {-1,0, };
+static int __RVC_SEATBELT_SEATBELTATTACHED[] = {1, -1,};
 
 
 int __RVC_SeatBelt_safe = 0;
@@ -14,8 +15,7 @@ __RVC_SeatBelt_reset(void)
   __RVC_state = 0;
  }
 
-static int __RVC_SEATBELT_SEATBELTREMOVED[] = {-1,0, };
-static int __RVC_SEATBELT_SEATBELTATTACHED[] = {1, -1,};
+
 
 void
 __RVC_SeatBelt_seatBeltRemoved()
