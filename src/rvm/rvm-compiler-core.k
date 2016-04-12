@@ -56,7 +56,7 @@ module RVM-COMPILER-CORE
 
                       <runPlugin> false </runPlugin>
 
-                      <states> .Map </states> //map a state to its number
+                      <states> .Map </states> //map a state name(string) to its rank
                       <stateNum> 0 </stateNum>
 
                       //the raw transition defined in the rvm spec, indexed by states

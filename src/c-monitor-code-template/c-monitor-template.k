@@ -1,12 +1,9 @@
 require "../rvm/rvm-compiler-core.k"
 require "c-monitor-template-syntax.k"
-require "import.k"
 
 module C-MONITOR-TEMPLATE
     imports RVM-COMPILER-CORE
     imports C-MONITOR-TEMPLATE-SYNTAX
-    imports IMPORT
-
 
 rule <start> false => true </start>
 <k> _:K => $CMonitor 2 3 </k>
@@ -32,8 +29,9 @@ rule <k> ($localInit(I:Int) M:MainBody2) =>
 </k>
 when I >Int 1
 
-rule <k> ($sVar()) </k>
+rule <k> ($sVar(I:Int), $localInit(J:Int)) M:MainBody2 =>
+    ($localInit(J:Int)) M </k>
 
-<states> .Map </states>
-
+<states> ... SN:String |-> I ... </states>
+<code> L:List (.List => ListItem(SN)) </code>
 endmodule
