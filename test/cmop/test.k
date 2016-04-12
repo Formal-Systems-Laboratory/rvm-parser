@@ -7,18 +7,27 @@ configuration
  <T> <k> $PGM:Int </k>
  <start> false </start>
  <code> .List </code>
-
+<import> .K </import>
   </T>
 
 rule <start> false => true </start>
 <k> _:K => $CMonitor 2 3 </k>
 
 
-rule <k> ($incl $globalInit:GlobalStateInit ($localInit(NumOfStates)):LocalStatesInit #reset:ResetFunc
-         ($stateFuncs(NumOfStates)):StateTransitions ($eventFuncs(NumOfEvents)):EventActions) =>
-              ($globalInit ($localInit(NumOfStates)) #reset
-                        ($stateFuncs(NumOfStates)) ($eventFuncs(NumOfEvents))) </k>
+rule <k> ( ($incl => .) $globalInit:GlobalStateInit ($localInit(NumOfStates)):LocalStatesInit
+$reset:ResetFunc
+         ($stateFuncs(NumOfStates)):StateTransitions ($eventFuncs(NumOfEvents)):EventActions)  </k>
         <code> (.List => ListItem("#include <stdio.h>\n"
                         +String "#include <stdlib.h>\n") )
          L:List </code>
+
+<import> _:K => $incl </import>
+//rule <k> ($incl $globalInit:GlobalStateInit ($localInit(NumOfStates)):LocalStatesInit
+//$reset:ResetFunc
+//         ($stateFuncs(NumOfStates)):StateTransitions ($eventFuncs(NumOfEvents)):EventActions) =>
+//              ($globalInit ($localInit(NumOfStates)) $reset
+//                        ($stateFuncs(NumOfStates)) ($eventFuncs(NumOfEvents))) </k>
+//        <code> (.List => ListItem("#include <stdio.h>\n"
+//                        +String "#include <stdlib.h>\n") )
+//         L:List </code>
 endmodule

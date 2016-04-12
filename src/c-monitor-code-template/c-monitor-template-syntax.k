@@ -14,7 +14,7 @@ syntax LocalStatesInit ::= List{StateVar, ","}
 syntax StateVar ::= "$sVar" "(" Int ")"
 
 
-syntax ResetFunc ::= "#reset"
+syntax ResetFunc ::= "$reset"
 
 syntax StateTransitions ::= "$stateFuncs" "(" Int ")"
 syntax StateTransitions ::= List{StateFunc, ","}
@@ -25,7 +25,7 @@ syntax EventActions ::= List{EventFunc, ","}
 syntax EventFunc ::= "eFunc" "(" Int ")"
 
 rule $CMonitor NumOfEvents:Int NumOfStates:Int =>
- $incl $globalInit ($localInit(NumOfStates)) #reset
+ $incl $globalInit ($localInit(NumOfStates)) $reset
  ($stateFuncs(NumOfStates)) $eventFuncs(NumOfEvents)
 
 
