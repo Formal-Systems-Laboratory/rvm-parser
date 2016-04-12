@@ -64,6 +64,7 @@ module RVM-COMPILER-CORE
 
                       //the state transformation function, indexed by events
                       <stateTransformer color="blue">
+                            <readyNum> 0 </readyNum>
                             <eventFunc multiplicity="*" >
                                 <event> .K </event>
                                 <func> .Map </func>

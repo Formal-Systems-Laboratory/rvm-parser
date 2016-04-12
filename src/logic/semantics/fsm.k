@@ -107,13 +107,22 @@ rule    <logicType> fsm  </logicType>
         <states> AllStatesMap:Map </states>
          <formula> .ItemList .AliasList </formula>
          <rawTransition> .K </rawTransition>
+
+         <readyNum> N:Int => N +Int 1 </readyNum>
+
          <eventFunc>
          ...
          <func> SM:Map </func>
          <intArr> .List => toIntArray(SM, size(AllStatesMap)) </intArr>
          </eventFunc>
          <scanNum> 1 </scanNum>
-         <runPlugin> true => false </runPlugin>
+         <runPlugin> true </runPlugin>
 
+/*All the event transition functions have been generated,
+stop the plugin*/
+rule <readyNum> N:Int </readyNum>
+     <eventNum> E:Int </eventNum>
+     <runPlugin> true => false </runPlugin>
+when N ==Int E
 
 endmodule

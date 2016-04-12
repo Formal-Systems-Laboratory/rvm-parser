@@ -4,11 +4,18 @@ require "rvm-compiler-core.k"
 require "../helper/print-ast.k"
 require "../../src/helper/util.k"
 
+////
+require "logic-plugins-shell.k"
+require "../c-monitor-code-template/c-monitor-template.k"
+
 module RVM-COMPILER
     imports RVM-SYNTAX
     imports RVM-COMPILER-CORE
     imports PRINT-AST
     imports UTIL
+
+        imports LOGIC-PLUGINS-SHELL
+        imports C-MONITOR-TEMPLATE
 
     syntax KResult ::= "error"
 

@@ -7,7 +7,9 @@ module C-MONITOR-TEMPLATE
 
 rule
 <lang> "c" </lang>
-<startCodeGen> true </startCodeGen>
+<runPlugin> false </runPlugin>
+
+<startCodeGen> true => false </startCodeGen>
 <eventNum> EN:Int </eventNum>
 <stateNum> SN:Int </stateNum>
 //the number SN is the index of the last state, so the number of states is SN plus one.
