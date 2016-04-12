@@ -6,7 +6,8 @@ syntax CTemplate ::= Include MainBody
 syntax MainBody ::= GlobalVarDecls MainBody1
 
 syntax MainBody1 ::= LocalStatesInit MainBody2
-syntax MainBody2 ::= ResetFunc StateTransitions EventActions
+syntax MainBody2 ::= ResetFunc MainBody3
+syntax MainBody3 ::= StateTransitions EventActions
 
 syntax CTemplate ::= "$CMonitor" Int Int  //the two ints are num of events and states resp.
 

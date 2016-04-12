@@ -21,6 +21,16 @@ rule toIntArray(M:Map, I:Int, Siz:Int) =>
 rule toIntArray(M:Map, I:Int, Siz:Int) =>
         ListItem(Siz) toIntArray(M, I +Int 1, Siz)
         when I <Int Siz andBool notBool(I in keys(M))
+
+
+/*Return the corresponding key from a string-to-int map for a given int value*/
+syntax String ::= getStrKey(Map, Int) [function]
+
+rule getStrKey((S:String |-> V:Int) M:Map, V) => S
+
+rule getStrKey((_:String |-> V1:Int) M:Map, V2:Int) => getStrKey(M, V2)
+when V1 =/=Int V2
+
 endmodule
 
 

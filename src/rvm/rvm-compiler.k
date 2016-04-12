@@ -5,10 +5,13 @@ require "../helper/print-ast.k"
 
 require "../logic/semantics/fsm.k"
 
+require "../../src/helper/util.k"
+
 module RVM-COMPILER
     imports RVM-SYNTAX
     imports RVM-COMPILER-CORE
     imports PRINT-AST
+    imports UTIL
 
     imports FSM
 

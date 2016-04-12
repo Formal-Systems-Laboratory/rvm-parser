@@ -21,17 +21,23 @@ rule <k> G:GlobalVarDecls M:MainBody1 => M
 <code> (.List => ListItem("static int __RVC_state = 0;\n")) L:List </code>
 
 //handling the local state vars initializations.
-rule <k> ($localInit(1) M:MainBody2) =>
- (($sVar(0)) M)</k>
+rule <k> ($localInit(0) M:MainBody2) => M </k>
+<tmp> L:List => .List </tmp> //the local state vars are stored in tmp cell
+<code> C:List (.List => L) </code>
 
 rule <k> ($localInit(I:Int) M:MainBody2) =>
  (($sVar(I -Int 1), $localInit(I -Int 1)) M)
 </k>
-when I >Int 1
+when I >=Int 1
 
-rule <k> ($sVar(I:Int), $localInit(J:Int)) M:MainBody2 =>
-    ($localInit(J:Int)) M </k>
+rule <k> (($sVar(I:Int), $localInit(J:Int)) M:MainBody2) =>
+    (($localInit(J:Int)) M) </k>
 
-<states> ... SN:String |-> I ... </states>
-<code> L:List (.List => ListItem(SN)) </code>
+<states> StateMap:Map </states>
+<tmp> (.List => ListItem(getStrKey(StateMap, I))) L:List </tmp>
+
+rule <k> $reset M:MainBody3 => M </k>
+<specName> SN:String </specName>
+<code> Code:List (.List => ListItem(printResetFunc(SN))) </code>
+
 endmodule

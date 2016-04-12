@@ -39,7 +39,13 @@ module PRINT-AST
     rule getStateName(SN:StateName[TL:TransitionList]) => printStateName(SN)
     rule printStateName(SN:Id) => Id2String(SN)
 
-
     rule getTransitionList(SN:StateName[TL:TransitionList]) => TL
+
+
+/*Return the string of reset function, given the name of the specification*/
+syntax String ::= printResetFunc(String) [function]
+
+rule printResetFunc(SpecName:String) => "void __RVC_" +String SpecName +String "_reset(void)\n"
++String "{\n__RVC_state = 0;\n}"
 
 endmodule
