@@ -92,7 +92,7 @@ module RVM-COMPILER-CORE
                      <lang> "c" </lang> //the default target language for the generated monitor code
                      <code> .List </code>
                      <tmp> .List </tmp> //temporary cell for manipulation.
-
+                     <startCodeGen> false </startCodeGen>
                        </T>
 
 endmodule

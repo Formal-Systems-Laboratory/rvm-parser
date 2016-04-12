@@ -2,9 +2,6 @@ require "rvm-syntax.k"
 require "domains.k"
 require "rvm-compiler-core.k"
 require "../helper/print-ast.k"
-
-require "../logic/semantics/fsm.k"
-
 require "../../src/helper/util.k"
 
 module RVM-COMPILER
@@ -12,8 +9,6 @@ module RVM-COMPILER
     imports RVM-COMPILER-CORE
     imports PRINT-AST
     imports UTIL
-
-    imports FSM
 
     syntax KResult ::= "error"
 
@@ -87,6 +82,8 @@ rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <runPlugin> false => true </runPlugin>
 
 //No properties left
-//rule <k>.PropertyDecList</k>
+rule <k>.PropertyDecList => .</k>
+<runPlugin> false </runPlugin>
+<startCodeGen> false => true </startCodeGen>
 
 endmodule

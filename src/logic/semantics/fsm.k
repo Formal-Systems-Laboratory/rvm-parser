@@ -113,5 +113,7 @@ rule    <logicType> fsm  </logicType>
          <intArr> .List => toIntArray(SM, size(AllStatesMap)) </intArr>
          </eventFunc>
          <scanNum> 1 </scanNum>
+         <runPlugin> true => false </runPlugin>
+
 
 endmodule
