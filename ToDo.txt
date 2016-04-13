@@ -9,3 +9,12 @@ Each row of the matrix encodes an event transition function, and the row number 
 
 So for each property, we can simple keep a matrix and two string arrays (one for events and one for states).
 
+***
+P.S. Need to consider the corner cases:
+a) A defined event never occurs inside the formula.
+
+b) Undefined event occurs in the formula.
+
+c) Duplicate definitions for events/states.
+
+d) Undefined state in the formula.

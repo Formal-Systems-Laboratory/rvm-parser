@@ -121,8 +121,8 @@ rule    <logicType> fsm  </logicType>
 /*All the event transition functions have been generated,
 stop the plugin*/
 rule <readyNum> N:Int </readyNum>
-     <eventNum> E:Int </eventNum>
+     <events> EL:List </events>
      <runPlugin> true => false </runPlugin>
-when N ==Int E
+when N ==Int
 
 endmodule

@@ -50,7 +50,7 @@ Props:PropertyDecList} </k>
 */
 rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
  Events:EventDecList => Events) Props:PropertyDecList} </k>
-<events> (.Set => SetItem(X)) Cur:Set  </events>
+<events> L:List (.List => ListItem(Id2String(X))) </events>
 
 <eventFuncs>
   ...
@@ -61,7 +61,6 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
     </eventFunc>)
 </eventFuncs>
 
-<eventNum> I:Int => I +Int 1 </eventNum>
 when notBool (X in Cur)
 
 /**

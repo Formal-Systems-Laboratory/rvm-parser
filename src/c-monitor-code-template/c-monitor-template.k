@@ -10,10 +10,10 @@ rule
 <runPlugin> false </runPlugin>
 
 <startCodeGen> true => false </startCodeGen>
-<eventNum> EN:Int </eventNum>
+<events> EL:List </events>
 <stateNum> SN:Int </stateNum>
 //the number SN is the index of the last state, so the number of states is SN plus one.
-<k> _:K => $CMonitor EN (SN +Int 1) </k> //the two arguments are num of events and states resp.
+<k> _:K => $CMonitor size(EL) (SN +Int 1) </k> //the two arguments are num of events and states resp.
 
 //generate the include part.
 //TODO: incorporate the user provided includes

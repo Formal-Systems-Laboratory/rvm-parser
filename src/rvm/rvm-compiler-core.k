@@ -40,8 +40,7 @@ module RVM-COMPILER-CORE
 
                       <importList color="yellow"> .K </importList>
 
-                      <events color="pink"> .Set </events> //map an event to its number
-                      <eventNum> 0 </eventNum>
+                      <events color="pink"> .List </events> //map an event to its number
 
                       <specName> "" </specName>
                       <specParams> .Params </specParams>
