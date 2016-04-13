@@ -66,7 +66,7 @@ module RVM-COMPILER-CORE
                       //the state transformation function, indexed by events
                       <eventFuncs color="blue">
                             <eventFunc multiplicity="*" >
-                                <event> "" </event>
+                                <event> .K </event>
                                 <props>
                                   <prop multiplicity="*">
                                     <prank> -1 </prank>

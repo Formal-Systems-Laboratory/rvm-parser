@@ -61,11 +61,11 @@ rule    <logicType> fsm  </logicType>
 rule
     <logicType> fsm  </logicType>
     <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTransition>
-        <events> Es:Set </events>
+        <events> EL:List </events>
     <scanNum> 1 </scanNum>
     <err> (.List => ListItem("Undefined event " +String getEventName(E))) ErrList:List </err>
     <runPlugin> true => false </runPlugin>
-    when notBool E in Es
+    when notBool E in EL
 
 /*Handle unknown state*/
 rule
@@ -123,6 +123,6 @@ stop the plugin*/
 rule <readyNum> N:Int </readyNum>
      <events> EL:List </events>
      <runPlugin> true => false </runPlugin>
-when N ==Int
+when N ==Int size(EL)
 
 endmodule
