@@ -46,7 +46,7 @@ module RVM-COMPILER-CORE
                       <specParams> .Params </specParams>
                       <decBubble> .K </decBubble>
 
-                      <propNum> 0 </propNum>
+                      <propNum> -1 </propNum>
 
 /////////////////////////////Logic Plugin cells starts////////////////////////////////////////////
 
@@ -56,7 +56,7 @@ module RVM-COMPILER-CORE
                       <runPlugin> false </runPlugin>
 
                       <states> .Map </states> //map a state name(string) to its rank
-                      <stateNum> 0 </stateNum>
+                      <curStateRank> 0 </curStateRank>
 
                       //the raw transition defined in the rvm spec, indexed by states
                       <rawTransition> .K </rawTransition>

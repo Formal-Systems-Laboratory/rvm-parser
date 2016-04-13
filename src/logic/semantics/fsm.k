@@ -13,8 +13,7 @@ module FSM
 rule    <logicType> fsm  </logicType>
     <formula> IT:Item IL:ItemList AL:AliasList => (IL AL) </formula>
     <runPlugin> true </runPlugin>
-    <states> CurMap:Map => CurMap[getStateName(IT) <- I] </states>
-    <stateNum> I:Int => I +Int 1 </stateNum>
+    <states> CurMap:Map => CurMap[getStateName(IT) <- size(CurMap)] </states>
     <scanNum> 0 </scanNum>
 
 // if do not need this constraint, then comment the condition below as well as the next rule.
@@ -39,7 +38,7 @@ rule
     <formula> .ItemList AL:AliasList => FC </formula>
      <formulaCopy> FC:K </formulaCopy>
      <runPlugin> true </runPlugin>
-     <stateNum> _:Int => -1 </stateNum>
+     <curStateRank> _:Int => -1 </curStateRank>
          <scanNum> 0 => 1 </scanNum>
 
 /*2nd scan: get the raw transition mapping associated with the current state
@@ -52,7 +51,7 @@ The raw transitions associated with state s0 is: e1 -> s1, e2 -> s2.
 */
 rule    <logicType> fsm  </logicType>
     <formula> IT:Item IL:ItemList AL:AliasList => (IL AL) </formula>
-    <stateNum> I:Int => I +Int 1 </stateNum>
+    <curStateRank> I:Int => I +Int 1 </curStateRank>
     <rawTransition> .K => getTransitionList(IT) </rawTransition>
     <scanNum> 1 </scanNum>
 
@@ -77,24 +76,64 @@ rule
     <runPlugin> true => false </runPlugin>
     when notBool (printStateName(SN) in keys(SM))
 
+////////////////////////////////////////////////////////////////////
+/*Update the event transition function for event E and property P.*/
 rule    <logicType> fsm  </logicType>
+        <propNum> P:Int </propNum>
+
         <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
-        <stateNum> S1:Int </stateNum>
+        <curStateRank> S1:Int </curStateRank>
         <states> SM:Map (printStateName(SN):String |-> S2:Int):Map </states>
         <eventFuncs>
             ...
 
             <eventFunc>
              <event> E </event>
-             <func> (.Map => S1 |-> S2) M:Map  </func>
+             <props>
+             ...
+
+             <prop>
+             <prank> P </prank>
+             <func> (.Map => (S1 |-> S2):Map) M:Map  </func>
             ...
+            </prop>
+
+            ...
+            </props>
              </eventFunc>
 
              ...
         </eventFuncs>
-    <scanNum> 1 </scanNum>
+    <scanNum> 1 </scanNum>  [prefer]
 
+/*The first time that event E is involved in the property P*/
+rule    <logicType> fsm  </logicType>
+        <propNum> P:Int </propNum>
 
+        <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
+        <curStateRank> S1:Int </curStateRank>
+        <states> SM:Map (printStateName(SN):String |-> S2:Int):Map </states>
+        <eventFuncs>
+            ...
+
+            <eventFunc>
+             <event> E </event>
+             <props>
+             ...
+             (.Bag =>
+                <prop>
+                  <prank> P </prank>
+                  <func> (.Map => (S1 |-> S2):Map) M:Map  </func>
+                    ...
+                </prop> )
+
+            </props>
+             </eventFunc>
+
+             ...
+        </eventFuncs>
+    <scanNum> 1 </scanNum>  [avoid]
+//////////////////////////////////////////////////////////////////////////
 
 rule
 <logicType> fsm  </logicType>
