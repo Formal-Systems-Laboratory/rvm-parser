@@ -62,9 +62,10 @@ module RVM-COMPILER-CORE
                       //the raw transition defined in the rvm spec, indexed by states
                       <rawTransition> .K </rawTransition>
 
+                      <readyNum> 0 </readyNum>
+
                       //the state transformation function, indexed by events
                       <stateTransformer color="blue">
-                            <readyNum> 0 </readyNum>
                             <eventFunc multiplicity="*" >
                                 <event> .K </event>
                                 <func> .Map </func>
