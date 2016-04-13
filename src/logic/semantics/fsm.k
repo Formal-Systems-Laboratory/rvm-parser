@@ -81,7 +81,7 @@ rule    <logicType> fsm  </logicType>
         <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
         <stateNum> S1:Int </stateNum>
         <states> SM:Map (printStateName(SN):String |-> S2:Int):Map </states>
-        <stateTransformer>
+        <eventFuncs>
             ...
 
             <eventFunc>
@@ -91,7 +91,7 @@ rule    <logicType> fsm  </logicType>
              </eventFunc>
 
              ...
-        </stateTransformer>
+        </eventFuncs>
     <scanNum> 1 </scanNum>
 
 

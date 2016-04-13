@@ -52,14 +52,14 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
  Events:EventDecList => Events) Props:PropertyDecList} </k>
 <events> (.Set => SetItem(X)) Cur:Set  </events>
 
-<stateTransformer>
+<eventFuncs>
   ...
 
   (.Bag => <eventFunc>
     <event> X </event>
     ...
     </eventFunc>)
-</stateTransformer>
+</eventFuncs>
 
 <eventNum> I:Int => I +Int 1 </eventNum>
 when notBool (X in Cur)

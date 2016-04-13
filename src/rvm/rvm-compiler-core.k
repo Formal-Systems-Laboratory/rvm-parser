@@ -65,13 +65,18 @@ module RVM-COMPILER-CORE
                       <readyNum> 0 </readyNum>
 
                       //the state transformation function, indexed by events
-                      <stateTransformer color="blue">
+                      <eventFuncs color="blue">
                             <eventFunc multiplicity="*" >
-                                <event> .K </event>
-                                <func> .Map </func>
-                                <intArr> .List </intArr>
+                                <event> "" </event>
+                                <props>
+                                  <prop multiplicity="*">
+                                    <prank> -1 </prank>
+                                    <func> .Map </func>
+                                    <intArr> .List </intArr>
+                                  </prop>
+                                </props>
                             </eventFunc>
-                       </stateTransformer>
+                       </eventFuncs>
 
                       //we may need to traverse formula to get state numbers
                       //in the first scan, use this tmp cell for saving state transitions
