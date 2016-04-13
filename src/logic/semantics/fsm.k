@@ -78,61 +78,61 @@ rule
 
 ////////////////////////////////////////////////////////////////////
 /*Update the event transition function for event E and property P.*/
-rule    <logicType> fsm  </logicType>
-        <propNum> P:Int </propNum>
-
-        <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
-        <curStateRank> S1:Int </curStateRank>
-        <states> SM:Map (printStateName(SN):String |-> S2:Int):Map </states>
-        <eventFuncs>
-            ...
-
-            <eventFunc>
-             <event> E </event>
-             <props>
-             ...
-
-             <prop>
-             <prank> P </prank>
-             <func> (.Map => (S1 |-> S2):Map) M:Map  </func>
-            ...
-            </prop>
-
-            ...
-            </props>
-             </eventFunc>
-
-             ...
-        </eventFuncs>
-    <scanNum> 1 </scanNum>  [prefer]
+//rule    <logicType> fsm  </logicType>
+//        <propNum> P:Int </propNum>
+//
+//        <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
+//        <curStateRank> S1:Int </curStateRank>
+//        <states> SM:Map (printStateName(SN):String |-> S2:Int):Map </states>
+//        <eventFuncs>
+//            ...
+//
+//            <eventFunc>
+//             <event> E </event>
+//             <props>
+//             ...
+//
+//             <prop>
+//             <prank> P </prank>
+//             <func> (.Map => (S1 |-> S2):Map) M:Map  </func>
+//            ...
+//            </prop>
+//
+//            ...
+//            </props>
+//             </eventFunc>
+//
+//             ...
+//        </eventFuncs>
+//    <scanNum> 1 </scanNum>  [prefer]
 
 /*The first time that event E is involved in the property P*/
-rule    <logicType> fsm  </logicType>
-        <propNum> P:Int </propNum>
-
-        <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
-        <curStateRank> S1:Int </curStateRank>
-        <states> SM:Map (printStateName(SN):String |-> S2:Int):Map </states>
-        <eventFuncs>
-            ...
-
-            <eventFunc>
-             <event> E </event>
-             <props>
-             ...
-             (.Bag =>
-                <prop>
-                  <prank> P </prank>
-                  <func> (.Map => (S1 |-> S2):Map) M:Map  </func>
-                    ...
-                </prop> )
-
-            </props>
-             </eventFunc>
-
-             ...
-        </eventFuncs>
-    <scanNum> 1 </scanNum>  [avoid]
+//rule    <logicType> fsm  </logicType>
+//        <propNum> P:Int </propNum>
+//
+//        <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList => TL </rawTransition>
+//        <curStateRank> S1:Int </curStateRank>
+//        <states> SM:Map (printStateName(SN):String |-> S2:Int):Map </states>
+//        <eventFuncs>
+//            ...
+//
+//            <eventFunc>
+//             <event> E </event>
+//             <props>
+//             ...
+//             (.Bag =>
+//                <prop>
+//                  <prank> P </prank>
+//                  <func> (.Map => (S1 |-> S2):Map) M:Map  </func>
+//                    ...
+//                </prop> )
+//
+//            </props>
+//             </eventFunc>
+//
+//             ...
+//        </eventFuncs>
+//    <scanNum> 1 </scanNum>  [avoid]
 //////////////////////////////////////////////////////////////////////////
 
 rule
@@ -142,20 +142,20 @@ rule
 
 /*when all the computation related to the formula completes,
 translate the transition function from map to int array*/
-rule    <logicType> fsm  </logicType>
-        <states> AllStatesMap:Map </states>
-         <formula> .ItemList .AliasList </formula>
-         <rawTransition> .K </rawTransition>
-
-         <readyNum> N:Int => N +Int 1 </readyNum>
-
-         <eventFunc>
-         ...
-         <func> SM:Map </func>
-         <intArr> .List => toIntArray(SM, size(AllStatesMap)) </intArr>
-         </eventFunc>
-         <scanNum> 1 </scanNum>
-         <runPlugin> true </runPlugin>
+//rule    <logicType> fsm  </logicType>
+//        <states> AllStatesMap:Map </states>
+//         <formula> .ItemList .AliasList </formula>
+//         <rawTransition> .K </rawTransition>
+//
+//         <readyNum> N:Int => N +Int 1 </readyNum>
+//
+//         <eventFunc>
+//         ...
+//         <func> SM:Map </func>
+//         <intArr> .List => toIntArray(SM, size(AllStatesMap)) </intArr>
+//         </eventFunc>
+//         <scanNum> 1 </scanNum>
+//         <runPlugin> true </runPlugin>
 
 /*All the event transition functions have been generated,
 stop the plugin*/
