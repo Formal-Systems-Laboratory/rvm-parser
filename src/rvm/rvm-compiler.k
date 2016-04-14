@@ -73,7 +73,7 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
 when notBool (X in L)
 
 
-//construct cells
+//construct initial props cells
 rule <eventFuncs>
   ...
 
@@ -95,9 +95,7 @@ rule <eventFuncs>
 <k2> PS:Int => PS -Int 1 </k2>
 when PS >Int 0
 
-rule <propSize> 0 => PS </propSize>
-<k2> PS:Int => .K </k2>
-when PS >Int 0
+rule <k2> 0 => .K </k2>
 
 /**
 * Report error if an event is defined multiple times.
