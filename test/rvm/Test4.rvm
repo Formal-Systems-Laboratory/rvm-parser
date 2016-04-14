@@ -14,12 +14,42 @@ Test (int o){
     		int i;
     }
 
-	fsm: 
+	   fsm :
+     start [
+        next -> unsafe
+        hasnext -> safe
+     ]
+     safe [
+        next -> start
+        hasnext -> safe 
+     ]
+     unsafe [
+        next -> unsafe
+        hasnext -> safe
+     ]
 
-	@match {
+	@start {
 		int j;
 	}
 
+
+	   fsm :
+     start [
+        next -> unsafe
+        hasnext -> safe
+     ]
+     safe [
+        next -> start
+        hasnext -> safe 
+     ]
+     unsafe [
+        next -> unsafe
+        hasnext -> safe
+     ]
+
+	@unsafe {
+		int k;
+	}
 
 
 }

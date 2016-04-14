@@ -48,4 +48,9 @@ syntax String ::= printResetFunc(String) [function]
 rule printResetFunc(SpecName:String) => "void __RVC_" +String SpecName +String "_reset(void)\n"
 +String "{\n__RVC_state = 0;\n}"
 
+syntax Int ::= sizeOf(PropertyDecList) [function]
+rule sizeOf(.PropertyDecList) => 0
+rule sizeOf(Prop:PropertyDec Props:PropertyDecList) => 1 +Int sizeOf(Props)
+
+
 endmodule

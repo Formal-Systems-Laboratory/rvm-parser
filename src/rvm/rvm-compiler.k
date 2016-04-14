@@ -77,6 +77,7 @@ when (X in EL)
 //No events left
 rule
 <k> {.K (.EventDecList) Props:PropertyDecList} => Props </k>
+<propSize> I:Int => sizeOf(Props) </propSize>
 
 //add the first property and corresponding handlers
 rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>

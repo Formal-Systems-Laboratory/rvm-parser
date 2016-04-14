@@ -46,7 +46,8 @@ module RVM-COMPILER-CORE
                       <specParams> .Params </specParams>
                       <decBubble> .K </decBubble>
 
-                      <propNum> -1 </propNum>
+                      <propNum> -1 </propNum> //the property rank
+                      <propSize> 0 </propSize> //the number of properties
 
 /////////////////////////////Logic Plugin cells starts////////////////////////////////////////////
 
