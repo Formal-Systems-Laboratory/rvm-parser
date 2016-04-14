@@ -59,7 +59,7 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
                                   <event> X </event>
                                   <props>
                                     <prop>
-                                      <prank> -1 </prank>
+                                      <prank> PS -Int 1 </prank>
                                       <func> .Map </func>
                                       <intArr> .List </intArr>
                                     </prop>
@@ -81,12 +81,12 @@ rule <eventFuncs>
                               <eventFunc>
                                   <event> X </event>
                                   <props>
-                                  ...
                                     (.Bag => <prop>
-                                               <prank> -1 </prank>
+                                               <prank> PS -Int 1 </prank>
                                                <func> .Map </func>
                                                 <intArr> .List </intArr>
                                                </prop>)
+                                    ...
                                   </props>
                               </eventFunc>
 
