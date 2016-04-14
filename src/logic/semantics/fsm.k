@@ -53,6 +53,7 @@ rule    <logicType> fsm  </logicType>
     <formula> IT:Item IL:ItemList AL:AliasList => (IL AL) </formula>
     <curStateRank> I:Int => I +Int 1 </curStateRank>
     <rawTransition> .K => getTransitionList(IT) </rawTransition>
+        <runPlugin> true </runPlugin>
     <scanNum> 1 </scanNum>
 
 /**consume the transition functions defined for the current state.*/
@@ -138,6 +139,7 @@ rule
 rule
 <logicType> fsm  </logicType>
 <rawTransition> .TransitionList => .K </rawTransition>
+    <runPlugin> true </runPlugin>
     <scanNum> 1 </scanNum>
 
 /*when all the computation related to the formula completes,

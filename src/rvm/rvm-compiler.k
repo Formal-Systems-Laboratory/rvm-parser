@@ -39,9 +39,8 @@ rule <k>X:Id (Ps:Params) SB:SpecBody => SB </k>
 rule <k> {(Decls:DecBubbleList => .K) Events:EventDecList
 Props:PropertyDecList} </k>
     <decBubble> .K => Decls </decBubble>
+<propSize> I:Int => sizeOf(Props) </propSize>
 
-//rule <k> {(Decl:DecBubble Decls:DecBubbleList => Decls) Events:EventDecList
-//Props:PropertyDecList} </k>
 
 
 
@@ -55,13 +54,50 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
 <eventFuncs>
   ...
 
-  (.Bag => <eventFunc>
-    <event> X </event>
-    ...
-    </eventFunc>)
+  (.Bag =>
+                              <eventFunc>
+                                  <event> X </event>
+                                  <props>
+                                    <prop>
+                                      <prank> -1 </prank>
+                                      <func> .Map </func>
+                                      <intArr> .List </intArr>
+                                    </prop>
+                                  </props>
+                              </eventFunc>
+  )
 </eventFuncs>
+<propSize> PS:Int </propSize>
+<k2> .K => PS -Int 1 </k2>
 
 when notBool (X in L)
+
+
+//construct cells
+rule <eventFuncs>
+  ...
+
+
+                              <eventFunc>
+                                  <event> X </event>
+                                  <props>
+                                  ...
+                                    (.Bag => <prop>
+                                               <prank> -1 </prank>
+                                               <func> .Map </func>
+                                                <intArr> .List </intArr>
+                                               </prop>)
+                                  </props>
+                              </eventFunc>
+
+  ...
+</eventFuncs>
+<k2> PS:Int => PS -Int 1 </k2>
+when PS >Int 0
+
+rule <propSize> 0 => PS </propSize>
+<k2> PS:Int => .K </k2>
+when PS >Int 0
 
 /**
 * Report error if an event is defined multiple times.
@@ -77,7 +113,6 @@ when (X in EL)
 //No events left
 rule
 <k> {.K (.EventDecList) Props:PropertyDecList} => Props </k>
-<propSize> I:Int => sizeOf(Props) </propSize>
 
 //add the first property and corresponding handlers
 rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
