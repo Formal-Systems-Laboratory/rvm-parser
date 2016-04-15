@@ -36,7 +36,7 @@ module RVM-COMPILER-CORE
     imports RVM-SYNTAX
 
     configuration <T> <k> $PGM:RVM  </k>
-                        <package color="black"> "" </package>
+                      <package color="black"> "" </package>
 
                       <importList color="yellow"> .K </importList>
 
