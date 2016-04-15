@@ -121,11 +121,13 @@ rule    <logicType> fsm  </logicType>
         <states> AllStatesMap:Map </states>
          <formula> .ItemList .AliasList </formula>
          <rawTransition> .K </rawTransition>
+         <propNum> PN:Int </propNum>
 
          <readyNum> N:Int => N +Int 1 </readyNum>
 
          <eventFunc>
          ...
+         <prank> PN </prank>
          <func> SM:Map </func>
          <intArr> .List => toIntArray(SM, size(AllStatesMap)) </intArr>
          </eventFunc>
@@ -137,9 +139,9 @@ stop the processing of the current property*/
 rule <readyNum> N:Int => 0 </readyNum>
      <events> EL:List </events>
      <runPlugin> true => false </runPlugin>
-     <states> _ => .Map </states>
-     <scanNum> _ => 0 </scanNum>
-     <formulaCopy> _ => .K </formulaCopy>
+     <states> _:Map => .Map </states>
+     <scanNum> _:Int => 0 </scanNum>
+     <formulaCopy> _:K => .K </formulaCopy>
 when N ==Int size(EL)
 
 endmodule
