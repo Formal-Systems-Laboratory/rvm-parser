@@ -11,6 +11,9 @@ rule
 
 <startCodeGen> true => false </startCodeGen>
 <events> EL:List </events>
+
+<propNum> PN:Int </propNum>
+
 <states> SM:Map </states>
 //this rule currently only handle the single property spec...
 <k> _:K => $CMonitor size(EL) size(SM) </k> //the two arguments are num of events and states resp.

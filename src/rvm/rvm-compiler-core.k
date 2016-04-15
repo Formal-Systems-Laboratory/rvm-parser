@@ -56,7 +56,12 @@ module RVM-COMPILER-CORE
 
                       <runPlugin> false </runPlugin>
 
-                      <states> .Map </states> //map a state name(string) to its rank
+//map a state name(string) to its integer rank, temporary working cell
+                      <states> .Map </states>
+
+//states name mapping (string -> int, the map in <states> cell), indexed by property rank.
+                      <stateNameMap> .List </stateNameMap>
+
                       <curStateRank> 0 </curStateRank>
 
                       //the raw transition defined in the rvm spec, indexed by states
