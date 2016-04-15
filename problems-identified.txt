@@ -1,0 +1,7 @@
+1. current rv-monitor for c part only supports one pair of property and handler 
+in one spec.
+
+the part for java is better, but the generated code does not compile due to
+re-define some vars in the same runtime monitor function (the method in which 
+event dispatching occurs).
+
