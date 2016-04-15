@@ -58,17 +58,17 @@ rule    <logicType> fsm  </logicType>
 
 /**consume the transition functions defined for the current state.*/
 /*Handle unknown event*/
-rule
+rule <k> _ => .K </k>
     <logicType> fsm  </logicType>
     <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTransition>
         <events> EL:List </events>
     <scanNum> 1 </scanNum>
     <err> (.List => ListItem("Undefined event " +String getEventName(E))) ErrList:List </err>
     <runPlugin> true => false </runPlugin>
-    when notBool (E in EL)
+    when notBool (getEventName(E) in EL)
 
 /*Handle unknown state*/
-rule
+rule <k> _ => .K </k>
     <logicType> fsm  </logicType>
     <rawTransition> (E:EventName -> SN:StateName) TL:TransitionList </rawTransition>
         <states> SM:Map </states>
