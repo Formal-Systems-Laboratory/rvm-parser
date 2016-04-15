@@ -135,13 +135,19 @@ rule    <logicType> fsm  </logicType>
          <runPlugin> true </runPlugin>
 
 /*All the event transition functions have been generated,
-stop the processing of the current property*/
+stop the processing of the current property,
+reset the cells and wait for the processing of the next property*/
 rule <readyNum> N:Int => 0 </readyNum>
+<logicType> _:K => .K </logicType>
      <events> EL:List </events>
      <runPlugin> true => false </runPlugin>
      <states> _:Map => .Map </states>
      <scanNum> _:Int => 0 </scanNum>
+     <formula> _:K => .K </formula>
      <formulaCopy> _:K => .K </formulaCopy>
+
+    //TODO: process the handlers cell
+     <handlers> _:HandlerDecList => .HandlerDecList </handlers>
 when N ==Int size(EL)
 
 endmodule
