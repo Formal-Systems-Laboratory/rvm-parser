@@ -65,7 +65,7 @@ rule
     <scanNum> 1 </scanNum>
     <err> (.List => ListItem("Undefined event " +String getEventName(E))) ErrList:List </err>
     <runPlugin> true => false </runPlugin>
-    when notBool E in EL
+    when notBool (E in EL)
 
 /*Handle unknown state*/
 rule
@@ -133,10 +133,13 @@ rule    <logicType> fsm  </logicType>
          <runPlugin> true </runPlugin>
 
 /*All the event transition functions have been generated,
-stop the plugin*/
-rule <readyNum> N:Int </readyNum>
+stop the processing of the current property*/
+rule <readyNum> N:Int => 0 </readyNum>
      <events> EL:List </events>
      <runPlugin> true => false </runPlugin>
+     <states> _ => .Map </states>
+     <scanNum> _ => 0 </scanNum>
+     <formulaCopy> _ => .K </formulaCopy>
 when N ==Int size(EL)
 
 endmodule
