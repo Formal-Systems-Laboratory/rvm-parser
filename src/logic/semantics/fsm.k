@@ -1,12 +1,13 @@
 require "../syntax/fsm-syntax.k"
-
 require "../../rvm/rvm-compiler-core.k"
 
+require "../../helper/print-ast.k"
 require "../../helper/util.k"
 
 module FSM
     imports FSM-SYNTAX
     imports RVM-COMPILER-CORE
+    imports PRINT-AST
     imports UTIL
 
 /*First scan: Gathering the state ranks*/
