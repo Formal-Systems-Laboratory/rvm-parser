@@ -13,8 +13,12 @@ syntax MainBody2 ::= ResetFunc MainBody3
 syntax MainBody3 ::= StateTransitions EventActions
 
 syntax CTemplate ::= "$CMonitor"
-
 syntax Include ::= "$incl"
+syntax MainBody ::= "$main"
+syntax MainBody1 ::= "$main1"
+syntax MainBody2 ::= "$main2"
+syntax MainBody3 ::= "$main3"
+
 
 syntax GStateVar ::= "$gSVar" "(" Int ")"
 syntax GlobalStatesInit ::= "$globalInit" "(" Int ")"

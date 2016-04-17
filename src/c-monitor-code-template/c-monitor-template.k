@@ -1,9 +1,13 @@
 require "../rvm/rvm-compiler-core.k"
 require "c-monitor-template-syntax.k"
+require "../helper/code-gen.k"
+require "../helper/util.k"
 
 module C-MONITOR-TEMPLATE
     imports RVM-COMPILER-CORE
     imports C-MONITOR-TEMPLATE-SYNTAX
+    imports CODE-GEN
+    imports UTIL
 
 rule
 <lang> "c" </lang>
@@ -12,34 +16,32 @@ rule
 <k> _:K => $CMonitor </k>
 
 
-rule //TODO:debug
+rule
 <lang> "c" </lang>
 <runPlugin> false </runPlugin>
- <events> EL:List </events>
-
- <stateNameMap> SNM:List </stateNameMap>
  <k>
  $CMonitor =>
- $incl $globalInit(size(SNM)) ($pStates(SNM)) $reset
- ($stateFuncs(size(EL) *Int size(SNM))) $eventFuncs(size(EL))
+ $incl $main
  </k>
- when size(EL) >Int 0
-
-
 
 //generate the include part.
 //TODO: incorporate the user provided includes
-rule <k> $incl M:MainBody => M </k>
+rule <k> $incl $main => $main </k>
      <code> (.List => ListItem("#include <stdio.h>\n"
                         +String "#include <stdlib.h>\n") )
          L:List </code>
 
-//rewrite the global var declarations.
-rule <k> $globalInit(0) M:MainBody1 => M </k>
+/////////
+ rule <k> $main => $globalInit(getSize(L)) $main1 </k>
+<stateNameMap> L:List </stateNameMap>
 
-rule <k> $globalInit(I:Int) M:MainBody1 => $globalInit(I -Int 1) M
+
+//rewrite the global var declarations.
+rule <k> $globalInit(0) $main1 => $main1 </k>
+
+rule <k> ($globalInit(I:Int) $main1) =>  ($globalInit(I -Int 1) $main1)
      </k>
-<code> (.List => ListItem(getGlobalStateVarInit(I -Int 1))) L:List </code>
+<code> L:List (.List => ListItem(getGlobalStateVarInit(I -Int 1))) </code>
 when I >Int 0
 
 //handling the local state vars initializations.

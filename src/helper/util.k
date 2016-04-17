@@ -31,6 +31,11 @@ rule getStrKey((S:String |-> V:Int) M:Map, V) => S
 rule getStrKey((_:String |-> V1:Int) M:Map, V2:Int) => getStrKey(M, V2)
 when V1 =/=Int V2
 
+/*Get the size of a list of maps*/
+syntax Int ::= getSize(List) [function]
+rule getSize(.List) => 0
+rule getSize(ListItem(_:Map) L:List) => 1 +Int getSize(L)
+
 endmodule
 
 
