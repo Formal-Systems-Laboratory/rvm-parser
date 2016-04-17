@@ -1,22 +1,33 @@
+require "domains.k"
+
 module C-MONITOR-TEMPLATE-SYNTAX
+    imports DOMAINS
 
 //the state transition function is encoded using int array.
 syntax CTemplate ::= Include MainBody
 
-syntax MainBody ::= GlobalVarDecls MainBody1
+syntax MainBody ::= GlobalStatesInit MainBody1
 
-syntax MainBody1 ::= LocalStatesInit MainBody2
+syntax MainBody1 ::= PropStatesInit MainBody2
 syntax MainBody2 ::= ResetFunc MainBody3
 syntax MainBody3 ::= StateTransitions EventActions
 
-syntax CTemplate ::= "$CMonitor" Int Int  //the two ints are num of events and states resp.
+syntax CTemplate ::= "$CMonitor"
 
 syntax Include ::= "$incl"
-syntax GlobalVarDecls ::= "$globalInit"
 
-syntax StateVar ::= "$sVar" "(" Int ")"
-syntax LocalStatesInit ::= "$localInit" "(" Int ")"
+syntax GStateVar ::= "$gSVar" "(" Int ")"
+syntax GlobalStatesInit ::= "$globalInit" "(" Int ")"
+syntax GlobalStatesInit ::= GStateVar "," GlobalStatesInit
+
+syntax StateVar ::= "$sVar" "(" Int ","  Int ")" //prop rank, state rank
+//args of $localInit: the prop rank, the number of states in the property
+syntax LocalStatesInit ::= "$localInit" "(" Int ","  Int ")"
 syntax LocalStatesInit ::= StateVar "," LocalStatesInit
+
+syntax PropStatesInit ::= "$pStates" "(" List ")"
+syntax PropStatesInit ::= LocalStatesInit ":" PropStatesInit
+
 
 syntax ResetFunc ::= "$reset"
 
@@ -27,10 +38,5 @@ syntax StateFunc ::= "$sFunc" "(" Int ")"
 syntax EventActions ::= "$eventFuncs" "(" Int ")"
 syntax EventActions ::= List{EventFunc, ","}
 syntax EventFunc ::= "eFunc" "(" Int ")"
-
-rule $CMonitor NumOfEvents:Int NumOfStates:Int =>
- $incl $globalInit ($localInit(NumOfStates)) $reset
- ($stateFuncs(NumOfStates)) $eventFuncs(NumOfEvents)
- when NumOfEvents >Int 0 andBool NumOfStates >Int 0
 
 endmodule
