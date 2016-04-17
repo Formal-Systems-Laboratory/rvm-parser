@@ -43,7 +43,7 @@ Props:PropertyDecList} </k>
 */
 rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
  Events:EventDecList => Events) Props:PropertyDecList} </k>
-<events> L:List (.List => ListItem(Id2String(X))) </events>
+<events> L:List (.List => ListItem(X)) </events>
 
 <eventFuncs>
   ...
@@ -64,16 +64,17 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
 <propSize> PS:Int </propSize>
 <k2> .K => PS -Int 1 </k2>
 
-when notBool (Id2String(X) in L)
+when notBool (X in L)
 
 
 //construct initial props cells
-rule <eventFuncs>
+rule
+<events> L:List </events>
+<eventFuncs>
   ...
 
-
                               <eventFunc>
-                                  <event> X </event>
+                                  <event> X:Id </event>
                                   <props>
                                     (.Bag => <prop>
                                                <prank> PS -Int 1 </prank>
@@ -87,7 +88,8 @@ rule <eventFuncs>
   ...
 </eventFuncs>
 <k2> PS:Int => PS -Int 1 </k2>
-when PS >Int 0
+when PS >Int 0 andBool isLastItem(L, X)
+
 
 rule <k2> 0 => .K </k2>
 
@@ -100,7 +102,7 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
  Events:EventDecList) Props:PropertyDecList} => .K </k>
 <events> EL:List </events>
 <err> (.List => ListItem("Duplicate event " +String Id2String(X))) ErrList:List </err>
-when (Id2String(X) in EL)
+when (X in EL)
 
 //No events left
 rule

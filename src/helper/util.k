@@ -36,6 +36,14 @@ syntax Int ::= getSize(List) [function]
 rule getSize(.List) => 0
 rule getSize(ListItem(_:Map) L:List) => 1 +Int getSize(L)
 
+/*test whether the given item is the last item of the list*/
+syntax Bool ::= isLastItem(List, Id) [function]
+rule isLastItem(.List, T:Id) => false
+rule isLastItem(ListItem(X:Id), Y:Id) => Id2String(X) ==String Id2String(Y)
+rule isLastItem(ListItem(X:Id) L:List, Y:Id) => isLastItem(L, Y)
+
+
+
 endmodule
 
 
