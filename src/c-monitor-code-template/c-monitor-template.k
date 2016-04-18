@@ -54,26 +54,27 @@ rule <k> $pStates(I:Int) $main2 => ($localInit(I, getSize(L, I)) : $pStates(I +I
  $main2 </k>
      <propSize> PN:Int </propSize> //the number of properties
      <stateNameMap> L:List </stateNameMap>
+     <states> _:Map => getMapI(L, I) </states>
     when I <Int PN
 
-//handling the local state vars initializations.
-//rule <k> ($localInit(0) M:MainBody2) => M </k>
-//<tmp> L:List => .List </tmp> //the local state vars are stored in tmp cell
-//<code> C:List (.List => L) </code>
-//
-//rule <k> ($localInit(I:Int) M:MainBody2) =>
-// (($sVar(I -Int 1), $localInit(I -Int 1)) M)
-//</k>
-//when I >=Int 1
-//
-//rule <k> (($sVar(I:Int), $localInit(J:Int)) M:MainBody2) =>
-//    (($localInit(J:Int)) M) </k>
-//
-//<states> StateMap:Map </states>
-//<tmp> (.List => ListItem(getStrKey(StateMap, I))) L:List </tmp>
-//
-//rule <k> $reset M:MainBody3 => M </k>
-//<specName> SN:String </specName>
-//<code> Code:List (.List => ListItem(printResetFunc(SN))) </code>
+//*handling the local state vars initializations. */
+rule <k> ($localInit(R:Int, 0):$pStates(I:Int) $main2) => ($pStates(I) $main2) </k>
+<tmp> L:List => .List </tmp> //the local state vars are stored in tmp cell
+<code> C:List (.List => L) </code>
+
+rule <k> ($localInit(R:Int, I:Int):$pStates(P:Int) $main2) =>
+ (($sVar(R, I -Int 1), $localInit(R, I -Int 1)):$pStates(P) $main2)
+</k>
+when I >=Int 1
+
+rule <k> (($sVar(R:Int, I:Int), $localInit(R, J:Int)):$pStates(P:Int) $main2) =>
+    (($localInit(R, J):$pStates(P)) $main2) </k>
+
+<states> StateMap:Map </states>
+<tmp> (.List => ListItem(getStrKey(StateMap, I))) L:List </tmp>
+
+rule <k> $reset M:MainBody3 => M </k>
+<specName> SN:String </specName>
+<code> Code:List (.List => ListItem(printResetFunc(SN))) </code>
 
 endmodule

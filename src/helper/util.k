@@ -47,6 +47,19 @@ rule isLastItem(.List, T:Id) => false
 rule isLastItem(ListItem(X:Id), Y:Id) => Id2String(X) ==String Id2String(Y)
 rule isLastItem(ListItem(X:Id) L:List, Y:Id) => isLastItem(L, Y)
 
+//get the no. i map in the map list
+syntax Map ::= getMapI(List, Int) [function]
+rule getMapI(.List, I:Int) => .Map
+rule getMapI(ListItem(M:Map), 0) => M
+rule getMapI(ListItem(M:Map), I:Int) => .Map when I =/=Int 0
+
+rule getMapI(ListItem(M:Map) L:List, 0) => M
+rule getMapI(ListItem(M:Map) L:List, I:Int) => .Map when I <Int 0
+rule getMapI(ListItem(M:Map) L:List, I:Int) =>
+     getMapI(L, I -Int 1) when I >Int 0
+
+
+
 
 
 endmodule
