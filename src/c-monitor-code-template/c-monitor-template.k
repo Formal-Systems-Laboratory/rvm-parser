@@ -32,8 +32,8 @@ rule <k> $incl $main => $main </k>
          L:List </code>
 
 /////////
- rule <k> $main => $globalInit(getSize(L)) $main1 </k>
-<stateNameMap> L:List </stateNameMap>
+ rule <k> $main => $globalInit(PS) $main1 </k>
+<propSize> PS:Int </propSize>
 
 
 //rewrite the global var declarations.
@@ -43,6 +43,18 @@ rule <k> ($globalInit(I:Int) $main1) =>  ($globalInit(I -Int 1) $main1)
      </k>
 <code> L:List (.List => ListItem(getGlobalStateVarInit(I -Int 1))) </code>
 when I >Int 0
+
+rule $main1 => $pStates(0) $main2
+
+rule <k> $pStates(I:Int) $main2 => $main2 </k>
+     <propSize> PN:Int </propSize> //the number of properties
+    when I >=Int PN
+
+rule <k> $pStates(I:Int) $main2 => ($localInit(I, getSize(L, I)) : $pStates(I +Int 1))
+ $main2 </k>
+     <propSize> PN:Int </propSize> //the number of properties
+     <stateNameMap> L:List </stateNameMap>
+    when I <Int PN
 
 //handling the local state vars initializations.
 //rule <k> ($localInit(0) M:MainBody2) => M </k>

@@ -29,7 +29,7 @@ syntax StateVar ::= "$sVar" "(" Int ","  Int ")" //prop rank, state rank
 syntax LocalStatesInit ::= "$localInit" "(" Int ","  Int ")"
 syntax LocalStatesInit ::= StateVar "," LocalStatesInit
 
-syntax PropStatesInit ::= "$pStates" "(" List ")"
+syntax PropStatesInit ::= "$pStates" "(" Int ")"
 syntax PropStatesInit ::= LocalStatesInit ":" PropStatesInit
 
 

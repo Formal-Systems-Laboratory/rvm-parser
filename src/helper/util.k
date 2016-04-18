@@ -32,9 +32,14 @@ rule getStrKey((_:String |-> V1:Int) M:Map, V2:Int) => getStrKey(M, V2)
 when V1 =/=Int V2
 
 /*Get the size of a list of maps*/
-syntax Int ::= getSize(List) [function]
-rule getSize(.List) => 0
-rule getSize(ListItem(_:Map) L:List) => 1 +Int getSize(L)
+syntax Int ::= getSize(List, Int) [function]
+rule getSize(.List, I:Int) => 0
+rule getSize(ListItem(M:Map), 0) => size(M)
+rule getSize(ListItem(M:Map), I:Int) => 0 when I =/=Int 0
+
+rule getSize(ListItem(M:Map) L:List, 0) => size(M)
+rule getSize(ListItem(M:Map) L:List, I:Int) => getSize(L, I -Int 1) when I >Int 0
+rule getSize(ListItem(M:Map) L:List, I:Int) => 0 when I <Int 0
 
 /*test whether the given item is the last item of the list*/
 syntax Bool ::= isLastItem(List, Id) [function]
