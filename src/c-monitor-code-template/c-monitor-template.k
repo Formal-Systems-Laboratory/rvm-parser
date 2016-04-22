@@ -27,9 +27,9 @@ rule
 //generate the include part.
 //TODO: incorporate the user provided includes
 rule <k> $incl $main => $main </k>
-     <code> (.List => ListItem("#include <stdio.h>\n"
-                        +String "#include <stdlib.h>\n") )
-         L:List </code>
+     <code> L:List (.List => ListItem("#include <stdio.h>")
+                      ListItem("#include <stdlib.h>") )
+     </code>
 
 /////////
  rule <k> $main => $globalInit(PS) $main1 </k>
