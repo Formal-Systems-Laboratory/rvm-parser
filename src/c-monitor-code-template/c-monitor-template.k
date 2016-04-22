@@ -73,6 +73,8 @@ rule <k> (($sVar(R:Int, I:Int), $localInit(R, J:Int)):$pStates(P:Int) $main2) =>
 <states> StateMap:Map </states>
 <tmp> (.List => ListItem(getStrKey(StateMap, I))) L:List </tmp>
 
+rule $main2 => $reset $main3
+
 rule <k> $reset $main3 => $main3 </k>
 <specName> SN:String </specName>
 <propSize> P:Int </propSize>
