@@ -75,6 +75,6 @@ rule <k> (($sVar(R:Int, I:Int), $localInit(R, J:Int)):$pStates(P:Int) $main2) =>
 
 rule <k> $reset $main3 => $main3 </k>
 <specName> SN:String </specName>
-<code> Code:List (.List => ListItem(printResetFunc(SN, S))) </code>
-<propSize> S:Int </propSize>
+<propSize> P:Int </propSize>
+<code> Code:List (.List => ListItem(printResetFunc(SN, P):String)) </code>
 endmodule
