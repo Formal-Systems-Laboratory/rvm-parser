@@ -110,7 +110,7 @@ rule <k> ($stateFuncs(P:Int, E:Int) $main4) => (getListofStateFuncs(0, 0, P, E) 
  <code> Code:List (.List =>
  ListItem(stateTransitionPropXEventE(SN, I, Id2String(X), IA))) </code>
 when
-    //getStringI(EL, J) ==String Id2String(X) andBool
+    (getStringI(EL, J) ==String Id2String(X)) andBool
      PS >Int 1
 
 //single property

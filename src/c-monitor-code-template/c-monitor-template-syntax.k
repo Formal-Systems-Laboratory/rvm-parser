@@ -39,8 +39,10 @@ syntax ResetFunc ::= "$reset"
 
 //the state functions are indexed by property rank and event rank
 syntax StateTransitions ::= "$stateFuncs" "(" Int "," Int ")"
-syntax StateTransitions ::= List{StateFunc, ","}
 syntax StateFunc ::= "$sFunc" "(" Int "," Int ")"
+syntax StateTransitions ::= StateFunc
+                        | StateFunc "," StateTransitions
+                        | "$emptyTransition"
 
 syntax EventActions ::= "$eventFuncs" "(" Int ")"
 syntax EventActions ::= List{EventFunc, ","}

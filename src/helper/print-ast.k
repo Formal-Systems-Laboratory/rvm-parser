@@ -52,7 +52,7 @@ rule sizeOf(Prop:PropertyDec Props:PropertyDecList) => 1 +Int sizeOf(Props)
 //the first two args are the current prop rank and event rank, the third and fourth args are the
 //total number of properties and events resp.
 syntax StateTransitions ::= getListofStateFuncs(Int, Int, Int, Int) [function]
-rule getListofStateFuncs(I:Int, J:Int, PN:Int, EN:Int) => .StateTransitions
+rule getListofStateFuncs(I:Int, J:Int, PN:Int, EN:Int) => $emptyTransition
 when I >=Int PN
 
 rule getListofStateFuncs(I:Int, J:Int, PN:Int, EN:Int) => getListofStateFuncs(I +Int 1, 0, PN, EN)
