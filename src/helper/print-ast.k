@@ -49,18 +49,18 @@ rule sizeOf(Prop:PropertyDec Props:PropertyDecList) => 1 +Int sizeOf(Props)
 
 //given the number of properties and events, generate a list of state transition functions,
 //indexed by property rank and event rank
-//the first two args are the current prop rank and event rank, the third arg is the
-//total number of events.
-syntax StateTransitions ::= getListofStateFuncs(Int, Int, Int) [function]
-rule getListofStateFuncs(I:Int, J:Int, EN:Int) => .List
-when I <=Int 0
+//the first two args are the current prop rank and event rank, the third and fourth args are the
+//total number of properties and events resp.
+syntax StateTransitions ::= getListofStateFuncs(Int, Int, Int, Int) [function]
+rule getListofStateFuncs(I:Int, J:Int, PN:Int, EN:Int) => .List
+when I >=Int PN
 
-rule getListofStateFuncs(I:Int, J:Int, EN:Int) => getListofStateFuncs(I -Int 1, EN, EN)
-when I >Int 0 andBool J <=Int 0
+rule getListofStateFuncs(I:Int, J:Int, PN:Int, EN:Int) => getListofStateFuncs(I +Int 1, 0, PN, EN)
+when I <Int PN andBool J >=Int EN
 
-rule getListofStateFuncs(I:Int, J:Int, EN:Int) =>
-($sFunc(I -Int 1, J -Int 1):StateFunc, getListofStateFuncs(I, J -Int 1, EN))
-when I >Int 0 andBool J >Int 0
+rule getListofStateFuncs(I:Int, J:Int, PN:Int, EN:Int) =>
+($sFunc(I, J):StateFunc , getListofStateFuncs(I, J +Int 1, PN, EN))
+when I <Int PN andBool J <Int EN
 
 
 endmodule

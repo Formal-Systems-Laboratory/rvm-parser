@@ -86,6 +86,6 @@ rule
 <events> L:List </events>
 <k> $main3 => ($stateFuncs(P, size(L))  $main4) </k>
 
-rule <k> ($stateFuncs(P:Int, E:Int) $main4) => (getListofStateFuncs(P, E, E) $main4) </k>
+rule <k> ($stateFuncs(P:Int, E:Int) $main4) => (getListofStateFuncs(0, 0, P, E) $main4) </k>
 
 endmodule
