@@ -58,8 +58,16 @@ rule getMapI(ListItem(M:Map) L:List, I:Int) => .Map when I <Int 0
 rule getMapI(ListItem(M:Map) L:List, I:Int) =>
      getMapI(L, I -Int 1) when I >Int 0
 
+//get the no. i string in a string list
+syntax String ::= getStringI(List, Int) [function]
+rule getStringI(.List, I:Int) => ""
+rule getStringI(ListItem(Str:String), 0) => Str
+rule getStringI(ListItem(Str:String), I:Int) => "" when I =/=Int 0
 
-
+rule getStringI(ListItem(Str:String) L:List, 0) => Str
+rule getStringI(ListItem(Str:String) L:List, I:Int) => "" when I <Int 0
+rule getStringI(ListItem(Str:String) L:List, I:Int) =>
+     getStringI(L, I -Int 1) when I >Int 0
 
 
 endmodule

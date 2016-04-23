@@ -88,4 +88,51 @@ rule
 
 rule <k> ($stateFuncs(P:Int, E:Int) $main4) => (getListofStateFuncs(0, 0, P, E) $main4) </k>
 
+//gen the state transition function from the structure
+ rule <k>(.StateTransitions $main4) => $main4 </k>
+
+//print transition function (multiple properties in one spec)
+ rule
+ <k> (($sFunc(I:Int, J:Int):StateFunc, L:StateTransitions) $main4) => (L $main4) </k>
+ <events> EL:List </events>
+      <event> X:Id </event>
+      <props>
+        ...
+         <prop>
+           <prank> I </prank>
+           <func> M:Map </func>
+           <intArr> IA:List </intArr>
+         </prop>
+         ...
+      </props>
+ <specName> SN:String </specName>
+ <propSize> PS:Int </propSize>
+ <code> Code:List (.List =>
+ ListItem(stateTransitionPropXEventE(SN, I, Id2String(X), IA))) </code>
+when
+    //getStringI(EL, J) ==String Id2String(X) andBool
+     PS >Int 1
+
+//single property
+ rule
+ <k> (($sFunc(I:Int, J:Int):StateFunc, L:StateTransitions) $main4) => (L $main4) </k>
+ <events> EL:List </events>
+      <event> X:Id </event>
+      <props>
+        ...
+         <prop>
+           <prank> I </prank>
+           <func> M:Map </func>
+           <intArr> IA:List </intArr>
+         </prop>
+         ...
+      </props>
+ <specName> SN:String </specName>
+ <propSize> PS:Int </propSize>
+ <code> Code:List (.List =>
+ ListItem(stateTransitionPropXEventE(SN, Id2String(X), IA))) </code>
+when getStringI(EL, J) ==String Id2String(X)
+    andBool PS <=Int 1
+
+
 endmodule

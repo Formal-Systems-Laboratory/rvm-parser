@@ -6,10 +6,10 @@ module CODE-GEN
     imports DOMAINS-SYNTAX
 
 syntax String ::= staticIntPrefix(String) [function]
-rule staticIntPrefix(S:String) => "static int " +String S
+rule staticIntPrefix(Str:String) => "static int " +String Str
 
-syntax String ::= const(String) [function]
-rule const(S:String) => "const " +String S
+syntax String ::= constPrefix(String) [function]
+rule constPrefix(Str:String) => "const " +String Str
 
 syntax String ::= propertyPrefix(Int) [function]
 rule propertyPrefix(I:Int) => "Prop_" +String Int2String(I) +String "_"
@@ -54,24 +54,25 @@ syntax String ::= printIntArr(List) [function]
 syntax String ::= addCurlyBraces(String) [function]
 syntax String ::= printIntSeq(List) [function]
 
-rule addCurlyBraces(S:String) => "{" +String S +String "}"
+rule addCurlyBraces(Str:String) => ("{" +String Str +String "}")
 
 rule printIntSeq(.List) => ""
 rule printIntSeq(ListItem(I:Int)) => Int2String(I)
 rule printIntSeq(ListItem(I:Int) L:List) => Int2String(I) +String ", " +String printIntSeq(L)
 rule printIntArr(L:List) => addCurlyBraces(printIntSeq(L))
 
+//args are spec name, property rank, event name and transition function array
 syntax String ::= stateTransitionPropXEventE(String, Int, String, List) [function]
 //only one property in the spec
 syntax String ::= stateTransitionPropXEventE(String, String, List) [function]
 
 rule stateTransitionPropXEventE(Spec:String, X:Int, Event:String, L:List)
- => const(staticIntPrefix(propXEventE(Spec, X, Event))) +String "[] = " +String
- printIntArr(L) +String ";"
+ => (constPrefix(staticIntPrefix(propXEventE(Spec, X, Event)))
+ +String "[]= " +String printIntArr(L) +String ";")
 
 rule stateTransitionPropXEventE(Spec:String, Event:String, L:List)
- => const(staticIntPrefix(propXEventE(Spec, Event))) +String "[] = " +String
- printIntArr(L) +String ";"
+ => (constPrefix(staticIntPrefix(propXEventE(Spec, Event))) +String "[] = "
+ +String printIntArr(L) +String ";")
 
- 
+
 endmodule
