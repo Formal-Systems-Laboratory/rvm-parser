@@ -89,7 +89,7 @@ rule
 rule <k> ($stateFuncs(P:Int, E:Int) $main4) => (getListofStateFuncs(0, 0, P, E) $main4) </k>
 
 //gen the state transition function from the structure
- rule <k>(.StateTransitions $main4) => $main4 </k>
+ rule <k>($emptyTransition $main4) => $main4 </k>
 
 //print transition function (multiple properties in one spec)
  rule
