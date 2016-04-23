@@ -79,4 +79,12 @@ rule <k> $reset $main3 => $main3 </k>
 <specName> SN:String </specName>
 <propSize> P:Int </propSize>
 <code> Code:List (.List => ListItem(printResetFunc(SN, P):String)) </code>
+
+//rewrite $main3 to state transitions and $main4
+rule
+<propSize> P:Int </propSize>
+<events> L:List </events>
+<k> $main3 => ($stateFuncs(P, size(L))  $main4) </k>
+
+
 endmodule

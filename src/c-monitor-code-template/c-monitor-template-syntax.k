@@ -10,7 +10,8 @@ syntax MainBody ::= GlobalStatesInit MainBody1
 
 syntax MainBody1 ::= PropStatesInit MainBody2
 syntax MainBody2 ::= ResetFunc MainBody3
-syntax MainBody3 ::= StateTransitions EventActions
+syntax MainBody3 ::= StateTransitions MainBody4
+syntax MainBody4 ::= EventActions
 
 syntax CTemplate ::= "$CMonitor"
 syntax Include ::= "$incl"
@@ -18,6 +19,7 @@ syntax MainBody ::= "$main"
 syntax MainBody1 ::= "$main1"
 syntax MainBody2 ::= "$main2"
 syntax MainBody3 ::= "$main3"
+syntax MainBody4 ::= "$main4"
 
 
 syntax GStateVar ::= "$gSVar" "(" Int ")"
@@ -35,9 +37,10 @@ syntax PropStatesInit ::= LocalStatesInit ":" PropStatesInit
 
 syntax ResetFunc ::= "$reset"
 
-syntax StateTransitions ::= "$stateFuncs" "(" Int ")"
+//the state functions are indexed by property rank and event rank
+syntax StateTransitions ::= "$stateFuncs" "(" Int "," Int ")"
 syntax StateTransitions ::= List{StateFunc, ","}
-syntax StateFunc ::= "$sFunc" "(" Int ")"
+syntax StateFunc ::= "$sFunc" "(" Int "," Int ")"
 
 syntax EventActions ::= "$eventFuncs" "(" Int ")"
 syntax EventActions ::= List{EventFunc, ","}
