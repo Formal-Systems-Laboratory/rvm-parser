@@ -5,13 +5,16 @@ module CODE-GEN
     imports RVM-SYNTAX
     imports DOMAINS-SYNTAX
 
+syntax String ::= staticIntPrefix(String) [function]
+rule staticIntPrefix(S:String) => "static int " +String S
+
 //the code for resetting global state var i
 syntax String ::= resetGlobalStateI(Int) [function]
 rule resetGlobalStateI(I:Int) => "Prop_" +String
                     Int2String(I) +String "_RVC_state = 0;\n"
 
     syntax String ::= getGlobalStateVarInit(Int) [function]
-    rule getGlobalStateVarInit(I:Int) => "static int " +String resetGlobalStateI(I)
+    rule getGlobalStateVarInit(I:Int) => staticIntPrefix(resetGlobalStateI(I))
 
     /*Return the string of reset function, given the name of the specification,
     and the number of properties*/
@@ -28,5 +31,11 @@ rule resetGlobalStateI(I:Int) => "Prop_" +String
     rule resetGlobalStates(1) => resetGlobalStateI(0)
     rule resetGlobalStates(I:Int) => resetGlobalStates(I -Int 1) +String
                         resetGlobalStateI(I -Int 1) when I >Int 1
+
+/*Return the state transition function for property X, event E*/
+syntax String ::= propXEventE(Int, String) [function]
+syntax String ::= printIntArr(List) [function]
+syntax String ::= stateTransitionPropXEventE(Int, String, List) [function]
+
 
 endmodule
