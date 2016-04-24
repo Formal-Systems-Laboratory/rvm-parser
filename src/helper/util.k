@@ -44,8 +44,8 @@ rule getSize(ListItem(M:Map) L:List, I:Int) => 0 when I <Int 0
 /*test whether the given item is the last item of the list*/
 syntax Bool ::= isLastItem(List, Id) [function]
 rule isLastItem(.List, T:Id) => false
-rule isLastItem(ListItem(X:Id), Y:Id) => Id2String(X) ==String Id2String(Y)
-rule isLastItem(ListItem(X:Id) L:List, Y:Id) => isLastItem(L, Y)
+rule isLastItem(ListItem(X:String), Y:Id) => X ==String Id2String(Y)
+rule isLastItem(ListItem(X:String) L:List, Y:Id) => isLastItem(L, Y)
 
 //get the no. i map in the map list
 syntax Map ::= getMapI(List, Int) [function]
@@ -61,12 +61,12 @@ rule getMapI(ListItem(M:Map) L:List, I:Int) =>
 //get the no. i id name in an id list
 syntax String ::= getStringI(List, Int) [function]
 rule getStringI(.List, I:Int) => ""
-rule getStringI(ListItem(X:Id), 0) => Id2String(X)
-rule getStringI(ListItem(X:Id), I:Int) => "" when I =/=Int 0
+rule getStringI(ListItem(X:String), 0) => X
+rule getStringI(ListItem(X:String), I:Int) => "" when I =/=Int 0
 
-rule getStringI(ListItem(X:Id) L:List, 0) => Id2String(X)
-rule getStringI(ListItem(X:Id) L:List, I:Int) => "" when I <Int 0
-rule getStringI(ListItem(X:Id) L:List, I:Int) =>
+rule getStringI(ListItem(X:String) L:List, 0) => X
+rule getStringI(ListItem(X:String) L:List, I:Int) => "" when I <Int 0
+rule getStringI(ListItem(X:String) L:List, I:Int) =>
      getStringI(L, I -Int 1) when I >Int 0
 
 
