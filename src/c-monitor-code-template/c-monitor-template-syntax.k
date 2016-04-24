@@ -45,7 +45,9 @@ syntax StateTransitions ::= StateFunc
                         | "$emptyTransition"
 
 syntax EventActions ::= "$eventFuncs" "(" Int ")"
-syntax EventActions ::= List{EventFunc, ","}
-syntax EventFunc ::= "eFunc" "(" Int ")"
+syntax EventFunc ::= "$eFunc" "(" Int ")"
+syntax EventActions ::= EventFunc
+                    | EventFunc "," EventActions
+                    | "$emptyEventActions"
 
 endmodule

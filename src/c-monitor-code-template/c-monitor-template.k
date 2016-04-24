@@ -3,9 +3,13 @@ require "c-monitor-template-syntax.k"
 require "../helper/code-gen.k"
 require "../helper/util.k"
 
+require "c-monitor-event-action.k"
+
 module C-MONITOR-TEMPLATE
     imports RVM-COMPILER-CORE
     imports C-MONITOR-TEMPLATE-SYNTAX
+    imports C-MONITOR-EVENT-ACTION
+
     imports CODE-GEN
     imports UTIL
 
