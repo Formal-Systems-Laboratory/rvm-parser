@@ -32,18 +32,20 @@ rule <k> $incl $main => $main </k>
      </code>
 
 /////////
- rule <k> $main => $globalInit(PS) $main1 </k>
-<propSize> PS:Int </propSize>
-
-
 //rewrite the global var declarations.
-rule <k> $globalInit(0) $main1 => $main1 </k>
+ rule <k> $main => $globalInit(0) $main1 </k>
 
-rule <k> ($globalInit(I:Int) $main1) =>  ($globalInit(I -Int 1) $main1)
+rule <k> $globalInit(P:Int) $main1 => $main1 </k>
+<propSize> PS:Int </propSize>
+when P >=Int PS
+
+rule <k> ($globalInit(I:Int) $main1) =>  ($globalInit(I +Int 1) $main1)
      </k>
-<code> L:List (.List => ListItem(getGlobalStateVarInit(I -Int 1))) </code>
-when I >Int 0
+<code> L:List (.List => ListItem(getGlobalStateVarInit(I))) </code>
+<propSize> PS:Int </propSize>
+when I <Int PS
 
+//////////////////////////////////////////
 rule $main1 => $pStates(0) $main2
 
 rule <k> $pStates(I:Int) $main2 => $main2 </k>
