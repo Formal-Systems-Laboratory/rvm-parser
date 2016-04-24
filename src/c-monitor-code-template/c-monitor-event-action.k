@@ -12,13 +12,19 @@ module C-MONITOR-EVENT-ACTION
     rule <k> $main4 => $eventFuncs(size(EL)) </k>
         <events> EL:List </events>
 
-    rule <k> $eventFuncs(I:Int) => ($eFunc(0), $eventFuncs(I -Int 1)) </k>
+    rule <k> $eventFuncs(I:Int) => ($eFunc(0), $eventFuncs(I)) </k>
     when I >Int 0
 
     rule <k> $eventFuncs(I:Int) => .K </k>
     when I <=Int 0
 
     rule <k> $eFunc(I:Int), $eventFuncs(0) => .K </k>
-            <events> EL:List </events>
-    when I >=Int size(EL)
+
+    rule <k> $eFunc(I:Int), $eventFuncs(J:Int) => $eFunc(I +Int 1), $eventFuncs(J -Int 1) </k>
+    <methodBody> .K => $eFunc(I) </methodBody>
+    <tmp> _ => .List </tmp>
+    when J >Int 0
+
+    rule     <methodBody> $eFunc(I:Int) => $methHeader(I) {$mbody} </methodBody>
+
 endmodule

@@ -11,7 +11,7 @@ syntax MainBody ::= GlobalStatesInit MainBody1
 syntax MainBody1 ::= PropStatesInit MainBody2
 syntax MainBody2 ::= ResetFunc MainBody3
 syntax MainBody3 ::= StateTransitions MainBody4
-syntax MainBody4 ::= EventActions
+syntax MainBody4 ::= EventMethods
 
 syntax CTemplate ::= "$CMonitor"
 syntax Include ::= "$incl"
@@ -44,10 +44,31 @@ syntax StateTransitions ::= StateFunc
                         | StateFunc "," StateTransitions
                         | "$emptyTransition"
 
-syntax EventActions ::= "$eventFuncs" "(" Int ")"
-syntax EventFunc ::= "$eFunc" "(" Int ")"
-syntax EventActions ::= EventFunc
-                    | EventFunc "," EventActions
-                    | "$emptyEventActions"
+syntax EventMethods ::= "$eventFuncs" "(" Int ")"
+syntax EventMethod ::= "$eFunc" "(" Int ")"
+syntax EventMethods ::= EventMethod | EventMethod "," EventMethods
+
+//the structure of an event action method
+//based on the configuration, the same method body prototype
+//can be rewritten to different concrete method bodies.
+syntax MethodHeader ::= "$methHeader" "(" Int ")"
+
+syntax EventAction ::= "$eAction" "(" Int ")"
+
+syntax MonitorStateUpdates ::= "$stateUpdates" "(" Int ")"
+syntax MonitorStateUpdate ::= "$sUpdate" "(" Int ")"
+syntax MonitorStateUpdates ::= MonitorStateUpdate
+                            | MonitorStateUpdate "," MonitorStateUpdates
+
+syntax HandlerActions ::= "$handlers"
+
+syntax MethodBody ::= EventAction ";;" MethodBody2
+syntax MethodBody2 ::= MonitorStateUpdates ";;" HandlerActions
+
+syntax EventMethod ::= MethodHeader "{" MethodBody "}"
+
+syntax MethodBody ::= "$mbody"
+syntax MethodBody2 ::= "$mbody2"
+
 
 endmodule
