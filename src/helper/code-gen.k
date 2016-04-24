@@ -37,6 +37,17 @@ rule resetGlobalStateI(I:Int) => propertyPrefix(I) +String "RVC_state = 0;\n"
     rule resetGlobalStates(I:Int) => resetGlobalStates(I -Int 1) +String
                         resetGlobalStateI(I -Int 1) when I >Int 1
 
+////////////////////////////////////////////////////////////////////////////////////
+///////////////The code for local state var initialization
+//the three args are spec name, property rank and state name
+syntax String ::= localStateVarI(String, Int, String)  [function]
+rule localStateVarI(SpecName:String, P:Int, StateName:String) =>
+    SpecName +String "_" +String propertyPrefix(P) +String StateName
+
+syntax String ::= localStateVarInit(String, Int, String)  [function]
+rule localStateVarInit(SpecName:String, P:Int, StateName:String) =>
+    ("int " +String localStateVarI(SpecName:String, P:Int, StateName:String)
+    +String " = 0;")
 ///////////////////Get the code of state transition functions///////////////////////
 
 /*Return the state transition function for Spec S, property X, event E*/

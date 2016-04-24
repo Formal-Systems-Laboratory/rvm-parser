@@ -30,20 +30,20 @@ Test (int o){
 
 
 	   fsm :
-     start [
-        next -> unsafe
-        hasnext -> safe
+     start2 [
+        next -> unsafe2
+        hasnext -> safe2
      ]
-     safe [
-        next -> start
-        hasnext -> safe 
+     safe2 [
+        next -> start2
+        hasnext -> safe2
      ]
-     unsafe [
-        next -> unsafe
-        hasnext -> safe
+     unsafe2 [
+        next -> unsafe2
+        hasnext -> safe2
      ]
 
-	@unsafe {
+	@unsafe2 {
 		int k;
 	}
 
