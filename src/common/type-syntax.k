@@ -22,7 +22,7 @@ module TYPE-SYNTAX
 
     syntax Dim ::= "[" "]"
     syntax Dims ::= List{Dim, ""}
-    syntax ArrayType ::= Type "[" "]"
+    syntax ArrayType ::= Type "[]" // "[" "]"
     syntax Type ::= TypeName | ArrayType
 
     syntax VarDecId ::= Id Dims

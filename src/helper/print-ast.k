@@ -67,12 +67,35 @@ when I <Int PN andBool J <Int EN
 */
 syntax String ::= Params2Str(Params) [function]
 syntax String ::= Param2Str(Param) [function]
+syntax String ::= Type2Str(Type) [function]
+syntax String ::= VarDecId2Str(VarDecId) [function]
 
 rule Params2Str(.Params) => ""
 rule Params2Str(P:Param) => Param2Str(P)
+rule Params2Str(P:Param, .Params) => Param2Str(P)
 rule Params2Str(P:Param, Ps:Params) => Param2Str(P) +String ", " +String Params2Str(Ps)
 
-rule Param2Str(P:Param) => "SingleParam!" //TODO
+rule Param2Str(T:Type V:VarDecId) => Type2Str(T) +String " " +String VarDecId2Str(V)
+
+//Type ::= TypeName | ArrayType
+syntax String ::= TypeName2String(TypeName) [function]
+syntax String ::= ArrayType2String(ArrayType) [function]
+
+rule Type2Str(T:TypeName) => TypeName2String(T)
+rule Type2Str(AT:ArrayType) => ArrayType2String(AT)
+
+rule TypeName2String(X:Id) => Id2String(X)
+rule TypeName2String(T:TypeName . X:Id) => TypeName2String(T) +String "." +String Id2String(X)
+
+rule ArrayType2String(T:Type []) => Type2Str(T) +String "[]"
+
+//VarDecId ::= Id Dims
+syntax String ::= Dims2Str(Dims)
+rule VarDecId2Str(X:Id .Dims) => Id2String(X)
+rule VarDecId2Str(X:Id Ds:Dims) => Id2String(X) +String Dims2Str(Ds)
+rule Dims2Str(.Dims) => ""
+rule Dims2Str(D:Dim) => "[]"
+rule Dims2Str(D:Dim Ds:Dims) => "[]" +String Dims2Str(Ds)
 
 /**
 Print the method body.
