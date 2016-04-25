@@ -20,12 +20,12 @@ module TYPE-SYNTAX
     syntax IdList                    ::= List{Id,"."}   [klabel('IdList)]
 
 
-    syntax Dim ::= "[" "]"
-    syntax Dims ::= List{Dim, ""}
-    syntax ArrayType ::= Type "[]" // "[" "]"
+    syntax Dim ::= "[]"
+    syntax Dims ::= Dim | Dim Dims
+    syntax ArrayType ::= Type Dim // "[" "]"
     syntax Type ::= TypeName | ArrayType
 
-    syntax VarDecId ::= Id Dims
+    syntax VarDecId ::= Id | Id Dims
 
     syntax Param ::= Type VarDecId
     syntax Params                    ::= List{Param, ","}                [klabel('FormalParamList)]

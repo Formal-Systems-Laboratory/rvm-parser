@@ -91,9 +91,8 @@ rule ArrayType2String(T:Type []) => Type2Str(T) +String "[]"
 
 //VarDecId ::= Id Dims
 syntax String ::= Dims2Str(Dims)
-rule VarDecId2Str(X:Id .Dims) => Id2String(X)
+rule VarDecId2Str(X:Id) => Id2String(X)
 rule VarDecId2Str(X:Id Ds:Dims) => Id2String(X) +String Dims2Str(Ds)
-rule Dims2Str(.Dims) => ""
 rule Dims2Str(D:Dim) => "[]"
 rule Dims2Str(D:Dim Ds:Dims) => "[]" +String Dims2Str(Ds)
 
