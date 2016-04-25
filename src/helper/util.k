@@ -58,7 +58,7 @@ rule getMapI(ListItem(M:Map) L:List, I:Int) => .Map when I <Int 0
 rule getMapI(ListItem(M:Map) L:List, I:Int) =>
      getMapI(L, I -Int 1) when I >Int 0
 
-//get the no. i id name in an id list
+//get the no. i id name in a string list
 syntax String ::= getStringI(List, Int) [function]
 rule getStringI(.List, I:Int) => ""
 rule getStringI(ListItem(X:String), 0) => X

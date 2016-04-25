@@ -41,6 +41,10 @@ module RVM-COMPILER-CORE
                       <importList color="yellow"> .K </importList>
 
                       <events color="pink"> .List </events> //list of event name strings
+                      //the params of each event, indexed by event id
+                      <eventParams> .List </eventParams>
+                      //the list of event action code, indexed by event id.
+                      <eventAction> .List </eventAction>
 
                       <specName> "" </specName>
                       <specParams> .Params </specParams>
