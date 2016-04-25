@@ -62,5 +62,23 @@ rule getListofStateFuncs(I:Int, J:Int, PN:Int, EN:Int) =>
 ($sFunc(I, J):StateFunc , getListofStateFuncs(I, J +Int 1, PN, EN))
 when I <Int PN andBool J <Int EN
 
+/**
+* Print the method parameters.
+*/
+syntax String ::= Params2Str(Params) [function]
+syntax String ::= Param2Str(Param) [function]
+
+rule Params2Str(.Params) => ""
+rule Params2Str(P:Param) => Param2Str(P)
+rule Params2Str(P:Param, Ps:Params) => Param2Str(P) +String ", " +String Params2Str(Ps)
+
+rule Param2Str(P:Param) => "SingleParam!" //TODO
+
+/**
+Print the method body.
+*/
+syntax String ::= Block2Str(BlockBubble) [function]
+
+rule Block2Str(B:BlockBubble) => "BlockStmt!" //TODO
 
 endmodule

@@ -28,7 +28,7 @@ module C-MONITOR-EVENT-ACTION
     rule     <methodBody> $eFunc(I:Int) => $methHeader(I) {$mbody} </methodBody>
 
     //print method header
-    rule <methodBody> $methHeader(I:Int) {$mbody} => $mbody </methodBody>
-    <events> EL:List </events>
+//    rule <methodBody> $methHeader(I:Int) {$mbody} => $mbody </methodBody>
+//    <events> EL:List </events>
 
 endmodule

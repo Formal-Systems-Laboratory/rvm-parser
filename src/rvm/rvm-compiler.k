@@ -45,6 +45,11 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
  Events:EventDecList => Events) Props:PropertyDecList} </k>
 <events> L:List (.List => ListItem(Id2String(X))) </events>
 
+//the params of each event, indexed by event id
+<eventParams> EP:List (.List => ListItem(Params2Str(Ps))) </eventParams>
+//the list of event action code, indexed by event id.
+<eventAction> EA:List (.List => ListItem(Block2Str(Body))) </eventAction>
+
 <eventFuncs>
   ...
 
