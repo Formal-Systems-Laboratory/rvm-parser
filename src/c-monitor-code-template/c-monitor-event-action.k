@@ -28,7 +28,28 @@ module C-MONITOR-EVENT-ACTION
     rule     <methodBody> $eFunc(I:Int) => $methHeader(I) {$mbody} </methodBody>
 
     //print method header
-//    rule <methodBody> $methHeader(I:Int) {$mbody} => $mbody </methodBody>
-//    <events> EL:List </events>
+    rule <methodBody> $methHeader(I:Int) {$mbody} => .K </methodBody>
+    <events> EL:List </events>
+                          <specName> SN:String </specName>
+                      //the params of each event, indexed by event id
+                      <eventParams> EPs:List </eventParams>
+                      //the list of event action code, indexed by event id.
+                      <eventAction> EAs:List </eventAction>
+    <code> Code:List
+    //method header of event I.
+    (.List => ListItem(printMethodHeader(SN, getStringI(EL, I), getStringI(EPs, I))))
+
+    (.List => ListItem("{\n"))
+
+    (.List => ListItem(getStringI(EAs, I))) //the event I's action code
+
+    //TODO state updates
+    //TODO handler code
+
+    (.List => ListItem("\n}\n"))
+
+
+    </code>
+
 
 endmodule

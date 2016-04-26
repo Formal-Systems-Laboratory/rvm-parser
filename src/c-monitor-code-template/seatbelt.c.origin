@@ -36,8 +36,7 @@ if(__RVC_SeatBelt_unsafe)
   }}
 }
 
-void
-__RVC_SeatBelt_seatBeltAttached()
+void __RVC_SeatBelt_seatBeltAttached()
 {
 {fprintf(stderr, "Seat belt attached.\n");}
 __RVC_state = __RVC_SEATBELT_SEATBELTATTACHED[__RVC_state];

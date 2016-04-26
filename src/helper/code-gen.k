@@ -85,5 +85,11 @@ rule stateTransitionPropXEventE(Spec:String, Event:String, L:List)
  => (constPrefix(staticIntPrefix(propXEventE(Spec, Event))) +String "[] = "
  +String printIntArr(L) +String ";")
 
+////////////print method header given the spec name, event name and args
+syntax String ::= printMethodHeader(String, String, String) [function]
+rule printMethodHeader(SpecName:String, EventName:String, Args:String)
+ => "void __RVC_" +String SpecName +String "_" +String
+ EventName +String "(" +String Args +String ")"
+
 
 endmodule
