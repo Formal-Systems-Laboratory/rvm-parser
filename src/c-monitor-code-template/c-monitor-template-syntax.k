@@ -55,6 +55,7 @@ syntax MethodHeader ::= "$methHeader" "(" Int ")"
 
 syntax EventAction ::= "$eAction" "(" Int ")"
 
+//update the states in each property.
 syntax MonitorStateUpdates ::= "$stateUpdates" "(" Int ")"
 syntax MonitorStateUpdate ::= "$sUpdate" "(" Int ")"
 syntax MonitorStateUpdates ::= MonitorStateUpdate

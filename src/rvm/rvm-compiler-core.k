@@ -102,7 +102,11 @@ module RVM-COMPILER-CORE
 ///////////////////////Specific for FSM//////////////////////////////////////////////////////
 
 /////////////////////////////////Logic Plugin cells ends///////////////////////////////////////////
-                      <handlers> .HandlerDecList </handlers>
+                      //list of maps indexed by property rank.
+                      //the map element maps state rank to handler code string
+                      <handlersList> .List </handlersList>
+
+                      <handler> .K </handler>
 
                       <err> .List </err>
 

@@ -109,6 +109,12 @@ rule    <logicType> fsm  </logicType>
     <scanNum> 1 </scanNum>  [prefer]
 
 ////////////////////////////////////////////////
+///////////collect the handler info
+
+
+
+
+////////////////////////////////////////////////
 
 rule
 <logicType> fsm  </logicType>
@@ -146,10 +152,9 @@ rule <readyNum> N:Int => 0 </readyNum>
      <scanNum> _:Int => 0 </scanNum>
      <formula> _:K => .K </formula>
      <formulaCopy> _:K => .K </formulaCopy>
-
+     <handler> .K </handler>
  <stateNameMap> SL:List (.List => ListItem(SM)) </stateNameMap>
-    //TODO: process the handlers cell
-     <handlers> _:HandlerDecList => .HandlerDecList </handlers>
+
 when N ==Int size(EL)
 
 endmodule

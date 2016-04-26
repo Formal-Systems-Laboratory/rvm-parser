@@ -113,13 +113,14 @@ when (Id2String(X) in EL)
 rule
 <k> {.K (.EventDecList) Props:PropertyDecList} => Props </k>
 
-//add the property and corresponding handlers
+//add the property formula and corresponding handlers
 rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <propNum> I:Int => I +Int 1 </propNum>
     <logicType> .K => getLogicName(Prop) </logicType>
     <formula> .K => getFormula(Prop) </formula>
     <formulaCopy> .K => getFormula(Prop) </formulaCopy>
-    <handlers> .HandlerDecList => getHandlers(Prop)  </handlers>
+    <handler> .K => getHandlers(Prop) </handler>
+    <handlersList> HL:List (.List => ListItem(.Map))  </handlersList>
     <runPlugin> false => true </runPlugin>
     <phase> X:Int => X +Int 1 </phase>
 
