@@ -18,10 +18,8 @@ module RVM-COMPILER-SYNTAX
                             | MethodDecBubble [token, klabel('DecBubbleMethod)]
                             | FieldDecBubble [token, klabel('DecBubbleField)]
 
-    syntax BlockBubble ::= "{" BalancedBracket "}" [prefer, token, klabel('BlockBubble)]
+    syntax BlockBubble ::= "{" BalancedBracket "}" [prefer, token, klabel(BlockBubbleLabel)]
                              | EmptyBlock
-
-
 
 
 
@@ -111,7 +109,6 @@ module RVM-COMPILER-CORE
 ///////////////////////////////Code Generation//////////////////////////////////////////////////
                      <lang> "c" </lang> //the default target language for the generated monitor code
                      <code> .List </code>
-                     <tmpStr> "" </tmpStr>
                      <tmpList> .List </tmpList> //temporary cell for manipulation.
                      <methodBody> .K </methodBody>
                        </T>

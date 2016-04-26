@@ -46,12 +46,10 @@ rule
 <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
  Events:EventDecList => Events) Props:PropertyDecList} </k>
 <events> L:List (.List => ListItem(Id2String(X))) </events>
+<eventAction> EA:List (.List => ListItem(Block2Str(Body))) </eventAction>
 
 //the params of each event, indexed by event id
 <eventParams> EP:List (.List => ListItem(Params2Str(Ps))) </eventParams>
-
-<methodBody> .K => Body </methodBody>
-<tmpStr> "" </tmpStr>
 
 <eventFuncs>
   ...
@@ -99,24 +97,6 @@ when PS >Int 0 andBool isLastItem(L, X)
 
 rule <k2> 0 => .K </k2>
 
-////////////////////////////////////////////////////////////////////////////////////////
-/*Convert the method body bubble into string*/
-rule <phase> 0 </phase>
-//<methodBody> BB:BlockBubble => .K </methodBody>
-<methodBody> EB:EmptyBlock => .K </methodBody>
-<tmpStr> BodyStr:String => BodyStr +String "{}" </tmpStr>
-
-////////////////////////////////////////////////////////////////////////////////////////
-//Save the method body to the event action list
-rule
-<phase> 0 </phase>
-<methodBody> .K </methodBody>
-<tmpStr> BodyStr:String => "" </tmpStr>
-//the list of event action code, indexed by event id.
-<eventAction> EA:List (.List => ListItem(BodyStr)) </eventAction>
-when notBool (BodyStr ==String "")
-////////////////////////////////////////////////////////////////////////////////////////
-
 
 /**
 * Report error if an event is defined multiple times.
@@ -132,7 +112,6 @@ when (Id2String(X) in EL)
 //No events left
 rule
 <k> {.K (.EventDecList) Props:PropertyDecList} => Props </k>
-<methodBody> .K </methodBody>
 
 //add the property and corresponding handlers
 rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>

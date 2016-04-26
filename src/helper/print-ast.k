@@ -99,8 +99,7 @@ rule Dims2Str(D:Dim Ds:Dims) => "[]" +String Dims2Str(Ds)
 /**
 Print the method body.
 */
-syntax String ::= Block2Str(BlockBubble) [function]
-
-rule Block2Str(B:BlockBubble) => "BlockStmt!" //TODO
+syntax String ::= Block2Str(BlockBubble)
+[function, hook(STRING.token2string), klabel(Block2StringFunc)]
 
 endmodule

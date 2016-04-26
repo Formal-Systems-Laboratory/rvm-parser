@@ -8,7 +8,7 @@ module JAVA-BUBBLE-SYNTAX
 	syntax EmptyBlock ::= "{" "}"                       [token, klabel(EmptyBlockLabel)]
 
     syntax BalancedBracket ::=
-                               "{" BalancedBracket "}"          [klabel('BBracketBlock)]
+                               "{" BalancedBracket "}"          [klabel(BBracketBlockLabel)]
                              | BalancedBracket BalancedBracket  [left, klabel('BBracketCombination)]
                              | NoBracket                        [klabel('BBracketAtom)]
                              | EmptyBlock
