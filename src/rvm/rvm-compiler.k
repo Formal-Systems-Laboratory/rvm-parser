@@ -41,14 +41,17 @@ Props:PropertyDecList} </k>
 /**
 * Extract and store the first event in the event list if we haven't encountered it before.
 */
-rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
+rule
+<phase> 0 </phase>
+<k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
  Events:EventDecList => Events) Props:PropertyDecList} </k>
 <events> L:List (.List => ListItem(Id2String(X))) </events>
 
 //the params of each event, indexed by event id
 <eventParams> EP:List (.List => ListItem(Params2Str(Ps))) </eventParams>
-//the list of event action code, indexed by event id.
-<eventAction> EA:List (.List => ListItem(Block2Str(Body))) </eventAction>
+
+<methodBody> .K => Body </methodBody>
+<tmpStr> "" </tmpStr>
 
 <eventFuncs>
   ...
@@ -70,7 +73,6 @@ rule <k> {.K ((EM:EventModifier event (X:Id) (Ps:Params) Body:BlockBubble)
 <k2> .K => PS -Int 1 </k2>
 
 when notBool (Id2String(X) in L)
-
 
 //construct initial props cells
 rule
@@ -95,8 +97,26 @@ rule
 <k2> PS:Int => PS -Int 1 </k2>
 when PS >Int 0 andBool isLastItem(L, X)
 
-
 rule <k2> 0 => .K </k2>
+
+////////////////////////////////////////////////////////////////////////////////////////
+/*Convert the method body bubble into string*/
+rule <phase> 0 </phase>
+//<methodBody> BB:BlockBubble => .K </methodBody>
+<methodBody> EB:EmptyBlock => .K </methodBody>
+<tmpStr> BodyStr:String => BodyStr +String "{}" </tmpStr>
+
+////////////////////////////////////////////////////////////////////////////////////////
+//Save the method body to the event action list
+rule
+<phase> 0 </phase>
+<methodBody> .K </methodBody>
+<tmpStr> BodyStr:String => "" </tmpStr>
+//the list of event action code, indexed by event id.
+<eventAction> EA:List (.List => ListItem(BodyStr)) </eventAction>
+when notBool (BodyStr ==String "")
+////////////////////////////////////////////////////////////////////////////////////////
+
 
 /**
 * Report error if an event is defined multiple times.
@@ -112,8 +132,9 @@ when (Id2String(X) in EL)
 //No events left
 rule
 <k> {.K (.EventDecList) Props:PropertyDecList} => Props </k>
+<methodBody> .K </methodBody>
 
-//add the first property and corresponding handlers
+//add the property and corresponding handlers
 rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <propNum> I:Int => I +Int 1 </propNum>
     <logicType> .K => getLogicName(Prop) </logicType>
@@ -121,10 +142,9 @@ rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <formulaCopy> .K => getFormula(Prop) </formulaCopy>
     <handlers> .HandlerDecList => getHandlers(Prop)  </handlers>
     <runPlugin> false => true </runPlugin>
+    <phase> X:Int => X +Int 1 </phase>
 
 //No properties left
 rule <k>.PropertyDecList => .</k>
 <runPlugin> false </runPlugin>
-<startCodeGen> false => true </startCodeGen>
-
 endmodule

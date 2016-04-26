@@ -16,8 +16,9 @@ module C-MONITOR-TEMPLATE
 rule
 <lang> "c" </lang>
 <runPlugin> false </runPlugin>
-<startCodeGen> true => false </startCodeGen>
-<k> _:K => $CMonitor </k>
+<propSize> X:Int </propSize>
+<phase> X:Int => X +Int 1 </phase>
+<k> .K => $CMonitor </k>
 
 
 rule
@@ -65,7 +66,7 @@ rule <k> $pStates(I:Int) $main2 => ($localInit(I, getSize(L, I)) : $pStates(I +I
 
 //*handling the local state vars initializations. */
 rule <k> ($localInit(R:Int, 0):$pStates(I:Int) $main2) => ($pStates(I) $main2) </k>
-<tmp> L:List => .List </tmp> //the local state vars are stored in tmp cell
+<tmpList> L:List => .List </tmpList> //the local state vars are stored in tmp cell
 <code> C:List (.List => L) </code>
 
 rule <k> ($localInit(R:Int, I:Int):$pStates(P:Int) $main2) =>
@@ -80,8 +81,8 @@ rule <k> (($sVar(R:Int, I:Int), $localInit(R, J:Int)):$pStates(P:Int) $main2) =>
 <specName> SpecName:String </specName>
 //localStateVarInit(SpecName:String, R:Int, StateName:String)
 //state name: getStrKey(StateMap, I)
-<tmp> (.List => ListItem(localStateVarInit(SpecName, R, getStrKey(StateMap, I))))
-    L:List </tmp>
+<tmpList> (.List => ListItem(localStateVarInit(SpecName, R, getStrKey(StateMap, I))))
+    L:List </tmpList>
 
 rule $main2 => $reset $main3
 

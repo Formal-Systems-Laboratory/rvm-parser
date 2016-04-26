@@ -5,11 +5,13 @@ module JAVA-BUBBLE-SYNTAX
 	//syntax NoBracket ::= r"[^{}]+" [token]
 	//temp workaround for https://github.com/kframework/k/issues/1863
 	syntax NoBracket //::= r"[^<{}][^{}]*" [token, klabel('NoBracket)]
+	syntax EmptyBlock ::= "{" "}"                       [token, klabel(EmptyBlockLabel)]
+
     syntax BalancedBracket ::=
                                "{" BalancedBracket "}"          [klabel('BBracketBlock)]
                              | BalancedBracket BalancedBracket  [left, klabel('BBracketCombination)]
                              | NoBracket                        [klabel('BBracketAtom)]
-                             | "{" "}"                          [klabel('BBracketEmpty)]
+                             | EmptyBlock
 
     syntax BlockBubble //::=    "{" BalancedBracket "}" [prefer, token, klabel('BlockBubble)]
                          //   | "{" "}" [prefer, token, klabel('BlockBubbleEmpty)]

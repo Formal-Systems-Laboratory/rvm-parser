@@ -19,7 +19,7 @@ module RVM-COMPILER-SYNTAX
                             | FieldDecBubble [token, klabel('DecBubbleField)]
 
     syntax BlockBubble ::= "{" BalancedBracket "}" [prefer, token, klabel('BlockBubble)]
-                             | "{" "}" [prefer, token, klabel('BlockBubbleEmpty)]
+                             | EmptyBlock
 
 
 
@@ -35,7 +35,11 @@ endmodule
 module RVM-COMPILER-CORE
     imports RVM-SYNTAX
 
-    configuration <T> <k> $PGM:RVM  </k>
+    configuration <T>
+                      <phase> 0 </phase>
+
+                      <k> $PGM:RVM  </k>
+
                       <package color="black"> "" </package>
 
                       <importList color="yellow"> .K </importList>
@@ -107,9 +111,9 @@ module RVM-COMPILER-CORE
 ///////////////////////////////Code Generation//////////////////////////////////////////////////
                      <lang> "c" </lang> //the default target language for the generated monitor code
                      <code> .List </code>
-                     <tmp> .List </tmp> //temporary cell for manipulation.
+                     <tmpStr> "" </tmpStr>
+                     <tmpList> .List </tmpList> //temporary cell for manipulation.
                      <methodBody> .K </methodBody>
-                     <startCodeGen> false </startCodeGen>
                        </T>
 
 endmodule

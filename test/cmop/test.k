@@ -13,7 +13,7 @@ configuration
  <start> false </start>
  <code> .List </code>
  <states> .Map </states>
- <tmp> .List </tmp> //temporary cell for manipulation.
+ <tmpList> .List </tmpList> //temporary cell for manipulation.
 
 <specName> "HasNext" </specName>
 
@@ -49,11 +49,11 @@ rule <k> (($sVar(I:Int), $localInit(J:Int)) M:MainBody2) =>
     (($localInit(J:Int)) M) </k>
 
 <states> StateMap:Map </states>
-<tmp> (.List => ListItem(getStrKey(StateMap, I))) L:List </tmp>
+<tmpList> (.List => ListItem(getStrKey(StateMap, I))) L:List </tmpList>
 
 rule <k> $reset M:MainBody3 => M </k>
 <specName> SN:String </specName>
-<tmp> L:List => .List </tmp> //the local state vars are stored in tmp cell
+<tmpList> L:List => .List </tmpList> //the local state vars are stored in tmp cell
 <code> Code:List (.List => L) (.List => ListItem(printResetFunc(SN))) </code>
 
 endmodule
