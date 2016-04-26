@@ -111,9 +111,33 @@ rule    <logicType> fsm  </logicType>
 ////////////////////////////////////////////////
 ///////////collect the handler info
 
+//rule
+//    <logicType> fsm => ere  </logicType>
+//<handler> .HandlerDecList => .K </handler>
+//        <runPlugin> true </runPlugin>
+//    <scanNum> 1 </scanNum>
+//
+//rule
+//  <logicType> fsm => ere </logicType>
+// <handler> HandlerDecListCons(HD:HandlerDec, HDL:HandlerDecList) => HDL </handler>
+//        <runPlugin> true </runPlugin>
+//    <scanNum> 1 </scanNum>
 
-
-
+//rule <handler> (@ StateName:Id HandlerCode:BlockBubble) => .K </handler>
+//<handlersList> L:List ListItem(M:Map (.Map =>
+//(Id2String(StateName) |-> Block2Str(HandlerCode)))) </handlersList>
+//
+//rule <handler> (@fail HandlerCode:BlockBubble) => .K </handler>
+//<handlersList> L:List ListItem(M:Map (.Map =>
+//("fail" |-> Block2Str(HandlerCode)))) </handlersList>
+//
+//rule <handler> (@ StateName:Id HandlerCode:BlockBubble) HDL:HandlerDecList => HDL </handler>
+//<handlersList> L:List ListItem(M:Map (.Map =>
+//(Id2String(StateName) |-> Block2Str(HandlerCode)))) </handlersList>
+//
+//rule <handler> (@fail HandlerCode:BlockBubble) HDL:HandlerDecList => HDL  </handler>
+//<handlersList> L:List ListItem(M:Map (.Map =>
+//("fail" |-> Block2Str(HandlerCode)))) </handlersList>
 ////////////////////////////////////////////////
 
 rule

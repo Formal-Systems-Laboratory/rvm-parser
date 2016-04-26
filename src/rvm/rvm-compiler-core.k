@@ -103,7 +103,7 @@ module RVM-COMPILER-CORE
 
 /////////////////////////////////Logic Plugin cells ends///////////////////////////////////////////
                       //list of maps indexed by property rank.
-                      //the map element maps state rank to handler code string
+                      //the map element maps state name to handler code string
                       <handlersList> .List </handlersList>
 
                       <handler> .K </handler>

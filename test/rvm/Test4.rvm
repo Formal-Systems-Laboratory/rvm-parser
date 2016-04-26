@@ -29,6 +29,10 @@ Test (int o){
 		int j;
 	}
 
+	@unsafe {
+	System.err.println("It is not safe");
+	}
+
 
 	   fsm :
      start2 [
