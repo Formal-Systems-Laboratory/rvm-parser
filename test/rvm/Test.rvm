@@ -22,7 +22,7 @@ Test (int o){
 
  //   alias match = unsafe, start
 
-	@match {
+	@safe {
 		int j;
 	}
 
