@@ -28,7 +28,7 @@ module C-MONITOR-EVENT-ACTION
     rule     <methodBody> $eFunc(I:Int) => $methHeader(I) {$mbody} </methodBody>
 
     //print method header
-    rule <methodBody> $methHeader(I:Int) {$mbody} => .K </methodBody>
+    rule <methodBody> $methHeader(I:Int) {$mbody} => $mbody2 </methodBody>
     <events> EL:List </events>
                           <specName> SN:String </specName>
                       //the params of each event, indexed by event id
@@ -42,14 +42,10 @@ module C-MONITOR-EVENT-ACTION
     (.List => ListItem("{\n"))
 
     (.List => ListItem(getStringI(EAs, I))) //the event I's action code
+    </code>
 
     //TODO state updates
     //TODO handler code
-
-    (.List => ListItem("\n}\n"))
-
-
-    </code>
-
+//    (.List => ListItem("\n}\n"))  //the closing curly brace
 
 endmodule
