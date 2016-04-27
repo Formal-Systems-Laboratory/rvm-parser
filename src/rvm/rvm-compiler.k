@@ -119,7 +119,7 @@ rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <logicType> .K => getLogicName(Prop) </logicType>
     <formula> .K => getFormula(Prop) </formula>
     <formulaCopy> .K => getFormula(Prop) </formulaCopy>
-    <handler> .K => getHandlers(Prop) </handler>
+    <handler> .HandlerDecList => getHandlers(Prop) </handler>
     <runPlugin> false => true </runPlugin>
     <phase> X:Int => X +Int 1 </phase>
 

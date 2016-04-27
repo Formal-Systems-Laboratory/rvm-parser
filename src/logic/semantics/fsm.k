@@ -111,7 +111,7 @@ rule    <logicType> fsm  </logicType>
 ////////////////////////////////////////////////
 ///////////collect the handler info
 
-rule <handler> .HandlerDecList => .K </handler>
+//rule <handler> .HandlerDecList => .K </handler>
 
 rule <handler> (@LS:LogicState HB:HandlerBody) HDL:HandlerDecList => HDL </handler>
 <handlersList> L:List (.List => ListItem(getStateNameOf(LS) |-> getHandlerCodeStr(HB) ) )
@@ -155,7 +155,7 @@ rule <readyNum> N:Int => 0 </readyNum>
      <scanNum> _:Int => 0 </scanNum>
      <formula> _:K => .K </formula>
      <formulaCopy> _:K => .K </formulaCopy>
-     <handler> .K </handler>
+     <handler> .HandlerDecList </handler>
  <stateNameMap> SL:List (.List => ListItem(SM)) </stateNameMap>
 
 when N ==Int size(EL)

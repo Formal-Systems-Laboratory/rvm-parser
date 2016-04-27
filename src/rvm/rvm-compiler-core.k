@@ -106,7 +106,7 @@ module RVM-COMPILER-CORE
                       //the map element maps state name to handler code string
                       <handlersList> .List </handlersList>
 
-                      <handler> .K </handler>
+                      <handler> .HandlerDecList </handler>
 
                       <err> .List </err>
 
