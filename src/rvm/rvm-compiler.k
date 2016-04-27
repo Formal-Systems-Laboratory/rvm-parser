@@ -120,11 +120,10 @@ rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <formula> .K => getFormula(Prop) </formula>
     <formulaCopy> .K => getFormula(Prop) </formulaCopy>
     <handler> .K => getHandlers(Prop) </handler>
-    <handlersList> HL:List (.List => ListItem(.Map))  </handlersList>
     <runPlugin> false => true </runPlugin>
     <phase> X:Int => X +Int 1 </phase>
 
 //No properties left
-rule <k>.PropertyDecList => .</k>
+rule <k> .PropertyDecList => . </k>
 <runPlugin> false </runPlugin>
 endmodule

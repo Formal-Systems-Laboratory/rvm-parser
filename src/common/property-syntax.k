@@ -11,9 +11,7 @@ module PROPERTY-SYNTAX
 	syntax HandlerDecHead ::= "@" LogicState
 	syntax HandlerBody ::= BlockBubble
 
-	syntax HandlerDecList ::= HandlerDec | HandlerDec HandlerDecList
-
-	 //List{HandlerDec, ""}		[klabel(HandlerDecListCons)]
+    syntax HandlerDecList ::=  List{HandlerDec, ""} [klabel(HandlerDecListFunc)]
 
 	syntax PropertyDecList          ::= List{PropertyDec, ""}	[klabel('PropertyDecList)]
 endmodule

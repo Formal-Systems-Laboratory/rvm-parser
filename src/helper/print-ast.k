@@ -102,4 +102,12 @@ Print the method body.
 syntax String ::= Block2Str(BlockBubble)
 [function, hook(STRING.token2string), klabel(Block2StringFunc)]
 
+/**Get the state name from a handler dec head.*/
+syntax String ::= getStateNameOf(LogicState) [function]
+rule getStateNameOf(fail) => "fail"
+rule getStateNameOf(X:Id) => Id2String(X)
+
+/*Get the string of handler code*/
+syntax String ::= getHandlerCodeStr(HandlerBody) [function]
+rule getHandlerCodeStr(BB:BlockBubble) => Block2Str(BB)
 endmodule
