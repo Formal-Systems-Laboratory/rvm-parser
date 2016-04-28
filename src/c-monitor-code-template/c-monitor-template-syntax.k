@@ -78,6 +78,7 @@ syntax MonitorStateUpdate ::= GlobalStateUpdate "," LocalStateUpdates
 //the int argument is the property rank of the state var
 syntax GlobalStateUpdate ::= "$gsUpdate" "(" Int ")"
 
+//the arg is the number of states in the current property
 syntax LocalStateUpdates ::= "$lsUpdates" "(" Int ")"
 
 //by querying the configuration, we can build the entry of state name (string) |-> state rank (int)

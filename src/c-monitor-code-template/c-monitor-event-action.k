@@ -44,7 +44,31 @@ module C-MONITOR-EVENT-ACTION
     (.List => ListItem(getStringI(EAs, I))) //the event I's action code
     </code>
 
-    //TODO state updates
+//////////////////////////////////////////////////////////////////////////////
+    //state updates
+   rule <methodBody> $mbody2 => ($stateUpdates(PS) ;; $handlers) </methodBody>
+        <propSize> PS:Int </propSize>
+
+   rule <methodBody> ($stateUpdates(PS:Int) ;; $handlers) =>
+        $sUpdate(0) ,, $stateUpdates(PS) ;; $handlers
+        </methodBody>
+
+   rule <methodBody>
+        ($sUpdate(I:Int) ,, $stateUpdates(PS:Int) ;; $handlers)
+        => $handlers
+        </methodBody>
+        when PS <=Int 0
+
+       rule <methodBody>
+            ($sUpdate(I:Int) ,, $stateUpdates(PS:Int) ;; $handlers) =>
+            ($sUpdate(I +Int 1) ,, $stateUpdates(PS -Int 1) ;; $handlers)
+            </methodBody>
+
+            <k2> .K => $gsUpdate(I), $lsUpdates(getSize(SML, I)) </k2>
+          <stateNameMap> SML:List </stateNameMap>
+when PS >Int 0
+
+
     //TODO handler code
 //    (.List => ListItem("\n}\n"))  //the closing curly brace
 

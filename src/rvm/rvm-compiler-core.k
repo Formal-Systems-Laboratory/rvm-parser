@@ -65,7 +65,8 @@ module RVM-COMPILER-CORE
 //map a state name(string) to its integer rank, temporary working cell
                       <states> .Map </states>
 
-//states name mapping (string -> int, the map in <states> cell), indexed by property rank.
+// Each ListItem is a map from states name to state rank (string -> int),
+//indexed by property rank
                       <stateNameMap> .List </stateNameMap>
 
                       <curStateRank> 0 </curStateRank>
@@ -97,8 +98,6 @@ module RVM-COMPILER-CORE
 
                       <aliasSet> .K </aliasSet>
 
-                      <k2> .K </k2> //additional computation cell
-
 ///////////////////////Specific for FSM//////////////////////////////////////////////////////
 
 /////////////////////////////////Logic Plugin cells ends///////////////////////////////////////////
@@ -115,6 +114,8 @@ module RVM-COMPILER-CORE
                      <code> .List </code>
                      <tmpList> .List </tmpList> //temporary cell for manipulation.
                      <methodBody> .K </methodBody>
+                     <k2> .K </k2> //additional computation cell
+
                        </T>
 
 endmodule
