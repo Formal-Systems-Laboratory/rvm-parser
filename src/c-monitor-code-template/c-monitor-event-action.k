@@ -70,6 +70,13 @@ module C-MONITOR-EVENT-ACTION
           <stateNameMap> SML:List </stateNameMap>
 when PS >Int 0
 
+//finish the state updates code
+       rule <methodBody>
+            ($sUpdate(I:Int) ,, $stateUpdates(0) ;; $handlers) =>
+            $handlers
+            </methodBody>
+            <k2> .K </k2>
+
 //generate global state update code
 //when the property size > 1, the event transition function will have property rank as prefix
 rule <k2> $gsUpdate(I:Int), $lsUpdates(J:Int) => $lsUpdates(J) </k2>
@@ -94,7 +101,7 @@ globalStateUpdate(globalStateVarI(I), propXEventE(SN, EN))
 when PS <=Int 1
 
 //TODO:generate local states update code
-
+rule <k2> $lsUpdates(0) => .K </k2>
 
     //TODO handler code
 //    (.List => ListItem("\n}\n"))  //the closing curly brace
