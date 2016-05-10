@@ -43,6 +43,7 @@ module C-MONITOR-EVENT-ACTION
 
     (.List => ListItem(getStringI(EAs, I))) //the event I's action code
     </code>
+    //store the current event name which will be used to infer event transition function.
     <tmpList> .List => ListItem(getStringI(EL, I)) </tmpList>
 
 //////////////////////////////////////////////////////////////////////////////
@@ -70,12 +71,27 @@ module C-MONITOR-EVENT-ACTION
 when PS >Int 0
 
 //generate global state update code
-rule <k2> $gsUpdate(I), $lsUpdates(getSize(SML, I)) => $lsUpdates(getSize(SML, I)) </k2>
-                          <specName> SN:String </specName>
-                          <tmpList> ListItem(EN:String) </tmpList>
-<code> C:List (.List => ListItem(globalStateUpdate(
-globalStateVarI(I), propXEventE(SN, I, EN)))) </code>
+//when the property size > 1, the event transition function will have property rank as prefix
+rule <k2> $gsUpdate(I:Int), $lsUpdates(J:Int) => $lsUpdates(J) </k2>
+     <specName> SN:String </specName>
+     <tmpList> ListItem(EN:String) </tmpList> //the tmpList stores the current event name
+<code> C:List (.List => ListItem(
+globalStateUpdate(globalStateVarI(I), propXEventE(SN, I, EN))
+))
+</code>
+<propSize> PS:Int </propSize>
+when PS >Int 1
 
+//only a single property is defined
+rule <k2> $gsUpdate(I:Int), $lsUpdates(J:Int) => $lsUpdates(J) </k2>
+     <specName> SN:String </specName>
+     <tmpList> ListItem(EN:String) </tmpList> //the tmpList stores the current event name
+<code> C:List (.List => ListItem(
+globalStateUpdate(globalStateVarI(I), propXEventE(SN, EN))
+))
+</code>
+<propSize> PS:Int </propSize>
+when PS <=Int 1
 
 //TODO:generate local states update code
 
