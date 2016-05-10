@@ -43,6 +43,7 @@ module C-MONITOR-EVENT-ACTION
 
     (.List => ListItem(getStringI(EAs, I))) //the event I's action code
     </code>
+    <tmpList> .List => ListItem(getStringI(EL, I)) </tmpList>
 
 //////////////////////////////////////////////////////////////////////////////
     //state updates
@@ -67,6 +68,16 @@ module C-MONITOR-EVENT-ACTION
             <k2> .K => $gsUpdate(I), $lsUpdates(getSize(SML, I)) </k2>
           <stateNameMap> SML:List </stateNameMap>
 when PS >Int 0
+
+//generate global state update code
+rule <k2> $gsUpdate(I), $lsUpdates(getSize(SML, I)) => $lsUpdates(getSize(SML, I)) </k2>
+                          <specName> SN:String </specName>
+                          <tmpList> ListItem(EN:String) </tmpList>
+<code> C:List (.List => ListItem(globalStateUpdate(
+globalStateVarI(I), propXEventE(SN, I, EN)))) </code>
+
+
+//TODO:generate local states update code
 
 
     //TODO handler code

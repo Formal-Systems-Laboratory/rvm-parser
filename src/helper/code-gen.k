@@ -14,9 +14,12 @@ rule constPrefix(Str:String) => "const " +String Str
 syntax String ::= propertyPrefix(Int) [function]
 rule propertyPrefix(I:Int) => "Prop_" +String Int2String(I) +String "_"
 
+syntax String ::= globalStateVarI(Int) [function]
+rule globalStateVarI(I:Int) => propertyPrefix(I) +String "RVC_state"
+
 //the code for resetting global state var i
 syntax String ::= resetGlobalStateI(Int) [function]
-rule resetGlobalStateI(I:Int) => propertyPrefix(I) +String "RVC_state = 0;\n"
+rule resetGlobalStateI(I:Int) => globalStateVarI(I) +String " = 0;\n"
 
     syntax String ::= getGlobalStateVarInit(Int) [function]
     rule getGlobalStateVarInit(I:Int) => staticIntPrefix(resetGlobalStateI(I))
@@ -91,5 +94,9 @@ rule printMethodHeader(SpecName:String, EventName:String, Args:String)
  => "void __RVC_" +String SpecName +String "_" +String
  EventName +String "(" +String Args +String ")"
 
+////////////the two args are global state var name and transition function name
+syntax String ::= globalStateUpdate(String, String) [function]
+rule globalStateUpdate(GSV:String, TF:String) =>
+    GSV +String " = " +String TF +String "[" +String GSV +String "];"
 
 endmodule
