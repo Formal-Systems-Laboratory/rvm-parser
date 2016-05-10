@@ -111,12 +111,15 @@ rule    <logicType> fsm  </logicType>
 ////////////////////////////////////////////////
 ///////////collect the handler info
 
-//rule <handler> .HandlerDecList => .K </handler>
-
 rule <handler> (@LS:LogicState HB:HandlerBody) HDL:HandlerDecList => HDL </handler>
-<handlersList> L:List (.List => ListItem(getStateNameOf(LS) |-> getHandlerCodeStr(HB) ) )
+<propNum> P:Int </propNum>
+<specName> SN:String </specName>
+<handlersList> L:List (.List => ListItem(localStateVarI(SN, P, getStateNameOf(LS)):String
+                |-> (getHandlerCodeStr(HB)):String ) )
 </handlersList>
 
+/////////////the three args are spec name, property rank and state name
+// localStateVarI(SN, P, getStateNameOf(LS))
 ////////////////////////////////////////////////
 
 rule
