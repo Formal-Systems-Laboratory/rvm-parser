@@ -126,4 +126,5 @@ rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
 //No properties left
 rule <k> .PropertyDecList => . </k>
 <runPlugin> false </runPlugin>
+<states> M:Map => .Map </states>
 endmodule

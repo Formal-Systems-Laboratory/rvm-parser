@@ -99,4 +99,9 @@ syntax String ::= globalStateUpdate(String, String) [function]
 rule globalStateUpdate(GSV:String, TF:String) =>
     GSV +String " = " +String TF +String "[" +String GSV +String "];"
 
+/////////////the three args are local state var, global state var, state rank
+syntax String ::= localStateUpdate(String, String, Int) [function]
+rule localStateUpdate(LSV:String, GSV:String, SR:Int) =>
+    LSV +String " = " +String GSV +String " == " +String Int2String(SR)
+
 endmodule
