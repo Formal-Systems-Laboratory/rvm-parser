@@ -115,6 +115,8 @@ module RVM-COMPILER-CORE
                      <methodBody> .K </methodBody>
                      <k2> .K </k2> //additional computation cell
 
+        ///////specific for monitor code in language C
+        <header> .List </header>
                        </T>
 
 endmodule
