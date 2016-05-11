@@ -36,6 +36,13 @@ rule <k> $incl $main => $main </k>
                       ListItem("#include <stdlib.h>") )
      </code>
 
+//incorporate the user provided declarations
+rule <k> $main </k>
+<decBubble> DBL:DecBubbleList => .K </decBubble>
+              <code> L:List (.List =>
+               ListItem(declBubbleList2String(DBL)))
+              </code>
+
 /////////
 //rewrite the global var declarations.
  rule <k> $main => $globalInit(0) $main1 </k>

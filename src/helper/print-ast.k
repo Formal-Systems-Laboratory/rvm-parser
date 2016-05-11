@@ -110,4 +110,8 @@ rule getStateNameOf(X:Id) => Id2String(X)
 /*Get the string of handler code*/
 syntax String ::= getHandlerCodeStr(HandlerBody) [function]
 rule getHandlerCodeStr(BB:BlockBubble) => Block2Str(BB)
+
+/*Print the Decl list as string*/
+syntax String ::= declBubbleList2String(DecBubbleList) [function, hook(STRING.token2string)]
+
 endmodule
