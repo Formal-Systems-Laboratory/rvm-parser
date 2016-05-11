@@ -1,10 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int foo = 2; 
-
-
-   
 static int Prop_0_RVC_state = 0;
 
 static int Prop_1_RVC_state = 0;
@@ -40,15 +36,15 @@ Prop_1_RVC_state = Test_Prop_1_hasnext[Prop_1_RVC_state];
 start2 = Prop_1_RVC_state == 0
 safe2 = Prop_1_RVC_state == 1
 unsafe2 = Prop_1_RVC_state == 2
-if (Test_Prop_0_start) {
+if (Test_Prop_0_unsafe){
+{
+	fprintf(stderr, "It's not safe.\n");
+	}
+}
+if (Test_Prop_0_start){
 {
 		int j;
 fprintf(stderr, "Start!\n");
-	}
-}
-if (Test_Prop_0_unsafe) {
-{
-	fprintf(stderr, "It's not safe.\n");
 	}
 }
 if (Test_Prop_1_unsafe2) {
@@ -75,15 +71,15 @@ Prop_1_RVC_state = Test_Prop_1_next[Prop_1_RVC_state];
 start2 = Prop_1_RVC_state == 0
 safe2 = Prop_1_RVC_state == 1
 unsafe2 = Prop_1_RVC_state == 2
-if (Test_Prop_0_start) {
+if (Test_Prop_0_unsafe){
+{
+	fprintf(stderr, "It's not safe.\n");
+	}
+}
+if (Test_Prop_0_start){
 {
 		int j;
 fprintf(stderr, "Start!\n");
-	}
-}
-if (Test_Prop_0_unsafe) {
-{
-	fprintf(stderr, "It's not safe.\n");
 	}
 }
 if (Test_Prop_1_unsafe2) {

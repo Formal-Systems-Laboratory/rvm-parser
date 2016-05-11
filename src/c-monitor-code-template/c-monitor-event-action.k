@@ -129,6 +129,6 @@ when J >Int 0
 rule <methodBody> $handlers => .K </methodBody>
 <k2> .K </k2>
 <handlersList> HDM:Map </handlersList>
-<code> C:List (.List => getHandlerCode(HL)) (.List => ListItem("\n}\n")) </code>
+<code> C:List (.List => getHandlerCode(HDM)) (.List => ListItem("\n}\n")) </code>
 
 endmodule

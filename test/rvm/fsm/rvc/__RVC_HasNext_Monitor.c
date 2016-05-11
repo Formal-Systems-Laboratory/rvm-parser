@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 static int Prop_0_RVC_state = 0;
 
 int HasNext_Prop_0_start = 0;
@@ -50,4 +49,5 @@ fprintf(stderr, "next called without hasNext!\n");
 }
 
 }
+
 
