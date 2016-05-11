@@ -132,7 +132,7 @@ getHandlerCode(M)
 //wrap the given content with the C's header file's template
 //two args are: 1) main part of the header file, 2) spec name
 //the wrapper code will be generated based on the spec name
-syntax String ::= addCTemplate(String, String)
+syntax String ::= addCTemplate(String, String)  [function]
 rule addCTemplate(Content:String, SpecName:String)
  => "#ifndef __RVC_" +String SpecName +String "_MONITOR_H\n"
  +String "#define __RVC_" +String SpecName +String "_MONITOR_H\n\n"

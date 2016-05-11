@@ -154,16 +154,24 @@ when getStringI(EL, J) ==String Id2String(X)
     andBool PS <=Int 1
 
 //////////////////////////////////////////////////////////////////////////////////
-//generate the output monitor file
+//generate the output monitor file and header file
     rule <phase> 2 => 3 </phase>
-        //the output file name
+        //the output c file name and header file name are stored in cell <k> and <k2> resp.
         <k> .K => "__RVC_" +String SN +String "_Monitor.c" </k>
-        <k2> .K </k2>
+        <k2> .K => "__RVC_" +String SN +String "_Monitor.h"  </k2>
         <methodBody> .K </methodBody>
-<specName> SN:String </specName>
+        <specName> SN:String </specName>
 
     rule <phase> 3 </phase>
-    <k> OutFileName:String => #write(#open(OutFileName), StringList2String(CL)) </k>
+    <k> OutCFileName:String => #write(#open(OutCFileName), StringList2String(CL)) </k>
     <code> CL:List => .List </code>
+
+    //generate the output header file
+    <k2> OutHFileName:String => #write(#open(OutHFileName),
+    addCTemplate(StringList2String(HL), SN)) </k2>
+    <header> HL:List => .List </header>
+    <specName> SN:String </specName>
+
+//////////////////////////////////////////////////////////////////////////////////
 
 endmodule
