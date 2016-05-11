@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-SeatBelt {
+SeatBelt() {
   event seatBeltRemoved(){fprintf(stderr, "Seat belt removed.\n");}
 
   event seatBeltAttached() {fprintf(stderr, "Seat belt attached.\n");}

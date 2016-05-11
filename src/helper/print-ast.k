@@ -8,13 +8,14 @@ module PRINT-AST
     imports C-MONITOR-TEMPLATE-SYNTAX
 
     //print package ast
-    syntax String ::=  toString(OptionalPackageDec) [function]
-    rule toString(package X:PackageName ;) => "package " +String toString(X) +String ";"
-    rule toString(None:OptionalPackageDec) => "\n"  [owise]
+    syntax String ::=  PackageDec2String(OptionalPackageDec) [function]
+    rule PackageDec2String(package X:PackageName ;) => "package " +String PackageName2String(X)
+                                                                  +String ";"
+    rule PackageDec2String(None:OptionalPackageDec) => "\n"
 
-    syntax String ::= toString(PackageName) [function]
-    rule toString(X:Id) => Id2String(X)
-    rule toString(P:PackageName . X:Id) => toString(P) +String "." +String Id2String(X)
+    syntax String ::= PackageName2String(PackageName) [function]
+    rule PackageName2String(X:Id) => Id2String(X)
+    rule PackageName2String(P:PackageName . X:Id) => PackageName2String(P) +String "." +String Id2String(X)
 
     //get logic name
     syntax LogicName ::= getLogicName(PropertyDec) [function]
