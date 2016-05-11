@@ -12,6 +12,7 @@ module C-MONITOR-EVENT-ACTION
     rule <k> $main4 => $eventFuncs(size(EL)) </k>
         <events> EL:List </events>
         <states> _:Map => .Map </states>
+        <code> CL:List (.List => ListItem("\n")) </code>
 
     rule <k> $eventFuncs(I:Int) => ($eFunc(0), $eventFuncs(I)) </k>
     when I >Int 0
@@ -20,10 +21,13 @@ module C-MONITOR-EVENT-ACTION
     when I <=Int 0
 
     rule <k> $eFunc(I:Int), $eventFuncs(0) => .K </k>
+    <methodBody> .K </methodBody>
+    <k2> .K </k2>
 
     rule <k> $eFunc(I:Int), $eventFuncs(J:Int) => $eFunc(I +Int 1), $eventFuncs(J -Int 1) </k>
     <methodBody> .K => $eFunc(I) </methodBody>
     <tmpList> _ => .List </tmpList>
+            <code> CL:List (.List => ListItem("\n")) </code>
     when J >Int 0
 
     rule     <methodBody> $eFunc(I:Int) => $methHeader(I) {$mbody} </methodBody>
@@ -121,14 +125,10 @@ rule <k2> $lsUpdate(I:Int) $lsUpdates(J:Int) => $lsUpdate(I +Int 1) $lsUpdates(J
 </code>
 when J >Int 0
 
-//TODO:generate local states update code
-
-    //TODO handler code
-//    (.List => ListItem("\n}\n"))  //the closing curly brace
-
+//handler code and closing parenthesis
 rule <methodBody> $handlers => .K </methodBody>
 <k2> .K </k2>
 <handlersList> HL:List </handlersList>
-<code> C:List (.List => getHandlerCode(HL)) </code>
+<code> C:List (.List => getHandlerCode(HL)) (.List => ListItem("\n}\n")) </code>
 
 endmodule

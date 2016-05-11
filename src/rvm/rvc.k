@@ -17,5 +17,4 @@ module RVC
     imports LOGIC-PLUGINS-SHELL
     imports C-MONITOR-TEMPLATE
 
-
 endmodule

@@ -33,7 +33,7 @@ rule
 //TODO: incorporate the user provided includes
 rule <k> $incl $main => $main </k>
      <code> L:List (.List => ListItem("#include <stdio.h>")
-                      ListItem("#include <stdlib.h>") )
+                      ListItem("#include <stdlib.h>\n") )
      </code>
 
 //incorporate the user provided declarations
@@ -152,5 +152,16 @@ when
 when getStringI(EL, J) ==String Id2String(X)
     andBool PS <=Int 1
 
+//////////////////////////////////////////////////////////////////////////////////
+//generate the output monitor file
+    rule <phase> 3 => 4 </phase>
+        //the output file name
+        <k> .K => "__RVC_" +String SN +String "_Monitor.c" </k>
+        <k2> .K </k2>
+<specName> SN:String </specName>
+
+    rule <phase> 4 </phase>
+    <k> OutFileName:String => #write(#open(OutFileName), StringList2String(CL)) </k>
+    <code> CL:List => .List </code>
 
 endmodule

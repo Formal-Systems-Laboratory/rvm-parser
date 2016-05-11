@@ -69,6 +69,12 @@ rule getStringI(ListItem(X:String) L:List, I:Int) => "" when I <Int 0
 rule getStringI(ListItem(X:String) L:List, I:Int) =>
      getStringI(L, I -Int 1) when I >Int 0
 
+//convert a list of strings into a single string
+syntax String ::= StringList2String(List) [function]
+rule StringList2String(.List) => "\n"
+rule StringList2String(ListItem(S:String)) => S +String "\n"
+rule StringList2String(ListItem(S:String) L:List) => S +String "\n" +String StringList2String(L)
+
 
 endmodule
 
