@@ -72,7 +72,11 @@ rule addCurlyBraces(Str:String) => ("{" +String Str +String "}")
 
 rule printIntSeq(.List) => ""
 rule printIntSeq(ListItem(I:Int)) => Int2String(I)
-rule printIntSeq(ListItem(I:Int) L:List) => Int2String(I) +String ", " +String printIntSeq(L)
+rule printIntSeq(ListItem(I:Int) ListItem(J:Int)) =>
+    Int2String(I) +String ", " +String Int2String(J)
+rule printIntSeq(ListItem(I:Int) ListItem(J:Int) L:List) =>
+Int2String(I) +String ", " +String Int2String(J) +String ", " +String printIntSeq(L)
+
 rule printIntArr(L:List) => addCurlyBraces(printIntSeq(L))
 
 //args are spec name, property rank, event name and transition function array
