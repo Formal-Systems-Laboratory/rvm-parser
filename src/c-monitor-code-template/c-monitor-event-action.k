@@ -126,4 +126,9 @@ when J >Int 0
     //TODO handler code
 //    (.List => ListItem("\n}\n"))  //the closing curly brace
 
+rule <methodBody> $handlers => .K </methodBody>
+<k2> .K </k2>
+<handlersList> HL:List </handlersList>
+<code> C:List (.List => getHandlerCode(HL)) </code>
+
 endmodule
