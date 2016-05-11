@@ -128,7 +128,7 @@ when J >Int 0
 //handler code and closing parenthesis
 rule <methodBody> $handlers => .K </methodBody>
 <k2> .K </k2>
-<handlersList> HL:List </handlersList>
+<handlersList> HDM:Map </handlersList>
 <code> C:List (.List => getHandlerCode(HL)) (.List => ListItem("\n}\n")) </code>
 
 endmodule

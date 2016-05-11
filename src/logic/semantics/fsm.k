@@ -114,7 +114,7 @@ rule    <logicType> fsm  </logicType>
 rule <handler> (@LS:LogicState HB:HandlerBody) HDL:HandlerDecList => HDL </handler>
 <propNum> P:Int </propNum>
 <specName> SN:String </specName>
-<handlersList> L:List (.List => ListItem(localStateVarI(SN, P, getStateNameOf(LS)):String
+<handlersList> HDM:Map (.Map => (localStateVarI(SN, P, getStateNameOf(LS)):String
                 |-> (getHandlerCodeStr(HB)):String ) )
 </handlersList>
 
