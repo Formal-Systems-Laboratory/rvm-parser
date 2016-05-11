@@ -10,8 +10,8 @@ void __RVC_HasNext_reset(void)
 {
 Prop_0_RVC_state = 0;
 }
-const static int HasNext_hasnext[] = {1, 1, 1, 3, };
-const static int HasNext_next[] = {2, 0, 2, 3, };
+const static int HasNext_hasnext[] = {1, 1, 1, 3};
+const static int HasNext_next[] = {2, 0, 2, 3};
 
 
 
@@ -47,6 +47,9 @@ if (HasNext_Prop_0_unsafe) {
 fprintf(stderr, "next called without hasNext!\n");
    }
 }
+
+}
+
 
 }
 
