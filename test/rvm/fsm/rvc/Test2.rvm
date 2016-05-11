@@ -1,11 +1,8 @@
 package rvm;
 
-import java.io.*;
 Test (int o){
-	x = "foo"; 
-	class bar {
-		private int foo() { return 1; }
-		}
+	int foo = 2; 
+
 
    event hasnext(Iterator i) {} // {1, 1, 1, 3}
    event next(Iterator i) { int i = 0; {i--;} int j=i+ 2 ;
@@ -27,10 +24,11 @@ Test (int o){
 
 	@start {
 		int j;
+fprintf(stderr, "Start!\n");
 	}
 
 	@unsafe {
-	System.err.println("It is not safe");
+	fprintf(stderr, "It's not safe.\n");
 	}
 
 
@@ -50,6 +48,7 @@ Test (int o){
 
 	@unsafe2 {
 		int k;
+fprintf(stderr, "It's in state unsafe2.\n");
 	}
 
 
