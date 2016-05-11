@@ -16,8 +16,7 @@ module C-MONITOR-TEMPLATE
 rule
 <lang> "c" </lang>
 <runPlugin> false </runPlugin>
-<propSize> X:Int </propSize>
-<phase> X:Int => X +Int 1 </phase>
+<phase> 1 => 2 </phase>
 <k> .K => $CMonitor </k>
 
 
@@ -154,13 +153,14 @@ when getStringI(EL, J) ==String Id2String(X)
 
 //////////////////////////////////////////////////////////////////////////////////
 //generate the output monitor file
-    rule <phase> 3 => 4 </phase>
+    rule <phase> 2 => 3 </phase>
         //the output file name
         <k> .K => "__RVC_" +String SN +String "_Monitor.c" </k>
         <k2> .K </k2>
+        <methodBody> .K </methodBody>
 <specName> SN:String </specName>
 
-    rule <phase> 4 </phase>
+    rule <phase> 3 </phase>
     <k> OutFileName:String => #write(#open(OutFileName), StringList2String(CL)) </k>
     <code> CL:List => .List </code>
 

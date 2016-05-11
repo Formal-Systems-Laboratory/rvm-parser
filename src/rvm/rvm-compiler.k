@@ -112,6 +112,8 @@ when (Id2String(X) in EL)
 //No events left
 rule
 <k> {.K (.EventDecList) Props:PropertyDecList} => Props </k>
+    <phase> 0 => 1 </phase>
+
 
 //add the property formula and corresponding handlers
 rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
@@ -121,10 +123,10 @@ rule <k> Prop:PropertyDec Props:PropertyDecList => Props </k>
     <formulaCopy> .K => getFormula(Prop) </formulaCopy>
     <handler> .HandlerDecList => getHandlers(Prop) </handler>
     <runPlugin> false => true </runPlugin>
-    <phase> X:Int => X +Int 1 </phase>
 
 //No properties left
 rule <k> .PropertyDecList => . </k>
 <runPlugin> false </runPlugin>
 <states> M:Map => .Map </states>
+
 endmodule
