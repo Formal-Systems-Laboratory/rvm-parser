@@ -27,11 +27,15 @@ rule resetGlobalStateI(I:Int) => globalStateVarI(I) +String " = 0;\n"
     /*Return the string of reset function, given the name of the specification,
     and the number of properties*/
     syntax String ::= printResetFunc(String, Int) [function]
+    syntax String ::= printResetFuncHeader(String, Int) [function]
+
+rule printResetFuncHeader(SpecName:String, I:Int) => "void __RVC_" +String SpecName
+     +String "_reset(void)"
 
     rule printResetFunc(SpecName:String, 0) => ""
 
-    rule printResetFunc(SpecName:String, I:Int) => "void __RVC_" +String SpecName
-     +String "_reset(void)\n" +String "{\n" +String resetGlobalStates(I) +String "}"
+    rule printResetFunc(SpecName:String, I:Int) => printResetFuncHeader(SpecName, I)
+     +String "\n{\n" +String resetGlobalStates(I) +String "}\n"
     when I =/=Int 0
 
     syntax String ::= resetGlobalStates(Int) [function]

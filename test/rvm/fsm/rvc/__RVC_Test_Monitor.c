@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+int foo = 2; 
+
+
+   
 static int Prop_0_RVC_state = 0;
 
 static int Prop_1_RVC_state = 0;
@@ -16,10 +20,11 @@ void __RVC_Test_reset(void)
 Prop_0_RVC_state = 0;
 Prop_1_RVC_state = 0;
 }
-const static int Test_Prop_0_hasnext[]= {1, 1, 1, 3};
-const static int Test_Prop_0_next[]= {2, 0, 2, 3};
-const static int Test_Prop_1_hasnext[]= {1, 1, 1, 3};
-const static int Test_Prop_1_next[]= {2, 0, 2, 3};
+
+const static int Test_Prop_0_hasnext[]= {1, 1, 1, 3, };
+const static int Test_Prop_0_next[]= {2, 0, 2, 3, };
+const static int Test_Prop_1_hasnext[]= {1, 1, 1, 3, };
+const static int Test_Prop_1_next[]= {2, 0, 2, 3, };
 
 
 
@@ -47,7 +52,7 @@ if (Test_Prop_0_start){
 fprintf(stderr, "Start!\n");
 	}
 }
-if (Test_Prop_1_unsafe2) {
+if (Test_Prop_1_unsafe2){
 {
 		int k;
 fprintf(stderr, "It's in state unsafe2.\n");
@@ -82,16 +87,11 @@ if (Test_Prop_0_start){
 fprintf(stderr, "Start!\n");
 	}
 }
-if (Test_Prop_1_unsafe2) {
+if (Test_Prop_1_unsafe2){
 {
 		int k;
 fprintf(stderr, "It's in state unsafe2.\n");
 	}
-}
-
-}
-
-}
 }
 
 }

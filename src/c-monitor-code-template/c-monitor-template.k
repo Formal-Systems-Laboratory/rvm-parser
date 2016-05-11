@@ -96,6 +96,8 @@ rule <k> $reset $main3 => $main3 </k>
 <specName> SN:String </specName>
 <propSize> P:Int </propSize>
 <code> Code:List (.List => ListItem(printResetFunc(SN, P):String)) </code>
+<header> Header:List (.List =>
+ListItem(printResetFuncHeader(SN, P) +String ";")) </header>
 
 //rewrite $main3 to state transitions and $main4
 rule

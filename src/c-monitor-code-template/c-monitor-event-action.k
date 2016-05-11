@@ -48,8 +48,14 @@ module C-MONITOR-EVENT-ACTION
 
     (.List => ListItem(getStringI(EAs, I))) //the event I's action code
     </code>
+
+    <header> HeaderCode:List (.List =>
+        ListItem(printMethodHeader(SN, getStringI(EL, I), getStringI(EPs, I)) +String ";"))
+    </header>
+
     //store the current event name which will be used to infer event transition function.
     <tmpList> .List => ListItem(getStringI(EL, I)) </tmpList>
+
 
 //////////////////////////////////////////////////////////////////////////////
     //state updates
