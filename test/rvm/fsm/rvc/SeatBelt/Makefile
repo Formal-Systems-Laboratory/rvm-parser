@@ -1,6 +1,6 @@
 all: compile test1 test2
 
-compile: rvc.k
+compile: ../../../../../src/rvm/rvc.k
 	kompile -d . ../../../../../src/rvm/rvc.k
 
 __RVC_SeatBelt_Monitor.c: seatbelt.rvm
