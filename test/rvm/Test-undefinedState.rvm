@@ -1,0 +1,31 @@
+package rvm;
+
+import java.io.*;
+Test (int o){
+	
+   event hasnext(Iterator i) {} // after
+   event next(Iterator i) {} // before 
+
+   fsm :
+     start [
+        next -> unsafe
+        hasnext -> safe
+     ]
+     safe [
+        next -> start
+        hasnext -> bar  //state bar is undefined, should report error.
+     ]
+     unsafe [
+        next -> unsafe
+        hasnext -> safe
+     ]
+
+ //   alias match = unsafe, start
+
+	@match {
+		int j;
+	}
+
+
+
+}

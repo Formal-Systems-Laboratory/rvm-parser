@@ -9,7 +9,7 @@ module MOP-SYNTAX
 
 
 	//top level sort (aka CompilationUnit)
-	syntax MOP ::= OptionalPackageDec ImportDecList SpecDec [prefer, klabel('MOP)]
+	syntax MOP ::= OptionalPackageDec ImportDecList SpecDec //[prefer, klabel('MOP)]
 
 
 

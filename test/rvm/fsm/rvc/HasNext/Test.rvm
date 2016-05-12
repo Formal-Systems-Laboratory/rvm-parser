@@ -1,0 +1,59 @@
+package rvm;
+
+#include <stdio.h>
+#include "string.h"
+#include <utils.h>
+
+Test (int o){
+	int foo = 2; 
+
+
+   event hasnext(Iterator i) {} // {1, 1, 1, 3}
+   event next(Iterator i) { int i = 0; {i--;} int j=i+ 2 ;
+{{{}}} } // {2, 0, 2, 3}
+
+	   fsm :
+     start [
+        next -> unsafe
+        hasnext -> safe
+     ]
+     safe [
+        next -> start
+        hasnext -> safe 
+     ]
+     unsafe [
+        next -> unsafe
+        hasnext -> safe
+     ]
+
+	@start {
+		int j;
+fprintf(stderr, "Start!\n");
+	}
+
+	@unsafe {
+	fprintf(stderr, "It's not safe.\n");
+	}
+
+
+	   fsm :
+     start2 [
+        next -> unsafe2
+        hasnext -> safe2
+     ]
+     safe2 [
+        next -> start2
+        hasnext -> safe2
+     ]
+     unsafe2 [
+        next -> unsafe2
+        hasnext -> safe2
+     ]
+
+	@unsafe2 {
+		int k;
+fprintf(stderr, "It's in state unsafe2.\n");
+	}
+
+
+}

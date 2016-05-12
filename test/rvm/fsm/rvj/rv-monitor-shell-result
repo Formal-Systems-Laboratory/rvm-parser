@@ -1,0 +1,28 @@
+properties={safe condition=$state$ == 2, match condition=$state$ == 1, state declaration=int $state$;
+static final int $transition_hasnext$[] = {2, 2, 2, 3};;
+static final int $transition_next$[] = {1, 1, 0, 3};;
+, monitoring body=, monitored events for set=hasnext:{
+  $monitor$.$state$ = $transition_hasnext$[$monitor$.$state$];
+}
+
+next:{
+  $monitor$.$state$ = $transition_next$[$monitor$.$state$];
+}
+
+, match coenables={next=[[next], [next, hasnext]], hasnext=[[next], [next, hasnext]]}
+, unsafe condition=$state$ == 1, monitored events=hasnext:{
+  $state$ = $transition_hasnext$[$state$];
+}
+
+next:{
+  $state$ = $transition_next$[$state$];
+}
+
+, match enables={next=[[], [next], [hasnext], [next, hasnext]], hasnext=[[], [next], [hasnext], [next, hasnext]]}, reset=$state$ = 0;
+, start condition=$state$ == 0, fail condition=$state$ == 3
+, initialization=$state$ = 0;
+, nonfail condition=$state$ != 3
+, state declaration for set=static final int $transition_hasnext$[] = {2, 2, 2, 3};;
+static final int $transition_next$[] = {1, 1, 0, 3};;
+}
+startEvents=[next, hasnext]

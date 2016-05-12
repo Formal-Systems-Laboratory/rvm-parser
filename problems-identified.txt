@@ -1,0 +1,16 @@
+1. current rv-monitor for c part only supports one pair of property and handler 
+in one spec.
+
+the part for java is better, but the generated code does not compile due to
+re-define some vars in the same runtime monitor function (the method in which 
+event dispatching occurs).
+
+***
+In fact, even if the compile-time errors are corrected, the generated code for
+multi-properties spec is still incorrect.
+
+The transition functions for each property can be generated, but
+the monitor is not keeping track of the states of multiple fsm.
+It only keeps track of a single current state, which is not 
+the combination of states for each fsm, no matter how many
+properties you have.

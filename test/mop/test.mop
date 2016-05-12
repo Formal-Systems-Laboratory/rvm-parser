@@ -22,6 +22,8 @@ PipedOutputStream_UnconnectedWrite(PipedOutputStream o) {
 			write -> yes
 		]
 
+//alias match = yes
+
 	@fail {
 
 	}

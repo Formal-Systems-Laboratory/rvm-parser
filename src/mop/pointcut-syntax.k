@@ -53,10 +53,10 @@ module ASPECTJ-POINTCUT-SYNTAX
 
     syntax ModifiersPattern ::= ModifierList | "!" ModifierList
 
-    syntax IdPattern ::=  //id  with * and .. wildcards (it can start with * but not with .. , same about end)
+    syntax IdPattern// ::=  //id  with * and .. wildcards (it can start with * but not with .. , same about end)
                // r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*|\\.)*([A-Za-z\\_]|\\*)"     [token]
-                 r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*([A-Za-z\\_]|\\*)"     [token,reject2("new"), klabel('IdPattern)]
-               | r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)" [token,klabel('IdPatternSingleChar)]
+              //   r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)([A-Za-z0-9\\_]|(\\.\\.)|\\*)*([A-Za-z\\_]|\\*)"     [token,reject2("new"), klabel('IdPattern)]
+             //  | r"(?<!([A-Za-z0-9\\_]|\\*))([A-Za-z\\_]|\\*)" [token,klabel('IdPatternSingleChar)]
 
     syntax TypeId ::= Type //| id (type includes id)
     syntax TypeIdDoubleDotStar ::=    TypeId [klabel('TIdDDotStarTId)]

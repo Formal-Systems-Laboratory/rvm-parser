@@ -8,6 +8,12 @@ syntax ImportDec ::= "import" TypeName                  ";"  [klabel('TypeImport
                    | "import" "static" TypeName "." Id  ";"  [klabel('StaticImportDec)]
                    | "import" "static" TypeName "." "*" ";"  [klabel('StaticImportOnDemandDec)]
 
+//                   //for c code
+                   | "#include" "<" Id ".h" ">" [klabel('CInclude1)]
+                   | "#include" String [klabel('CInclude2)]
+//                   | "#include" "\"" Id ".h" "\"" [klabel('CInclude2)]
+
+
 syntax PackageDec ::=  "package" PackageName ";"     [klabel('PackageDec)]
 syntax OptionalPackageDec ::= PackageDec | None
 syntax None

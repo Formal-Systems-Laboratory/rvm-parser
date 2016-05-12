@@ -1,0 +1,24 @@
+package rvm;
+
+import java.io.*;
+Test (int o){
+	event create(){
+		int i;
+	}
+	event close(){
+    		int i;
+	}
+
+	event create(){
+		int k;
+	}
+
+	ere: x & x
+
+	@match {
+		int j;
+	}
+
+
+
+}

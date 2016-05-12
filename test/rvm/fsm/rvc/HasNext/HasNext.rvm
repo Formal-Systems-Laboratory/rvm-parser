@@ -1,0 +1,36 @@
+package rvm;
+
+
+HasNext(Iterator i) {
+   event hasnext(Iterator i) {} 
+   event next(Iterator i) {} 
+
+   fsm :
+     start [
+        next -> unsafe
+        hasnext -> safe
+     ]
+     safe [
+        next -> start
+        hasnext -> safe 
+     ]
+     unsafe [
+        next -> unsafe
+        hasnext -> safe
+     ]
+
+	
+   @unsafe {
+fprintf(stderr, "next called without hasNext!\n");
+   }
+
+}
+
+
+
+
+
+
+
+
+
