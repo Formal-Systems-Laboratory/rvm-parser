@@ -119,11 +119,22 @@ syntax String ::= declBubbleList2String(DecBubbleList) [function, hook(STRING.to
 syntax String ::= importList2String(ImportDecList) [function]
 syntax String ::= importDecl2String(ImportDec) [function]
 
-rule importList2String(.ImportDecList) => ""
-rule importList2String(I:ImportDec) => importDecl2String(I)
+rule importList2String(.ImportDecList) => "\n"
+rule importList2String(I:ImportDec) => importDecl2String(I) +String "\n"
 rule importList2String(I:ImportDec IDL:ImportDecList) => importDecl2String(I) +String "\n"
     +String importList2String(IDL)
 
-rule importDecl2String(I:ImportDec) => "fake import"
+rule importDecl2String(import TN:TypeName ;) => "import " +String TypeName2String(TN) +String ";"
+rule importDecl2String(import PN:PackageName .*;) => "import " +String PackageName2String(PN)
+    +String ".*;"
+rule importDecl2String(import static TN:TypeName . X:Id ;) => "import static " +String
+    TypeName2String(TN) +String "." +String Id2String(X) +String ";"
+
+rule importDecl2String(import static TN:TypeName . * ;) => "import static " +String
+    TypeName2String(TN) +String ".*;"
+
+rule importDecl2String(#include <X:Id .h>) => "#include <" +String Id2String(X) +String ".h>"
+
+rule importDecl2String(#include Str:String) => "#include \"" +String Str +String "\""
 
 endmodule

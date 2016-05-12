@@ -10,7 +10,8 @@ syntax ImportDec ::= "import" TypeName                  ";"  [klabel('TypeImport
 
 //                   //for c code
                    | "#include" "<" Id ".h" ">" [klabel('CInclude1)]
-                   | "#include" "\"" Id ".h" "\"" [klabel('CInclude2)]
+                   | "#include" String [klabel('CInclude2)]
+//                   | "#include" "\"" Id ".h" "\"" [klabel('CInclude2)]
 
 
 syntax PackageDec ::=  "package" PackageName ";"     [klabel('PackageDec)]

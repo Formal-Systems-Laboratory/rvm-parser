@@ -1,5 +1,9 @@
 package rvm;
 
+#include <stdio.h>
+#include "string.h"
+#include <utils.h>
+
 Test (int o){
 	int foo = 2; 
 
