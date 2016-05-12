@@ -119,6 +119,11 @@ syntax String ::= declBubbleList2String(DecBubbleList) [function, hook(STRING.to
 syntax String ::= importList2String(ImportDecList) [function]
 syntax String ::= importDecl2String(ImportDec) [function]
 
-rule importList2String(.ImportDecList)
+rule importList2String(.ImportDecList) => ""
+rule importList2String(I:ImportDec) => importDecl2String(I)
+rule importList2String(I:ImportDec IDL:ImportDecList) => importDecl2String(I) +String "\n"
+    +String importList2String(IDL)
+
+rule importDecl2String(I:ImportDec) => "fake import"
 
 endmodule
