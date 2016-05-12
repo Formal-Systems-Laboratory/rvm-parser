@@ -13,7 +13,7 @@ test2: __RVC_SeatBelt_Monitor.c
 	gcc test_2/seatbelt.c __RVC_SeatBelt_Monitor.c -o test2_k
 	
 clean:
-	rm -f test1_k test2_k __RVC_* 
+	rm -f test1_k test2_k __RVC_* actualOut actualErr
 
 test: test1_k test2_k
 	-@./test1_k 1> actualOut 2> actualErr
