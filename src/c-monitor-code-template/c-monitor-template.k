@@ -31,9 +31,10 @@ rule
 //generate the include part.
 //TODO: incorporate the user provided includes
 rule <k> $incl $main => $main </k>
-     <code> L:List (.List => ListItem("#include <stdio.h>")
-                      ListItem("#include <stdlib.h>\n") )
+     <code> L:List (.List => ListItem(IDL)
+                      ListItem("#include <stdlib.h>\n\n") )
      </code>
+     <importList> IDL:String </importList>
 
 //incorporate the user provided declarations
 rule <k> $main </k>

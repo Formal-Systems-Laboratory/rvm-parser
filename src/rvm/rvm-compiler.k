@@ -18,7 +18,7 @@ module RVM-COMPILER
 */
 rule <k> X:OptionalPackageDec Y:ImportDecList Z:SpecDec => Z </k>
     <package> "" => PackageDec2String(X) </package>
-    <importList> .K => Y </importList>
+    <importList> "" => importList2String(Y) </importList>
 
 /**
 * Store the spec name and params.

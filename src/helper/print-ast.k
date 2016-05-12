@@ -115,4 +115,10 @@ rule getHandlerCodeStr(BB:BlockBubble) => Block2Str(BB)
 /*Print the Decl list as string*/
 syntax String ::= declBubbleList2String(DecBubbleList) [function, hook(STRING.token2string)]
 
+/*Print import decl list as a string*/
+syntax String ::= importList2String(ImportDecList) [function]
+syntax String ::= importDecl2String(ImportDec) [function]
+
+rule importList2String(.ImportDecList)
+
 endmodule

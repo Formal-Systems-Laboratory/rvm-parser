@@ -40,7 +40,7 @@ module RVM-COMPILER-CORE
 
                       <package color="black"> "" </package>
 
-                      <importList color="yellow"> .K </importList>
+                      <importList color="yellow"> "" </importList>
 
                       <events color="pink"> .List </events> //list of event name strings
                       //the params of each event, indexed by event id
