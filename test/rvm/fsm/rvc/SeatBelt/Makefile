@@ -15,6 +15,8 @@ test2: __RVC_SeatBelt_Monitor.c
 clean:
 	rm -f test1_k test2_k __RVC_* 
 
-test: all
-	-@./test1_k
-	-@./test2_k
+test: test1_k test2_k
+	-@./test1_k 1> actualOut 2> actualErr
+	-@./test2_k 1>> actualOut 2>> actualErr
+	diff tests/test.expected.out actualOut 
+	diff tests/test.expected.err actualErr
