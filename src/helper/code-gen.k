@@ -110,7 +110,7 @@ rule globalStateUpdate(GSV:String, TF:String) =>
 /////////////the three args are local state var, global state var, state rank
 syntax String ::= localStateUpdate(String, String, Int) [function]
 rule localStateUpdate(LSV:String, GSV:String, SR:Int) =>
-    LSV +String " = " +String GSV +String " == " +String Int2String(SR)
+    LSV +String " = " +String GSV +String " == " +String Int2String(SR) +String ";"
 
 ////////////////////////////////////////////////////////////////////////////////
 //generate the event handler code
