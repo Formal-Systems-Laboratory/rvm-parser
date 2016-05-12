@@ -125,9 +125,12 @@ rule <k2> $lsUpdates(I:Int) => $lsUpdate(0) $lsUpdates(I) </k2>
 
 rule <k2> $lsUpdate(I:Int) $lsUpdates(J:Int) => $lsUpdate(I +Int 1) $lsUpdates(J -Int 1) </k2>
 <propNum> G:Int </propNum>
+<specName> SN:String </specName>
 <states> M:Map </states>
 //the three args are local state var, global state var, state rank
-<code> C:List (.List => ListItem(localStateUpdate(getStrKey(M, I), globalStateVarI(G), I)))
+//localStateVarI(spec name, property rank, state name)
+<code> C:List (.List => ListItem(localStateUpdate( localStateVarI(SN, G, getStrKey(M, I)),
+globalStateVarI(G), I)))
 </code>
 when J >Int 0
 
